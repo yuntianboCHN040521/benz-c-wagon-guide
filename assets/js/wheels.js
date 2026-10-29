@@ -4,6 +4,12 @@
 (function () {
   'use strict';
 
+  /** 取翻译（I18N 未就绪时优雅降级到中文原文） */
+  function t(key, fallback) {
+    if (window.I18N) return window.I18N.t(key, fallback);
+    return fallback !== undefined ? fallback : key;
+  }
+
   function ready(fn) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
     else fn();
@@ -19,10 +25,10 @@
     if (host) {
       var w0 = gens[0].wheels || {};
       var items = [
-        { k: 'PCD 孔距', v: w0.pcd || '5×112', s: '四代通用' },
-        { k: '中心孔', v: (w0.center_bore_mm || 66.6) + ' mm', s: '大于此值必须加变径环' },
-        { k: '螺栓规格', v: 'M12 / M14', s: 'W203 用 M12×1.5，W204 起 M14×1.5' },
-        { k: '螺栓座面', v: '球面 R14', s: '奔驰原厂与主流改装毂一致' }
+        { k: t('pg.wheels.js.stat.pcd.k', 'PCD 孔距'), v: w0.pcd || '5×112', s: t('pg.wheels.js.stat.pcd.s', '四代通用') },
+        { k: t('pg.wheels.js.stat.cb.k', '中心孔'), v: (w0.center_bore_mm || 66.6) + ' mm', s: t('pg.wheels.js.stat.cb.s', '大于此值必须加变径环') },
+        { k: t('pg.wheels.js.stat.bolt.k', '螺栓规格'), v: 'M12 / M14', s: t('pg.wheels.js.stat.bolt.s', 'W203 用 M12×1.5，W204 起 M14×1.5') },
+        { k: t('pg.wheels.js.stat.seat.k', '螺栓座面'), v: t('pg.wheels.js.stat.seat.v', '球面 R14'), s: t('pg.wheels.js.stat.seat.s', '奔驰原厂与主流改装毂一致') }
       ];
       host.innerHTML = items.map(function (i) {
         return '<div class="stat"><div class="k">' + i.k + '</div><div class="v">' + i.v +
@@ -60,11 +66,19 @@
       });
 
       if (!rows.length) {
-        tableHost.innerHTML = '<div class="note">该代际暂无原厂轮毂数据。</div>';
+        tableHost.innerHTML = '<div class="note">' + t('pg.wheels.js.oem.empty', '该代际暂无原厂轮毂数据。') + '</div>';
         return;
       }
 
-      var head = ['代际', '轮毂规格', '偏距', '原厂轮胎', '背距/前距 (mm)', '适用型号', '备注'];
+      var head = [
+        t('pg.wheels.js.oem.th.gen', '代际'),
+        t('pg.wheels.js.oem.th.wheel', '轮毂规格'),
+        t('pg.wheels.js.oem.th.et', '偏距'),
+        t('pg.wheels.js.oem.th.tyre', '原厂轮胎'),
+        t('pg.wheels.js.oem.th.backfront', '背距/前距 (mm)'),
+        t('pg.wheels.js.oem.th.models', '适用型号'),
+        t('pg.wheels.js.oem.th.note', '备注')
+      ];
       tableHost.innerHTML = '<div class="table-scroll"><table><thead><tr>' +
         head.map(function (h) { return '<th>' + h + '</th>'; }).join('') +
         '</tr></thead><tbody>' +
@@ -72,8 +86,10 @@
           return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
         }).join('') +
         '</tbody></table></div>' +
-        '<div class="small faint mt16">「背距 / 前距」= 轮毂安装面到轮辋内缘 / 外缘的距离（mm）。' +
-        '改装时把新轮毂的这两个数字与原厂对比，就能算出租装位置差多少——这也是<a href="calculator.html">计算器</a>做的事。</div>';
+        '<div class="small faint mt16">' +
+        t('pg.wheels.js.oem.foot', '「背距 / 前距」= 轮毂安装面到轮辋内缘 / 外缘的距离（mm）。' +
+          '改装时把新轮毂的这两个数字与原厂对比，就能算出租装位置差多少——这也是<a href="calculator.html">计算器</a>做的事。') +
+        '</div>';
     }
 
     if (tableHost) {
@@ -110,14 +126,24 @@
       });
 
       etHost.innerHTML = '<div class="table-scroll"><table><thead><tr>' +
-        ['代际', '年份', '原厂 ET 区间', '典型原厂配置', '典型原厂轮胎', '螺栓', 'ET 可调跨度'].map(function (h) {
+        [
+          t('pg.wheels.js.et.th.gen', '代际'),
+          t('pg.wheels.js.et.th.years', '年份'),
+          t('pg.wheels.js.et.th.range', '原厂 ET 区间'),
+          t('pg.wheels.js.et.th.typical', '典型原厂配置'),
+          t('pg.wheels.js.et.th.tyre', '典型原厂轮胎'),
+          t('pg.wheels.js.et.th.bolt', '螺栓'),
+          t('pg.wheels.js.et.th.span', 'ET 可调跨度')
+        ].map(function (h) {
           return '<th>' + h + '</th>';
         }).join('') + '</tr></thead><tbody>' +
         rows2.map(function (r) {
           return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
         }).join('') + '</tbody></table></div>' +
-        '<div class="small faint mt16">「ET 可调跨度」= 原厂配置中最大 ET 与最小 ET 之差，' +
-        '反映了原厂留给轮拱的余量。跨度越大，说明该代车型的轮拱空间越宽裕，越容易改大尺寸或外凸。</div>';
+        '<div class="small faint mt16">' +
+        t('pg.wheels.js.et.foot', '「ET 可调跨度」= 原厂配置中最大 ET 与最小 ET 之差，' +
+          '反映了原厂留给轮拱的余量。跨度越大，说明该代车型的轮拱空间越宽裕，越容易改大尺寸或外凸。') +
+        '</div>';
     }
   });
 })();

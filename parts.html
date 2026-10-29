@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN" data-i18n-title="pg.parts.docTitle">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>配件更换与机油价格 · 奔驰 C 级旅行车数据库</title>
-<meta name="description" content="奔驰 C 级旅行车配件更换指南与价格：机油品牌规格价格对比（MB 229.5/229.51/229.52）、滤芯、火花塞、刹车片盘、变速箱油、刹车油，以及 4S 与修理厂工时费参考。">
+<meta name="description" content="奔驰 C 级旅行车配件更换指南与价格：机油品牌规格价格对比（MB 229.5/229.51/229.52）、滤芯、火花塞、刹车片盘、变速箱油、刹车油，以及 4S 与修理厂工时费参考。" data-i18n-attr="content:pg.parts.description">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -15,43 +15,43 @@
 <main class="wrap">
 
   <div class="hero">
-    <span class="eyebrow">Parts &amp; Oil Prices</span>
-    <h1>配件更换与<span class="accent">机油价格</span></h1>
-    <p>保养花多少钱，取决于你买什么规格、在哪买、在哪装。本页把机油、滤芯、火花塞、刹车、变速箱油的价格与规格
+    <span class="eyebrow" data-i18n="pg.parts.hero.eyebrow">Parts &amp; Oil Prices</span>
+    <h1 data-i18n-html="pg.parts.hero.title">配件更换与<span class="accent">机油价格</span></h1>
+    <p data-i18n="pg.parts.hero.desc">保养花多少钱，取决于你买什么规格、在哪买、在哪装。本页把机油、滤芯、火花塞、刹车、变速箱油的价格与规格
        排成可对比的表格，方便你判断 4S 报价是否合理。</p>
   </div>
 
-  <div class="note warn">
+  <div class="note warn" data-i18n-html="pg.parts.priceNote">
     <strong>关于价格：</strong>下表价格为<strong>市场参考区间</strong>，随渠道（4S / 途虎 / 京东自营 / 天猫旗舰店 / 汽配城）、
      地区、品牌与促销波动明显，通常有 ±30% 的浮动。用途是<strong>判断量级与比价</strong>，不是报价单。
   </div>
 
   <!-- ================= 机油 ================= -->
   <section>
-    <h2 id="oil">一、机油价格对比<span class="tag">Oil</span></h2>
-    <p class="lead">选机油先看认证（MB 229.x），再看粘度，最后才看品牌。同一认证下的不同品牌价格可以差一倍以上。</p>
+    <h2 id="oil" data-i18n-html="pg.parts.s1.title">一、机油价格对比<span class="tag">Oil</span></h2>
+    <p class="lead" data-i18n="pg.parts.s1.lead">选机油先看认证（MB 229.x），再看粘度，最后才看品牌。同一认证下的不同品牌价格可以差一倍以上。</p>
     <div id="oil-table"></div>
 
     <div class="grid cols-2 mt24">
       <div class="card">
-        <h3 class="mt0">怎么算一次保养用几升</h3>
-        <p class="small muted">奔驰四缸涡轮机的机油容量大多在 5.5～6.5 L，六缸机 6.5～8 L。
+        <h3 class="mt0" data-i18n="pg.parts.s1.card1.title">怎么算一次保养用几升</h3>
+        <p class="small muted" data-i18n-html="pg.parts.s1.card1.desc">奔驰四缸涡轮机的机油容量大多在 5.5～6.5 L，六缸机 6.5～8 L。
            常见做法是买<strong>一桶 4L + 一桶 1L</strong>，或直接买 5L 装再补一桶 1L。</p>
-        <div class="note">
+        <div class="note" data-i18n-html="pg.parts.s1.card1.note">
           <strong>省钱提示：</strong>电商大促（618、双 11）时的 4L 装全合成常有 5～6 折，
           一次囤两三次保养的量是最划算的做法。机油保质期通常 4～5 年，未开封常温存放没问题。
         </div>
       </div>
       <div class="card">
-        <h3 class="mt0">原厂机油 vs 品牌机油</h3>
+        <h3 class="mt0" data-i18n="pg.parts.s1.card2.title">原厂机油 vs 品牌机油</h3>
         <div class="table-scroll">
           <table style="min-width:auto">
-            <thead><tr><th>选项</th><th>优点</th><th>缺点</th></tr></thead>
+            <thead><tr><th data-i18n="pg.parts.s1.th.option">选项</th><th data-i18n="pg.parts.s1.th.pro">优点</th><th data-i18n="pg.parts.s1.th.con">缺点</th></tr></thead>
             <tbody>
-              <tr><td><strong>奔驰原厂机油</strong></td><td>认证无疑问、4S 保修期内省心</td><td>单价最高（常 100～160 元/L）、多为代工产品</td></tr>
-              <tr><td><strong>美孚 / 嘉实多 / 壳牌</strong></td><td>认证齐全、渠道多、大促便宜</td><td>假货多，必须走自营/旗舰店</td></tr>
-              <tr><td><strong>Motul / 福斯 / 力魔</strong></td><td>性能取向、部分产品专为欧系设计</td><td>单价偏高、渠道相对少</td></tr>
-              <tr><td><strong>国产品牌（长城/昆仑）</strong></td><td>价格低、假货少</td><td>奔驰认证产品线不全，需核对瓶身认证</td></tr>
+              <tr><td data-i18n-html="pg.parts.s1.row1.option"><strong>奔驰原厂机油</strong></td><td data-i18n="pg.parts.s1.row1.pro">认证无疑问、4S 保修期内省心</td><td data-i18n="pg.parts.s1.row1.con">单价最高（常 100～160 元/L）、多为代工产品</td></tr>
+              <tr><td data-i18n-html="pg.parts.s1.row2.option"><strong>美孚 / 嘉实多 / 壳牌</strong></td><td data-i18n="pg.parts.s1.row2.pro">认证齐全、渠道多、大促便宜</td><td data-i18n="pg.parts.s1.row2.con">假货多，必须走自营/旗舰店</td></tr>
+              <tr><td data-i18n-html="pg.parts.s1.row3.option"><strong>Motul / 福斯 / 力魔</strong></td><td data-i18n="pg.parts.s1.row3.pro">性能取向、部分产品专为欧系设计</td><td data-i18n="pg.parts.s1.row3.con">单价偏高、渠道相对少</td></tr>
+              <tr><td data-i18n-html="pg.parts.s1.row4.option"><strong>国产品牌（长城/昆仑）</strong></td><td data-i18n="pg.parts.s1.row4.pro">价格低、假货少</td><td data-i18n="pg.parts.s1.row4.con">奔驰认证产品线不全，需核对瓶身认证</td></tr>
             </tbody>
           </table>
         </div>
@@ -63,8 +63,8 @@
 
   <!-- ================= 滤芯 ================= -->
   <section>
-    <h2 id="filters">二、滤芯类<span class="tag">Filters</span></h2>
-    <p class="lead">滤芯是典型的「原厂件 = 大牌代工」品类。曼牌（Mann）、马勒（Mahle）、博世、汉格斯特是奔驰最常见的代工方，
+    <h2 id="filters" data-i18n-html="pg.parts.s2.title">二、滤芯类<span class="tag">Filters</span></h2>
+    <p class="lead" data-i18n="pg.parts.s2.lead">滤芯是典型的「原厂件 = 大牌代工」品类。曼牌（Mann）、马勒（Mahle）、博世、汉格斯特是奔驰最常见的代工方，
        价格往往只有 4S 的一半甚至三分之一，品质一致。</p>
     <div id="filter-table"></div>
   </section>
@@ -73,10 +73,10 @@
 
   <!-- ================= 火花塞 ================= -->
   <section>
-    <h2 id="spark">三、火花塞<span class="tag">Spark Plugs</span></h2>
-    <p class="lead">涡轮增压直喷发动机的火花塞更换周期比自然吸气短得多。用错型号会导致失火、抖动甚至损坏点火线圈。</p>
+    <h2 id="spark" data-i18n-html="pg.parts.s3.title">三、火花塞<span class="tag">Spark Plugs</span></h2>
+    <p class="lead" data-i18n="pg.parts.s3.lead">涡轮增压直喷发动机的火花塞更换周期比自然吸气短得多。用错型号会导致失火、抖动甚至损坏点火线圈。</p>
     <div id="spark-table"></div>
-    <div class="note mt16">
+    <div class="note mt16" data-i18n-html="pg.parts.s3.note">
       <strong>选购要点：</strong>必须按<strong>发动机代号</strong>选型号，热值与间隙不能随意替换。
       奔驰原厂火花塞多由 NGK 或博世代工，直接买对应型号的 NGK/博世产品是同质低价的选择。
       更换时建议<strong>四支同批</strong>，不要混用不同品牌或新旧混装。
@@ -87,34 +87,34 @@
 
   <!-- ================= 刹车 ================= -->
   <section>
-    <h2 id="brake">四、刹车片与刹车盘<span class="tag">Brakes</span></h2>
-    <p class="lead">刹车是安全件，这里的钱不该省。但「4S 换刹车片 4000 元」和「靠谱修理厂换同品质 ATE 件 1500 元」之间，
+    <h2 id="brake" data-i18n-html="pg.parts.s4.title">四、刹车片与刹车盘<span class="tag">Brakes</span></h2>
+    <p class="lead" data-i18n="pg.parts.s4.lead">刹车是安全件，这里的钱不该省。但「4S 换刹车片 4000 元」和「靠谱修理厂换同品质 ATE 件 1500 元」之间，
        差别主要来自渠道加价而非零件本身。</p>
     <div id="brake-table"></div>
     <div class="grid cols-2 mt24">
       <div class="card">
-        <h3 class="mt0">品牌定位</h3>
+        <h3 class="mt0" data-i18n="pg.parts.s4.card1.title">品牌定位</h3>
         <div class="table-scroll">
           <table style="min-width:auto">
-            <thead><tr><th>品牌</th><th>特点</th><th>价格档</th></tr></thead>
+            <thead><tr><th data-i18n="pg.parts.s4.th.brand">品牌</th><th data-i18n="pg.parts.s4.th.feature">特点</th><th data-i18n="pg.parts.s4.th.tier">价格档</th></tr></thead>
             <tbody>
-              <tr><td><strong>奔驰原厂</strong></td><td>多为 Textar / Brembo 代工，带原厂包装</td><td>最高</td></tr>
-              <tr><td><strong>Brembo</strong></td><td>制动性能标杆，AMG 车型原厂配套</td><td>高</td></tr>
-              <tr><td><strong>ATE</strong></td><td>德系车原厂配套大户，性价比好</td><td>中高</td></tr>
-              <tr><td><strong>Textar / TRW</strong></td><td>原厂代工厂，品质可靠</td><td>中</td></tr>
-              <tr><td><strong>国产（金麒麟等）</strong></td><td>价格低，粉尘与噪音控制参差</td><td>低</td></tr>
+              <tr><td data-i18n-html="pg.parts.s4.row1.brand"><strong>奔驰原厂</strong></td><td data-i18n="pg.parts.s4.row1.feature">多为 Textar / Brembo 代工，带原厂包装</td><td data-i18n="pg.parts.s4.row1.tier">最高</td></tr>
+              <tr><td data-i18n-html="pg.parts.s4.row2.brand"><strong>Brembo</strong></td><td data-i18n="pg.parts.s4.row2.feature">制动性能标杆，AMG 车型原厂配套</td><td data-i18n="pg.parts.s4.row2.tier">高</td></tr>
+              <tr><td data-i18n-html="pg.parts.s4.row3.brand"><strong>ATE</strong></td><td data-i18n="pg.parts.s4.row3.feature">德系车原厂配套大户，性价比好</td><td data-i18n="pg.parts.s4.row3.tier">中高</td></tr>
+              <tr><td data-i18n-html="pg.parts.s4.row4.brand"><strong>Textar / TRW</strong></td><td data-i18n="pg.parts.s4.row4.feature">原厂代工厂，品质可靠</td><td data-i18n="pg.parts.s4.row4.tier">中</td></tr>
+              <tr><td data-i18n-html="pg.parts.s4.row5.brand"><strong>国产（金麒麟等）</strong></td><td data-i18n="pg.parts.s4.row5.feature">价格低，粉尘与噪音控制参差</td><td data-i18n="pg.parts.s4.row5.tier">低</td></tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="card">
-        <h3 class="mt0">什么时候该换</h3>
+        <h3 class="mt0" data-i18n="pg.parts.s4.card2.title">什么时候该换</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>刹车片摩擦材料厚度<strong>小于 3 mm</strong>必须换（新片约 10～12 mm）。</li>
-          <li>仪表出现刹车片磨损报警（多数车型有传感器）。</li>
-          <li>刹车盘厚度低于最小允许值（盘面有刻印 min 值）、或出现明显沟槽、翘曲抖动。</li>
-          <li>刹车时有尖锐金属摩擦声、或制动距离明显变长。</li>
-          <li><strong>换盘必须同换片</strong>；换片时若盘有台阶或偏磨，也应一并处理。</li>
+          <li data-i18n-html="pg.parts.s4.card2.li1">刹车片摩擦材料厚度<strong>小于 3 mm</strong>必须换（新片约 10～12 mm）。</li>
+          <li data-i18n-html="pg.parts.s4.card2.li2">仪表出现刹车片磨损报警（多数车型有传感器）。</li>
+          <li data-i18n="pg.parts.s4.card2.li3">刹车盘厚度低于最小允许值（盘面有刻印 min 值）、或出现明显沟槽、翘曲抖动。</li>
+          <li data-i18n="pg.parts.s4.card2.li4">刹车时有尖锐金属摩擦声、或制动距离明显变长。</li>
+          <li data-i18n-html="pg.parts.s4.card2.li5"><strong>换盘必须同换片</strong>；换片时若盘有台阶或偏磨，也应一并处理。</li>
         </ul>
       </div>
     </div>
@@ -124,10 +124,10 @@
 
   <!-- ================= 变速箱油 ================= -->
   <section>
-    <h2 id="atf">五、变速箱油<span class="tag">ATF</span></h2>
-    <p class="lead">奔驰不同代变速箱使用的油品认证完全不同，<strong>加错油会直接导致换挡冲击甚至变速箱损坏</strong>。</p>
+    <h2 id="atf" data-i18n-html="pg.parts.s5.title">五、变速箱油<span class="tag">ATF</span></h2>
+    <p class="lead" data-i18n-html="pg.parts.s5.lead">奔驰不同代变速箱使用的油品认证完全不同，<strong>加错油会直接导致换挡冲击甚至变速箱损坏</strong>。</p>
     <div id="atf-table"></div>
-    <div class="note bad mt16">
+    <div class="note bad mt16" data-i18n-html="pg.parts.s5.note">
       <strong>红线提醒：</strong>奔驰变速箱油的认证<strong>互不通用</strong>，而且 722.9 本身还要分两个阶段：
       <ul style="margin:8px 0 0;padding-left:20px">
         <li><strong>722.6</strong>（5G-TRONIC）→ <span class="mono">MB 236.10</span>（236.12 / 236.14 亦可）</li>
@@ -145,11 +145,11 @@
 
   <!-- ================= 刹车油 ================= -->
   <section>
-    <h2 id="brakefluid">六、刹车油<span class="tag">Brake Fluid</span></h2>
-    <p class="lead">成本最低、最容易被拖延、后果最直接的一项。刹车油会持续吸收空气中的水分，
+    <h2 id="brakefluid" data-i18n-html="pg.parts.s6.title">六、刹车油<span class="tag">Brake Fluid</span></h2>
+    <p class="lead" data-i18n="pg.parts.s6.lead">成本最低、最容易被拖延、后果最直接的一项。刹车油会持续吸收空气中的水分，
        含水量上升会让沸点大幅下降——连续下坡或激烈驾驶时，沸腾产生的气泡会让刹车踏板直接踩空。</p>
     <div id="brakefluid-table"></div>
-    <div class="note mt16">
+    <div class="note mt16" data-i18n-html="pg.parts.s6.note">
       <strong>更换要点：</strong>周期为 <strong>2 年</strong>（或 4 万公里）。必须用压力排气机更换，
       靠脚踩排气很难把 ABS 泵与管路里的旧油彻底换净。奔驰车型需要 DOT4 及以上，
       带 ESP/ABS 的车型建议使用 DOT4 Plus（原厂 Blatt 331.0 规格）。
@@ -161,24 +161,24 @@
 
   <!-- ================= 工时费 ================= -->
   <section>
-    <h2 id="labour">七、工时费与保养总价参考<span class="tag">Labour</span></h2>
-    <p class="lead">同样的项目，4S 店与综合修理厂的价格差可以达到 2～3 倍。保修期内的新车建议留在 4S，
+    <h2 id="labour" data-i18n-html="pg.parts.s7.title">七、工时费与保养总价参考<span class="tag">Labour</span></h2>
+    <p class="lead" data-i18n="pg.parts.s7.lead">同样的项目，4S 店与综合修理厂的价格差可以达到 2～3 倍。保修期内的新车建议留在 4S，
        出保后找一家熟悉奔驰的专修店是主流选择。</p>
     <div id="labour-table"></div>
     <div class="grid cols-3 mt24">
       <div class="card">
-        <h3 class="mt0">可以自己动手</h3>
-        <p class="small muted">空调滤芯、空气滤芯、雨刮片、蓄电池（部分车型需注册）、灯泡。
+        <h3 class="mt0" data-i18n="pg.parts.s7.card1.title">可以自己动手</h3>
+        <p class="small muted" data-i18n="pg.parts.s7.card1.desc">空调滤芯、空气滤芯、雨刮片、蓄电池（部分车型需注册）、灯泡。
            这几项在 4S 的工时费往往是零件本身的数倍，自己换能省一大半。</p>
       </div>
       <div class="card">
-        <h3 class="mt0">必须交给专业</h3>
-        <p class="small muted">变速箱油（需要专用设备与油温校准）、刹车油（需要压力排气与诊断仪）、
+        <h3 class="mt0" data-i18n="pg.parts.s7.card2.title">必须交给专业</h3>
+        <p class="small muted" data-i18n="pg.parts.s7.card2.desc">变速箱油（需要专用设备与油温校准）、刹车油（需要压力排气与诊断仪）、
            正时链条、空气悬挂、任何涉及高压系统的项目。</p>
       </div>
       <div class="card">
-        <h3 class="mt0">影响残值</h3>
-        <p class="small muted">完整的保养记录（最好有 4S 或专修店的盖章工单）在二手交易时值几千元。
+        <h3 class="mt0" data-i18n="pg.parts.s7.card3.title">影响残值</h3>
+        <p class="small muted" data-i18n="pg.parts.s7.card3.desc">完整的保养记录（最好有 4S 或专修店的盖章工单）在二手交易时值几千元。
            从小修理厂换到路边摊省下的钱，往往在卖车时加倍还回去。</p>
       </div>
     </div>
@@ -188,35 +188,35 @@
 
   <!-- ================= 选购原则 ================= -->
   <section>
-    <h2 id="rules">八、配件选购的六条原则<span class="tag">Rules</span></h2>
+    <h2 id="rules" data-i18n-html="pg.parts.s8.title">八、配件选购的六条原则<span class="tag">Rules</span></h2>
     <div class="grid cols-2">
       <div class="card">
-        <h3 class="mt0">1. 安全件不省</h3>
-        <p class="small muted">刹车（片/盘/油）、轮胎、轮毂、转向与悬挂件。这些是唯一直接决定生死的部分。</p>
+        <h3 class="mt0" data-i18n="pg.parts.s8.card1.title">1. 安全件不省</h3>
+        <p class="small muted" data-i18n="pg.parts.s8.card1.desc">刹车（片/盘/油）、轮胎、轮毂、转向与悬挂件。这些是唯一直接决定生死的部分。</p>
       </div>
       <div class="card">
-        <h3 class="mt0">2. 认证优先于品牌</h3>
-        <p class="small muted">机油看 MB 229.x，变速箱油看 MB 236.x，刹车油看 DOT4 Plus。有认证的杂牌，
+        <h3 class="mt0" data-i18n="pg.parts.s8.card2.title">2. 认证优先于品牌</h3>
+        <p class="small muted" data-i18n="pg.parts.s8.card2.desc">机油看 MB 229.x，变速箱油看 MB 236.x，刹车油看 DOT4 Plus。有认证的杂牌，
            好过没认证的大牌。</p>
       </div>
       <div class="card">
-        <h3 class="mt0">3. 认准零件号</h3>
-        <p class="small muted">奔驰原厂零件号形如 <span class="mono">A2711800009</span>。
+        <h3 class="mt0" data-i18n="pg.parts.s8.card3.title">3. 认准零件号</h3>
+        <p class="small muted" data-i18n-html="pg.parts.s8.card3.desc">奔驰原厂零件号形如 <span class="mono">A2711800009</span>。
            用它去查代工件是最可靠的方式，能避免买错型号。</p>
       </div>
       <div class="card">
-        <h3 class="mt0">4. 渠道比价格重要</h3>
-        <p class="small muted">机油、刹车片、火花塞是假货重灾区。优先京东自营、天猫官方旗舰店、品牌授权经销商，
+        <h3 class="mt0" data-i18n="pg.parts.s8.card4.title">4. 渠道比价格重要</h3>
+        <p class="small muted" data-i18n="pg.parts.s8.card4.desc">机油、刹车片、火花塞是假货重灾区。优先京东自营、天猫官方旗舰店、品牌授权经销商，
            不要买「比市场价便宜 40%」的同款。</p>
       </div>
       <div class="card">
-        <h3 class="mt0">5. 成对/成套更换</h3>
-        <p class="small muted">刹车片同轴成对换、火花塞四支同批、减震器同轴成对换。
+        <h3 class="mt0" data-i18n="pg.parts.s8.card5.title">5. 成对/成套更换</h3>
+        <p class="small muted" data-i18n="pg.parts.s8.card5.desc">刹车片同轴成对换、火花塞四支同批、减震器同轴成对换。
            单侧更换会导致左右制动力或阻尼不一致。</p>
       </div>
       <div class="card">
-        <h3 class="mt0">6. 留好工单</h3>
-        <p class="small muted">每次保养保留工单与零件发票，既方便追踪下次保养时间，
+        <h3 class="mt0" data-i18n="pg.parts.s8.card6.title">6. 留好工单</h3>
+        <p class="small muted" data-i18n="pg.parts.s8.card6.desc">每次保养保留工单与零件发票，既方便追踪下次保养时间，
            也是卖车时最有力的车况证明。</p>
       </div>
     </div>
@@ -226,11 +226,11 @@
 
   <!-- ================= 数据缺口 ================= -->
   <section>
-    <h2 id="gaps">九、数据缺口与来源说明<span class="tag">Honesty</span></h2>
-    <p class="lead">本页的价格、零件号与规格全部来自实际抓取的电商页面、车主实测帖与配件平台记录。
+    <h2 id="gaps" data-i18n-html="pg.parts.s9.title">九、数据缺口与来源说明<span class="tag">Honesty</span></h2>
+    <p class="lead" data-i18n="pg.parts.s9.lead">本页的价格、零件号与规格全部来自实际抓取的电商页面、车主实测帖与配件平台记录。
        抓不到可靠来源的项目，这里选择留空而不是填一个看起来合理的数字。</p>
     <div id="data-gaps"></div>
-    <div class="note mt16">
+    <div class="note mt16" data-i18n-html="pg.parts.s9.note">
       <strong>价格时效提醒：</strong>部分报价来自 2015–2019 年的促销记录，与今天的价格会有明显差距；
        促销价（尤其电商大促）通常比日常价低 30%–40%。请把这里的数字当作<strong>量级参考</strong>，
        实际下单前再核对当前价格。
@@ -241,7 +241,16 @@
 
 <footer class="footer" id="site-footer"></footer>
 
+<script src="lang/zh.js"></script>
+<script src="lang/en.js"></script>
+<script src="lang/p-parts.zh.js"></script>
+<script src="lang/p-parts.en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="data/c-class-data.js"></script>
+<script src="data/i18n-en-c-class.js"></script>
+<script src="data/i18n-en-controls.js"></script>
+<script src="data/i18n-en-brands.js"></script>
+<script src="assets/js/data-i18n.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/parts.js"></script>
 </body>

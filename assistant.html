@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN" data-i18n-title="pg.assistant.docTitle">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI 助手 · 奔驰 C 级旅行车数据库</title>
-<meta name="description" content="奔驰 C 级旅行车数据库的站内 AI 助手：可以直接提问车身尺寸、轮毂 ET、改装能不能装、通病、保养周期、机油与配件价格，答案全部来自本站已核实数据。">
+<meta name="description" content="奔驰 C 级旅行车数据库的站内 AI 助手：可以直接提问车身尺寸、轮毂 ET、改装能不能装、通病、保养周期、机油与配件价格，答案全部来自本站已核实数据。" data-i18n-attr="content:pg.assistant.docDesc">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -15,20 +15,20 @@
 <main class="wrap">
 
   <div class="hero">
-    <span class="eyebrow">Assistant</span>
-    <h1>站内 <span class="accent">AI 助手</span></h1>
-    <p>直接问就行。助手会检索本站已核实的数据来回答——<strong>车身尺寸、轮毂 ET 与适配、改装能不能装、
+    <span class="eyebrow" data-i18n="pg.assistant.hero.eyebrow">Assistant</span>
+    <h1><span data-i18n="pg.assistant.hero.title.before">站内 </span><span class="accent" data-i18n="pg.assistant.hero.title.accent">AI 助手</span></h1>
+    <p data-i18n-html="pg.assistant.hero.desc">直接问就行。助手会检索本站已核实的数据来回答——<strong>车身尺寸、轮毂 ET 与适配、改装能不能装、
        通病与维修价、保养周期、机油认证与配件价格</strong>，涉及规格的问题还会现场调用计算引擎算出结果。</p>
     <div class="toolbar mt16">
-      <button type="button" id="llm-toggle">⚙ 模型设置</button>
-      <button type="button" class="ghost" id="llm-copy">复制「资料 + 问题」给别人</button>
+      <button type="button" id="llm-toggle" data-i18n="pg.assistant.hero.btnSettings">⚙ 模型设置</button>
+      <button type="button" class="ghost" id="llm-copy" data-i18n="pg.assistant.hero.btnCopy">复制「资料 + 问题」给别人</button>
     </div>
   </div>
 
   <!-- ================= 模型设置 ================= -->
   <section id="llm-settings" class="hidden">
-    <h2 id="settings">模型设置<span class="tag">可选</span></h2>
-    <p class="lead">默认的<strong>离线检索模式</strong>不需要任何配置，答案完全来自本站数据。
+    <h2 id="settings"><span data-i18n="pg.assistant.settings.title">模型设置</span><span class="tag" data-i18n="pg.assistant.settings.tag">可选</span></h2>
+    <p class="lead" data-i18n-html="pg.assistant.settings.lead">默认的<strong>离线检索模式</strong>不需要任何配置，答案完全来自本站数据。
        如果你希望助手用更自然的语言组织回答，可以填入自己的 API key 切换到<strong>大模型模式</strong>——
        检索到的本站资料会作为上下文一起发送，所以它仍然只依据本站数据回答。</p>
 
@@ -37,37 +37,37 @@
         <div class="field">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
             <input type="checkbox" id="llm-enabled" style="width:auto">
-            <span>启用大模型模式</span>
+            <span data-i18n="pg.assistant.settings.enabled">启用大模型模式</span>
           </label>
         </div>
         <div class="field">
-          <label>API Base URL <span class="hint">OpenAI 兼容接口</span></label>
+          <label data-i18n-html="pg.assistant.settings.base.label">API Base URL <span class="hint">OpenAI 兼容接口</span></label>
           <input type="text" id="llm-base" placeholder="https://api.deepseek.com/v1">
         </div>
         <div class="field">
-          <label>API Key <span class="hint">只保存在你自己的浏览器里</span></label>
+          <label data-i18n-html="pg.assistant.settings.key.label">API Key <span class="hint">只保存在你自己的浏览器里</span></label>
           <input type="text" id="llm-key" placeholder="sk-...">
         </div>
         <div class="field">
-          <label>模型名</label>
+          <label data-i18n="pg.assistant.settings.model.label">模型名</label>
           <input type="text" id="llm-model" placeholder="deepseek-chat">
         </div>
-        <button type="button" id="llm-save">保存设置</button>
-        <p class="small faint mt16">
+        <button type="button" id="llm-save" data-i18n="pg.assistant.settings.save">保存设置</button>
+        <p class="small faint mt16" data-i18n-html="pg.assistant.settings.presets">
           常用配置：DeepSeek <span class="mono">https://api.deepseek.com/v1</span> + <span class="mono">deepseek-chat</span>；
           OpenAI <span class="mono">https://api.openai.com/v1</span> + <span class="mono">gpt-4o-mini</span>；
           OpenRouter <span class="mono">https://openrouter.ai/api/v1</span>。
         </p>
       </div>
       <div class="card">
-        <h3 class="mt0">关于 key 与隐私</h3>
+        <h3 class="mt0" data-i18n="pg.assistant.privacy.title">关于 key 与隐私</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>key 只存在你浏览器的 <span class="mono">localStorage</span> 里，不会上传到本站——本站是纯静态页面，<strong>根本没有后端</strong>。</li>
-          <li>请求由你的浏览器直接发往你填的 API 服务商，本站不经手。</li>
-          <li>如果服务商不允许浏览器直连（CORS 限制），会提示失败并<strong>自动回落到离线检索</strong>，功能不受影响。</li>
-          <li>不想配 key 也可以用右上角的「复制资料 + 问题」，粘贴到任意 AI 对话框里。</li>
+          <li data-i18n-html="pg.assistant.privacy.li1">key 只存在你浏览器的 <span class="mono">localStorage</span> 里，不会上传到本站——本站是纯静态页面，<strong>根本没有后端</strong>。</li>
+          <li data-i18n="pg.assistant.privacy.li2">请求由你的浏览器直接发往你填的 API 服务商，本站不经手。</li>
+          <li data-i18n-html="pg.assistant.privacy.li3">如果服务商不允许浏览器直连（CORS 限制），会提示失败并<strong>自动回落到离线检索</strong>，功能不受影响。</li>
+          <li data-i18n="pg.assistant.privacy.li4">不想配 key 也可以用右上角的「复制资料 + 问题」，粘贴到任意 AI 对话框里。</li>
         </ul>
-        <div class="note warn mt16">
+        <div class="note warn mt16" data-i18n-html="pg.assistant.privacy.warn">
           <strong>为什么不内置 key？</strong>静态页面里的任何 key 都会随源码公开，等于泄露。
           让每个使用者填自己的 key 是这类站点唯一安全的做法。
         </div>
@@ -79,27 +79,28 @@
 
   <!-- ================= 聊天区 ================= -->
   <section>
-    <h2 id="chat">开始提问<span class="tag" id="kb-count"></span></h2>
+    <h2 id="chat"><span data-i18n="pg.assistant.chat.title">开始提问</span><span class="tag" id="kb-count"></span></h2>
 
     <div class="toolbar">
-      <span class="chip" data-ask="S205 的轴距是多少">S205 轴距</span>
-      <span class="chip" data-ask="W204 有什么通病">W204 通病</span>
-      <span class="chip" data-ask="W205 用什么机油">W205 用什么机油</span>
-      <span class="chip" data-ask="BBS 有哪些适配的轮毂">BBS 轮毂</span>
-      <span class="chip" data-ask="225/50R17 换成 245/40R18 会怎样">换胎计算</span>
-      <span class="chip" data-ask="刹车片多少钱">刹车片价格</span>
-      <span class="chip" data-ask="S204 和 S205 的轴距差多少">两代对比</span>
-      <span class="chip" data-ask="哪些数据没有核实">数据缺口</span>
+      <span class="chip" data-ask="S205 的轴距是多少" data-i18n-attr="data-ask:pg.assistant.ask.wheelbase" data-i18n="pg.assistant.chip.wheelbase">S205 轴距</span>
+      <span class="chip" data-ask="W204 有什么通病" data-i18n-attr="data-ask:pg.assistant.ask.issue" data-i18n="pg.assistant.chip.issue">W204 通病</span>
+      <span class="chip" data-ask="W205 用什么机油" data-i18n-attr="data-ask:pg.assistant.ask.oil" data-i18n="pg.assistant.chip.oil">W205 用什么机油</span>
+      <span class="chip" data-ask="BBS 有哪些适配的轮毂" data-i18n-attr="data-ask:pg.assistant.ask.brand" data-i18n="pg.assistant.chip.brand">BBS 轮毂</span>
+      <span class="chip" data-ask="225/50R17 换成 245/40R18 会怎样" data-i18n-attr="data-ask:pg.assistant.ask.calc" data-i18n="pg.assistant.chip.calc">换胎计算</span>
+      <span class="chip" data-ask="刹车片多少钱" data-i18n-attr="data-ask:pg.assistant.ask.brake" data-i18n="pg.assistant.chip.brake">刹车片价格</span>
+      <span class="chip" data-ask="S204 和 S205 的轴距差多少" data-i18n-attr="data-ask:pg.assistant.ask.compare" data-i18n="pg.assistant.chip.compare">两代对比</span>
+      <span class="chip" data-ask="哪些数据没有核实" data-i18n-attr="data-ask:pg.assistant.ask.gap" data-i18n="pg.assistant.chip.gap">数据缺口</span>
     </div>
 
     <div class="chat-wrap">
       <div class="chat-log" id="chat-log"></div>
       <div class="chat-input-row">
         <input type="text" id="chat-input" autocomplete="off"
-               placeholder="例如：S203 用 M12 还是 M14 螺栓？／ 8.5Jx19 ET45 装 W205 会刮吗？">
-        <button type="button" id="chat-send">发送</button>
+               placeholder="例如：S203 用 M12 还是 M14 螺栓？／ 8.5Jx19 ET45 装 W205 会刮吗？"
+               data-i18n-attr="placeholder:pg.assistant.chat.placeholder">
+        <button type="button" id="chat-send" data-i18n="pg.assistant.chat.send">发送</button>
       </div>
-      <div class="small faint mt16">
+      <div class="small faint mt16" data-i18n="pg.assistant.chat.note">
         回车发送。助手只依据本站已核实的数据回答；站内没有的数据它会直接说没有，而不是编一个。
       </div>
     </div>
@@ -109,61 +110,61 @@
 
   <!-- ================= 能力说明 ================= -->
   <section>
-    <h2 id="ability">它能回答什么<span class="tag">Capability</span></h2>
+    <h2 id="ability"><span data-i18n="pg.assistant.ability.title">它能回答什么</span><span class="tag" data-i18n="pg.assistant.ability.tag">Capability</span></h2>
     <div class="grid cols-2">
       <div class="card">
-        <h3 class="mt0">结构化查询</h3>
+        <h3 class="mt0" data-i18n="pg.assistant.ability.query.title">结构化查询</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>「<span class="mono">S206 的前轮距</span>」→ 直接给数值，并附四代对比表</li>
-          <li>「<span class="mono">W204 原厂 17 寸的 ET 是多少</span>」→ 给规格 + 背距/前距</li>
-          <li>「<span class="mono">W203 有什么通病</span>」→ 列出现象、原因、对策、参考价</li>
-          <li>「<span class="mono">C63 的发动机参数</span>」→ 功率、扭矩、年份、原厂轮组</li>
+          <li data-i18n-html="pg.assistant.ability.query.li1">「<span class="mono">S206 的前轮距</span>」→ 直接给数值，并附四代对比表</li>
+          <li data-i18n-html="pg.assistant.ability.query.li2">「<span class="mono">W204 原厂 17 寸的 ET 是多少</span>」→ 给规格 + 背距/前距</li>
+          <li data-i18n-html="pg.assistant.ability.query.li3">「<span class="mono">W203 有什么通病</span>」→ 列出现象、原因、对策、参考价</li>
+          <li data-i18n-html="pg.assistant.ability.query.li4">「<span class="mono">C63 的发动机参数</span>」→ 功率、扭矩、年份、原厂轮组</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="mt0">实时计算</h3>
+        <h3 class="mt0" data-i18n="pg.assistant.ability.calc.title">实时计算</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>「<span class="mono">225/50R17 换成 245/40R18</span>」→ 外径差、胎壁外移、轮距变化、码表误差</li>
-          <li>「<span class="mono">8.5Jx19 ET45 装 W205 会刮吗</span>」→ 以该代原厂为基准给出评级</li>
-          <li>没给车型时会默认以 <strong>S205 原厂配置</strong>为基准并明确说明</li>
+          <li data-i18n-html="pg.assistant.ability.calc.li1">「<span class="mono">225/50R17 换成 245/40R18</span>」→ 外径差、胎壁外移、轮距变化、码表误差</li>
+          <li data-i18n-html="pg.assistant.ability.calc.li2">「<span class="mono">8.5Jx19 ET45 装 W205 会刮吗</span>」→ 以该代原厂为基准给出评级</li>
+          <li data-i18n-html="pg.assistant.ability.calc.li3">没给车型时会默认以 <strong>S205 原厂配置</strong>为基准并明确说明</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="mt0">价格与耗材</h3>
+        <h3 class="mt0" data-i18n="pg.assistant.ability.price.title">价格与耗材</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>「<span class="mono">机油多少钱</span>」→ 品牌、认证、容量、单价对比</li>
-          <li>「<span class="mono">刹车片价格</span>」→ 原厂与替代品牌零件号</li>
-          <li>「<span class="mono">变速箱油怎么选</span>」→ 722.6 / 722.9 / 725.0 的认证区别</li>
+          <li data-i18n-html="pg.assistant.ability.price.li1">「<span class="mono">机油多少钱</span>」→ 品牌、认证、容量、单价对比</li>
+          <li data-i18n-html="pg.assistant.ability.price.li2">「<span class="mono">刹车片价格</span>」→ 原厂与替代品牌零件号</li>
+          <li data-i18n-html="pg.assistant.ability.price.li3">「<span class="mono">变速箱油怎么选</span>」→ 722.6 / 722.9 / 725.0 的认证区别</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="mt0">灯光与操作</h3>
+        <h3 class="mt0" data-i18n="pg.assistant.ability.light.title">灯光与操作</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>「<span class="mono">示宽灯在哪里</span>」→ 开关位置、档位，以及与驻车灯的区别</li>
-          <li>「<span class="mono">驻车灯怎么开</span>」→ 单侧驻车灯的完整操作步骤</li>
-          <li>「<span class="mono">灯光开关在哪</span>」→ 四代差异对比表</li>
-          <li>「<span class="mono">怀挡怎么用</span>」→ 按区域列出车内按键功能</li>
+          <li data-i18n-html="pg.assistant.ability.light.li1">「<span class="mono">示宽灯在哪里</span>」→ 开关位置、档位，以及与驻车灯的区别</li>
+          <li data-i18n-html="pg.assistant.ability.light.li2">「<span class="mono">驻车灯怎么开</span>」→ 单侧驻车灯的完整操作步骤</li>
+          <li data-i18n-html="pg.assistant.ability.light.li3">「<span class="mono">灯光开关在哪</span>」→ 四代差异对比表</li>
+          <li data-i18n-html="pg.assistant.ability.light.li4">「<span class="mono">怀挡怎么用</span>」→ 按区域列出车内按键功能</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="mt0">仪表故障灯</h3>
+        <h3 class="mt0" data-i18n="pg.assistant.ability.warn.title">仪表故障灯</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>「<span class="mono">机油压力灯亮了怎么办</span>」→ 含义、能否继续行驶、原因与处理步骤</li>
-          <li>「<span class="mono">红色故障灯有哪些</span>」→ 按颜色筛选</li>
-          <li>「<span class="mono">故障灯颜色分级</span>」→ 红/黄/绿/蓝各自的处置优先级</li>
+          <li data-i18n-html="pg.assistant.ability.warn.li1">「<span class="mono">机油压力灯亮了怎么办</span>」→ 含义、能否继续行驶、原因与处理步骤</li>
+          <li data-i18n-html="pg.assistant.ability.warn.li2">「<span class="mono">红色故障灯有哪些</span>」→ 按颜色筛选</li>
+          <li data-i18n-html="pg.assistant.ability.warn.li3">「<span class="mono">故障灯颜色分级</span>」→ 红/黄/绿/蓝各自的处置优先级</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="mt0">诚实边界</h3>
+        <h3 class="mt0" data-i18n="pg.assistant.ability.gap.title">诚实边界</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>问「<span class="mono">哪些数据没有核实</span>」会列出全部数据缺口</li>
-          <li>检索不到时会明说「站内没有这项数据」，并给可替代的问法</li>
-          <li>大模型模式下，系统提示明确要求<strong>只依据站内资料回答、不得编造数字</strong></li>
+          <li data-i18n-html="pg.assistant.ability.gap.li1">问「<span class="mono">哪些数据没有核实</span>」会列出全部数据缺口</li>
+          <li data-i18n="pg.assistant.ability.gap.li2">检索不到时会明说「站内没有这项数据」，并给可替代的问法</li>
+          <li data-i18n-html="pg.assistant.ability.gap.li3">大模型模式下，系统提示明确要求<strong>只依据站内资料回答、不得编造数字</strong></li>
         </ul>
       </div>
     </div>
 
-    <div class="note mt16">
+    <div class="note mt16" data-i18n-html="pg.assistant.ability.note">
       <strong>回答的边界：</strong>助手读取的是<a href="wheels.html">轮毂数据</a>、
       <a href="specs.html">车身数据</a>、<a href="guide.html">用车指南</a>、
       <a href="fitment.html">轮毂适配</a>、<a href="parts.html">配件与机油</a>五个页面的数据源，
@@ -175,9 +176,20 @@
 
 <footer class="footer" id="site-footer"></footer>
 
+<script src="lang/zh.js"></script>
+<script src="lang/en.js"></script>
+<script src="lang/p-assistant.zh.js"></script>
+<script src="lang/p-assistant.en.js"></script>
+  <script src="lang/p-calc.zh.js"></script>
+  <script src="lang/p-calc.en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="data/c-class-data.js"></script>
 <script src="data/wheel-brands.js"></script>
 <script src="data/controls-data.js"></script>
+<script src="data/i18n-en-c-class.js"></script>
+<script src="data/i18n-en-controls.js"></script>
+<script src="data/i18n-en-brands.js"></script>
+<script src="assets/js/data-i18n.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/wheel-calc.js"></script>
 <script src="assets/js/car-icons.js"></script>

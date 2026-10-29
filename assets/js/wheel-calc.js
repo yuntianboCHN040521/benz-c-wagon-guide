@@ -9,6 +9,26 @@
 (function (global) {
   'use strict';
 
+  /* ------------------------------------------------ 翻译工具（输出文案用） */
+
+  /**
+   * 取翻译。i18n.js 未加载（例如 Node 自检）时回落中文原文。
+   * 只影响展示文案，不参与任何数值计算。
+   */
+  function t(key, fallback) {
+    if (global.I18N && typeof global.I18N.t === 'function') return global.I18N.t(key, fallback);
+    return fallback !== undefined ? fallback : key;
+  }
+
+  /** 取翻译并替换 {name} 占位符（字典缺失时同样对 fallback 生效） */
+  function tv(key, fallback, vars) {
+    var s = t(key, fallback);
+    if (!vars) return s;
+    return String(s).replace(/\{(\w+)\}/g, function (whole, name) {
+      return vars[name] !== undefined ? vars[name] : whole;
+    });
+  }
+
   /* ---------------------------------------------------------------- 常量表 */
 
   // 载重指数（ETRTO）→ 单胎最大承载 kg
@@ -174,55 +194,60 @@
     let level = 0; // 0=ok 1=注意 2=不建议 3=禁止/严重
 
     const absDia = Math.abs(cmp.diameterPct);
-    if (absDia > 5) { level = Math.max(level, 3); issues.push({ t: 'bad', m: '轮胎外径偏差 ' + cmp.diameterPct + '%，远超 ±5% 安全范围，ABS/ESP/变速箱换挡逻辑均会受严重影响，且可能刮蹭轮拱。' }); }
-    else if (absDia > 3) { level = Math.max(level, 2); issues.push({ t: 'bad', m: '外径偏差 ' + cmp.diameterPct + '%，超过 ±3% 通用安全线，可能出现 ESP/ABS 报警与码表明显误差。' }); }
-    else if (absDia > 2) { level = Math.max(level, 1); issues.push({ t: 'warn', m: '外径偏差 ' + cmp.diameterPct + '%，处于 ±2%～3% 的边缘区间，可接受但建议校正码表。' }); }
-    else { issues.push({ t: 'ok', m: '外径偏差 ' + cmp.diameterPct + '%，在 ±2% 理想范围内。' }); }
+    if (absDia > 5) { level = Math.max(level, 3); issues.push({ t: 'bad', m: tv('pg.calc.issue.dia5', '轮胎外径偏差 {p}%，远超 ±5% 安全范围，ABS/ESP/变速箱换挡逻辑均会受严重影响，且可能刮蹭轮拱。', { p: cmp.diameterPct }) }); }
+    else if (absDia > 3) { level = Math.max(level, 2); issues.push({ t: 'bad', m: tv('pg.calc.issue.dia3', '外径偏差 {p}%，超过 ±3% 通用安全线，可能出现 ESP/ABS 报警与码表明显误差。', { p: cmp.diameterPct }) }); }
+    else if (absDia > 2) { level = Math.max(level, 1); issues.push({ t: 'warn', m: tv('pg.calc.issue.dia2', '外径偏差 {p}%，处于 ±2%～3% 的边缘区间，可接受但建议校正码表。', { p: cmp.diameterPct }) }); }
+    else { issues.push({ t: 'ok', m: tv('pg.calc.issue.diaOk', '外径偏差 {p}%，在 ±2% 理想范围内。', { p: cmp.diameterPct }) }); }
 
     // 外侧外移量：轮胎胎壁相对原厂外移 >12mm 在 C 级旅行车上通常已接近轮拱极限
-    if (cmp.tyreOuterMove > 20) { level = Math.max(level, 3); issues.push({ t: 'bad', m: '胎壁外移 ' + cmp.tyreOuterMove + ' mm，前轮极易顶到翼子板/内衬，后轮可能刮轮眉。' }); }
-    else if (cmp.tyreOuterMove > 12) { level = Math.max(level, 2); issues.push({ t: 'bad', m: '胎壁外移 ' + cmp.tyreOuterMove + ' mm，接近轮拱极限，满载或打方向时可能刮蹭，需配合负倾角或卷边。' }); }
-    else if (cmp.tyreOuterMove > 6) { level = Math.max(level, 1); issues.push({ t: 'warn', m: '胎壁外移 ' + cmp.tyreOuterMove + ' mm，属于常见的“齐边”范围，建议检查满载与打死方向的间隙。' }); }
-    else { issues.push({ t: 'ok', m: '外侧外移 ' + cmp.tyreOuterMove + ' mm，处于安全范围。' }); }
+    if (cmp.tyreOuterMove > 20) { level = Math.max(level, 3); issues.push({ t: 'bad', m: tv('pg.calc.issue.out20', '胎壁外移 {v} mm，前轮极易顶到翼子板/内衬，后轮可能刮轮眉。', { v: cmp.tyreOuterMove }) }); }
+    else if (cmp.tyreOuterMove > 12) { level = Math.max(level, 2); issues.push({ t: 'bad', m: tv('pg.calc.issue.out12', '胎壁外移 {v} mm，接近轮拱极限，满载或打方向时可能刮蹭，需配合负倾角或卷边。', { v: cmp.tyreOuterMove }) }); }
+    else if (cmp.tyreOuterMove > 6) { level = Math.max(level, 1); issues.push({ t: 'warn', m: tv('pg.calc.issue.out6', '胎壁外移 {v} mm，属于常见的“齐边”范围，建议检查满载与打死方向的间隙。', { v: cmp.tyreOuterMove }) }); }
+    else { issues.push({ t: 'ok', m: tv('pg.calc.issue.outOk', '外侧外移 {v} mm，处于安全范围。', { v: cmp.tyreOuterMove }) }); }
 
     // 内侧内移量：>15mm 需重点检查避震筒、内衬、刹车油管
-    if (cmp.tyreInnerMove < -25) { level = Math.max(level, 3); issues.push({ t: 'bad', m: '内侧侵入 ' + Math.abs(cmp.tyreInnerMove) + ' mm，几乎必然与避震筒/内衬干涉。' }); }
-    else if (cmp.tyreInnerMove < -15) { level = Math.max(level, 2); issues.push({ t: 'bad', m: '内侧侵入 ' + Math.abs(cmp.tyreInnerMove) + ' mm，需实测避震筒与内衬间隙（AMG 大刹车车型更紧张）。' }); }
-    else if (cmp.tyreInnerMove < -8) { level = Math.max(level, 1); issues.push({ t: 'warn', m: '内侧侵入 ' + Math.abs(cmp.tyreInnerMove) + ' mm，一般可行，建议打满方向检查。' }); }
-    else { issues.push({ t: 'ok', m: '内侧间隙变化 ' + cmp.tyreInnerMove + ' mm，无干涉风险。' }); }
+    if (cmp.tyreInnerMove < -25) { level = Math.max(level, 3); issues.push({ t: 'bad', m: tv('pg.calc.issue.in25', '内侧侵入 {v} mm，几乎必然与避震筒/内衬干涉。', { v: Math.abs(cmp.tyreInnerMove) }) }); }
+    else if (cmp.tyreInnerMove < -15) { level = Math.max(level, 2); issues.push({ t: 'bad', m: tv('pg.calc.issue.in15', '内侧侵入 {v} mm，需实测避震筒与内衬间隙（AMG 大刹车车型更紧张）。', { v: Math.abs(cmp.tyreInnerMove) }) }); }
+    else if (cmp.tyreInnerMove < -8) { level = Math.max(level, 1); issues.push({ t: 'warn', m: tv('pg.calc.issue.in8', '内侧侵入 {v} mm，一般可行，建议打满方向检查。', { v: Math.abs(cmp.tyreInnerMove) }) }); }
+    else { issues.push({ t: 'ok', m: tv('pg.calc.issue.inOk', '内侧间隙变化 {v} mm，无干涉风险。', { v: cmp.tyreInnerMove }) }); }
 
     // 轮距变化与主销偏移
-    if (Math.abs(cmp.trackChangePerAxle) > 40) { level = Math.max(level, 2); issues.push({ t: 'bad', m: '轮距单轴变化 ' + cmp.trackChangePerAxle + ' mm，主销偏移量改变过大，转向回正与轮胎磨损会明显劣化，且可能超出法规轮距变更限值。' }); }
-    else if (Math.abs(cmp.trackChangePerAxle) > 24) { level = Math.max(level, 1); issues.push({ t: 'warn', m: '轮距变化 ' + cmp.trackChangePerAxle + ' mm，转向手感与胎肩磨损会有所变化，建议重做四轮定位。' }); }
+    if (Math.abs(cmp.trackChangePerAxle) > 40) { level = Math.max(level, 2); issues.push({ t: 'bad', m: tv('pg.calc.issue.track40', '轮距单轴变化 {v} mm，主销偏移量改变过大，转向回正与轮胎磨损会明显劣化，且可能超出法规轮距变更限值。', { v: cmp.trackChangePerAxle }) }); }
+    else if (Math.abs(cmp.trackChangePerAxle) > 24) { level = Math.max(level, 1); issues.push({ t: 'warn', m: tv('pg.calc.issue.track24', '轮距变化 {v} mm，转向手感与胎肩磨损会有所变化，建议重做四轮定位。', { v: cmp.trackChangePerAxle }) }); }
 
     // 轮辋宽度与轮胎宽度匹配（J 值容差 ±0～2 英寸范围内需合理）
     const rimMm = opts.rimWidthInch ? opts.rimWidthInch * INCH : null;
     if (rimMm && opts.tyreWidth) {
       const ratio = opts.tyreWidth / rimMm;
-      if (ratio < 1.0) { issues.push({ t: 'bad', m: '轮胎宽度小于轮辋宽度，属于“拉伸胎”（stretch），胎唇受力异常、脱圈风险高，且不合规。' }); level = Math.max(level, 2); }
-      else if (ratio > 1.35) { issues.push({ t: 'warn', m: '轮胎相对轮辋过宽（比 ' + round(ratio, 2) + '），胎侧过度鼓出、转向响应变差，建议轮辋加宽。' }); level = Math.max(level, 1); }
-      else { issues.push({ t: 'ok', m: '胎宽/辋宽比 ' + round(ratio, 2) + '，属于合理匹配区间（建议 1.06～1.25）。' }); }
+      if (ratio < 1.0) { issues.push({ t: 'bad', m: t('pg.calc.issue.stretch', '轮胎宽度小于轮辋宽度，属于“拉伸胎”（stretch），胎唇受力异常、脱圈风险高，且不合规。') }); level = Math.max(level, 2); }
+      else if (ratio > 1.35) { issues.push({ t: 'warn', m: tv('pg.calc.issue.wide', '轮胎相对轮辋过宽（比 {r}），胎侧过度鼓出、转向响应变差，建议轮辋加宽。', { r: round(ratio, 2) }) }); level = Math.max(level, 1); }
+      else { issues.push({ t: 'ok', m: tv('pg.calc.issue.ratioOk', '胎宽/辋宽比 {r}，属于合理匹配区间（建议 1.06～1.25）。', { r: round(ratio, 2) }) }); }
     }
 
     // 载荷余量
     if (opts.loadCapacity && opts.requiredLoad) {
       const margin = (opts.loadCapacity - opts.requiredLoad) / opts.requiredLoad * 100;
-      if (margin < 0) { level = Math.max(level, 3); issues.push({ t: 'bad', m: '轮胎载重指数不足：单胎承载 ' + opts.loadCapacity + ' kg < 需求 ' + round(opts.requiredLoad, 0) + ' kg，严重安全隐患。' }); }
-      else if (margin < 5) { level = Math.max(level, 2); issues.push({ t: 'bad', m: '载重余量仅 ' + round(margin, 1) + '%，满载/高速工况偏紧，建议提升载重指数。' }); }
-      else { issues.push({ t: 'ok', m: '载重余量 ' + round(margin, 1) + '%，满足需求。' }); }
+      if (margin < 0) { level = Math.max(level, 3); issues.push({ t: 'bad', m: tv('pg.calc.issue.loadLow', '轮胎载重指数不足：单胎承载 {have} kg < 需求 {need} kg，严重安全隐患。', { have: opts.loadCapacity, need: round(opts.requiredLoad, 0) }) }); }
+      else if (margin < 5) { level = Math.max(level, 2); issues.push({ t: 'bad', m: tv('pg.calc.issue.loadTight', '载重余量仅 {m}%，满载/高速工况偏紧，建议提升载重指数。', { m: round(margin, 1) }) }); }
+      else { issues.push({ t: 'ok', m: tv('pg.calc.issue.loadOk', '载重余量 {m}%，满足需求。', { m: round(margin, 1) }) }); }
     }
 
     // 速度等级
     if (opts.speedRating && opts.requiredSpeed) {
       if (SPEED_RATING[opts.speedRating] < opts.requiredSpeed) {
         level = Math.max(level, 2);
-        issues.push({ t: 'bad', m: '速度等级 ' + opts.speedRating + '（' + SPEED_RATING[opts.speedRating] + ' km/h）低于车辆最高车速所需的 ' + opts.requiredSpeed + ' km/h。' });
+        issues.push({ t: 'bad', m: tv('pg.calc.issue.speedLow', '速度等级 {sr}（{kmh} km/h）低于车辆最高车速所需的 {need} km/h。', { sr: opts.speedRating, kmh: SPEED_RATING[opts.speedRating], need: opts.requiredSpeed }) });
       } else {
-        issues.push({ t: 'ok', m: '速度等级 ' + opts.speedRating + '（' + SPEED_RATING[opts.speedRating] + ' km/h）满足要求。' });
+        issues.push({ t: 'ok', m: tv('pg.calc.issue.speedOk', '速度等级 {sr}（{kmh} km/h）满足要求。', { sr: opts.speedRating, kmh: SPEED_RATING[opts.speedRating] }) });
       }
     }
 
-    const label = ['可以安装', '基本可行，注意细节', '风险较高，不建议', '不可安装'][level];
+    const label = [
+      t('pg.calc.grade.ok', '可以安装'),
+      t('pg.calc.grade.warn', '基本可行，注意细节'),
+      t('pg.calc.grade.bad', '风险较高，不建议'),
+      t('pg.calc.grade.no', '不可安装')
+    ][level];
     const cls = ['ok', 'warn', 'bad', 'bad'][level];
     return { level: level, label: label, cls: cls, issues: issues };
   }
@@ -304,9 +329,9 @@
     const minEngage = 12;
     return {
       recommend: round(need, 0),
-      tolerance: round(need - 3, 0) + ' ～ ' + round(need + 3, 0),
+      tolerance: tv('pg.calc.bolt.rangeFmt', '{min} ～ {max}', { min: round(need - 3, 0), max: round(need + 3, 0) }),
       minEngagement: minEngage,
-      note: 'M14×1.5 螺栓建议最小啮合长度 ' + minEngage + ' mm（约 8 圈螺纹），赛道/激烈驾驶建议 15 mm 以上。'
+      note: tv('pg.calc.bolt.note', 'M14×1.5 螺栓建议最小啮合长度 {min} mm（约 8 圈螺纹），赛道/激烈驾驶建议 15 mm 以上。', { min: minEngage })
     };
   }
 
@@ -390,7 +415,7 @@
       const out = $('#calc-result');
       if (!out) return;
       if (!oT || !nT || isNaN(oRW) || isNaN(oET) || isNaN(nRW) || isNaN(nET)) {
-        out.innerHTML = '<div class="line"><span class="lbl">请完整填写原厂与目标配置</span></div>';
+        out.innerHTML = '<div class="line"><span class="lbl">' + t('pg.calc.out.incomplete', '请完整填写原厂与目标配置') + '</span></div>';
         return;
       }
 
@@ -420,32 +445,32 @@
       function sign(v) { return (v > 0 ? '+' : '') + v; }
 
       let html = '';
-      html += '<div class="line"><span class="lbl">综合结论</span><span class="badge ' + g.cls + '">' + g.label + '</span></div>';
-      html += line('轮胎外径', cmp.oem.tyreGeo.diameter + ' → ' + cmp.target.tyreGeo.diameter + ' mm', '');
-      html += line('外径变化', sign(cmp.diameterDelta) + ' mm（' + sign(cmp.diameterPct) + '%）',
+      html += '<div class="line"><span class="lbl">' + t('pg.calc.out.summary', '综合结论') + '</span><span class="badge ' + g.cls + '">' + g.label + '</span></div>';
+      html += line(t('pg.calc.out.oemTyreDia', '轮胎外径'), cmp.oem.tyreGeo.diameter + ' → ' + cmp.target.tyreGeo.diameter + ' mm', '');
+      html += line(t('pg.calc.out.diaDelta', '外径变化'), tv('pg.calc.val.diaPct', '{a} mm（{b}%）', { a: sign(cmp.diameterDelta), b: sign(cmp.diameterPct) }),
         Math.abs(cmp.diameterPct) <= 2 ? 'ok' : (Math.abs(cmp.diameterPct) <= 3 ? 'warn' : 'bad'));
-      html += line('胎壁高度', cmp.oem.tyreGeo.sidewall + ' → ' + cmp.target.tyreGeo.sidewall + ' mm（' + sign(cmp.sidewallDelta) + '）', '');
-      html += line('离地间隙变化', sign(cmp.rideHeightDelta) + ' mm', '');
-      html += line('轮拱填充（视觉）', sign(-cmp.clearanceDelta) + ' mm', '');
-      html += line('周长', cmp.oem.tyreGeo.circumference + ' → ' + cmp.target.tyreGeo.circumference + ' mm', '');
-      html += line('每公里转数', cmp.oem.tyreGeo.revsPerKm + ' → ' + cmp.target.tyreGeo.revsPerKm + '（' + sign(cmp.revsPerKmDelta) + '）', '');
-      html += line('码表 100 km/h 时真实车速', cmp.trueSpeedAt100 + ' km/h',
+      html += line(t('pg.calc.out.sidewall', '胎壁高度'), tv('pg.calc.val.sidewall', '{oem} → {tgt} mm（{delta}）', { oem: cmp.oem.tyreGeo.sidewall, tgt: cmp.target.tyreGeo.sidewall, delta: sign(cmp.sidewallDelta) }), '');
+      html += line(t('pg.calc.out.rideHeight', '离地间隙变化'), sign(cmp.rideHeightDelta) + ' mm', '');
+      html += line(t('pg.calc.out.archFill', '轮拱填充（视觉）'), sign(-cmp.clearanceDelta) + ' mm', '');
+      html += line(t('pg.calc.out.circumference', '周长'), cmp.oem.tyreGeo.circumference + ' → ' + cmp.target.tyreGeo.circumference + ' mm', '');
+      html += line(t('pg.calc.out.revsPerKm', '每公里转数'), tv('pg.calc.val.revs', '{oem} → {tgt}（{delta}）', { oem: cmp.oem.tyreGeo.revsPerKm, tgt: cmp.target.tyreGeo.revsPerKm, delta: sign(cmp.revsPerKmDelta) }), '');
+      html += line(t('pg.calc.out.speedo100', '码表 100 km/h 时真实车速'), cmp.trueSpeedAt100 + ' km/h',
         Math.abs(cmp.speedoPct) <= 2 ? 'ok' : (Math.abs(cmp.speedoPct) <= 3 ? 'warn' : 'bad'));
-      html += line('码表 120 km/h 时真实车速', cmp.trueSpeedAt120 + ' km/h', '');
-      html += '<div class="line"><span class="lbl">轮辋相对原厂</span><span class="val"></span></div>';
-      html += line('外缘外移', sign(cmp.rimOuterMove) + ' mm', Math.abs(cmp.rimOuterMove) <= 12 ? 'ok' : 'warn');
-      html += line('内缘移动', sign(cmp.rimInnerMove) + ' mm', cmp.rimInnerMove >= -20 ? 'ok' : 'warn');
-      html += line('胎壁外移（估算）', sign(cmp.tyreOuterMove) + ' mm',
+      html += line(t('pg.calc.out.speedo120', '码表 120 km/h 时真实车速'), cmp.trueSpeedAt120 + ' km/h', '');
+      html += '<div class="line"><span class="lbl">' + t('pg.calc.out.rimVsOem', '轮辋相对原厂') + '</span><span class="val"></span></div>';
+      html += line(t('pg.calc.out.rimOuter', '外缘外移'), sign(cmp.rimOuterMove) + ' mm', Math.abs(cmp.rimOuterMove) <= 12 ? 'ok' : 'warn');
+      html += line(t('pg.calc.out.rimInner', '内缘移动'), sign(cmp.rimInnerMove) + ' mm', cmp.rimInnerMove >= -20 ? 'ok' : 'warn');
+      html += line(t('pg.calc.out.tyreOuter', '胎壁外移（估算）'), sign(cmp.tyreOuterMove) + ' mm',
         cmp.tyreOuterMove <= 6 ? 'ok' : (cmp.tyreOuterMove <= 12 ? 'warn' : 'bad'));
-      html += line('胎壁内移（估算）', sign(cmp.tyreInnerMove) + ' mm',
+      html += line(t('pg.calc.out.tyreInner', '胎壁内移（估算）'), sign(cmp.tyreInnerMove) + ' mm',
         cmp.tyreInnerMove >= -8 ? 'ok' : (cmp.tyreInnerMove >= -15 ? 'warn' : 'bad'));
-      html += line('单轴轮距变化', sign(cmp.trackChangePerAxle) + ' mm', Math.abs(cmp.trackChangePerAxle) <= 24 ? 'ok' : 'warn');
-      html += line('主销偏移量变化', sign(cmp.scrubRadiusDelta) + ' mm', '');
-      html += line('新轮辋背距 / 前距', cmp.target.wheel.backspace + ' / ' + cmp.target.wheel.frontspace + ' mm', '');
-      html += line('原厂轮辋背距 / 前距', cmp.oem.wheel.backspace + ' / ' + cmp.oem.wheel.frontspace + ' mm', '');
+      html += line(t('pg.calc.out.trackPerAxle', '单轴轮距变化'), sign(cmp.trackChangePerAxle) + ' mm', Math.abs(cmp.trackChangePerAxle) <= 24 ? 'ok' : 'warn');
+      html += line(t('pg.calc.out.scrubRadius', '主销偏移量变化'), sign(cmp.scrubRadiusDelta) + ' mm', '');
+      html += line(t('pg.calc.out.newBackFront', '新轮辋背距 / 前距'), cmp.target.wheel.backspace + ' / ' + cmp.target.wheel.frontspace + ' mm', '');
+      html += line(t('pg.calc.out.oemBackFront', '原厂轮辋背距 / 前距'), cmp.oem.wheel.backspace + ' / ' + cmp.oem.wheel.frontspace + ' mm', '');
       if (loadCap || reqLoad) {
-        html += line('单胎承载能力', (loadCap || '—') + ' kg', '');
-        html += line('需求（轴荷/2×1.1）', (reqLoad || '—') + ' kg', '');
+        html += line(t('pg.calc.out.loadCap', '单胎承载能力'), (loadCap || '—') + ' kg', '');
+        html += line(t('pg.calc.out.loadReq', '需求（轴荷/2×1.1）'), (reqLoad || '—') + ' kg', '');
       }
       out.innerHTML = html;
 
@@ -454,7 +479,10 @@
       if (detail) {
         detail.innerHTML = g.issues.map(function (i) {
           const cls = i.t === 'ok' ? 'ok' : (i.t === 'warn' ? 'warn' : 'bad');
-          return '<div class="line"><span class="lbl" style="flex:1">' + i.m + '</span><span class="badge ' + cls + '">' + (i.t === 'ok' ? '通过' : i.t === 'warn' ? '注意' : '风险') + '</span></div>';
+          const word = i.t === 'ok' ? t('pg.calc.badge.pass', '通过')
+            : i.t === 'warn' ? t('pg.calc.badge.warn', '注意')
+              : t('pg.calc.badge.risk', '风险');
+          return '<div class="line"><span class="lbl" style="flex:1">' + i.m + '</span><span class="badge ' + cls + '">' + word + '</span></div>';
         }).join('');
       }
 
@@ -464,7 +492,7 @@
         const pct = Math.max(-6, Math.min(6, cmp.speedoPct));
         const w = Math.abs(pct) / 6 * 100;
         const cls = Math.abs(pct) <= 2 ? '' : (Math.abs(pct) <= 3 ? 'warn' : 'bad');
-        bar.innerHTML = '<div class="small muted">码表误差 ' + sign(cmp.speedoPct) + '%（正值 = 码表偏慢，实际车速更快）</div>' +
+        bar.innerHTML = '<div class="small muted">' + tv('pg.calc.gauge.pct', '码表误差 {pct}%（正值 = 码表偏慢，实际车速更快）', { pct: sign(cmp.speedoPct) }) + '</div>' +
           '<div class="gauge"><span class="' + cls + '" style="width:' + w + '%"></span></div>';
       }
     }
@@ -479,23 +507,23 @@
         const box = $('#rec-result');
         if (!box) return;
         if (isNaN(rim) || !base) {
-          box.innerHTML = '<div class="small bad">请输入原厂轮胎规格与目标轮辋直径</div>';
+          box.innerHTML = '<div class="small bad">' + t('pg.calc.rec.errInput', '请输入原厂轮胎规格与目标轮辋直径') + '</div>';
           return;
         }
         const baseGeo = tyreGeometry(base);
         const list = recommendTyres(rim, baseGeo.diameter, tol);
         if (!list.length) {
-          box.innerHTML = '<div class="small muted">在该容差下没有找到合适的规格，请放宽容差。</div>';
+          box.innerHTML = '<div class="small muted">' + t('pg.calc.rec.errEmpty', '在该容差下没有找到合适的规格，请放宽容差。') + '</div>';
           return;
         }
         box.innerHTML = '<div class="table-scroll"><table><thead><tr>' +
-          '<th>轮胎规格</th><th class="num">外径 mm</th><th class="num">与原厂差</th><th class="num">偏差 %</th><th class="num">推荐辋宽</th><th>说明</th>' +
+          '<th>' + t('pg.calc.rec.th.size', '轮胎规格') + '</th><th class="num">' + t('pg.calc.rec.th.dia', '外径 mm') + '</th><th class="num">' + t('pg.calc.rec.th.diff', '与原厂差') + '</th><th class="num">' + t('pg.calc.rec.th.pct', '偏差 %') + '</th><th class="num">' + t('pg.calc.rec.th.rim', '推荐辋宽') + '</th><th>' + t('pg.calc.rec.th.note', '说明') + '</th>' +
           '</tr></thead><tbody>' +
           list.slice(0, 30).map(function (r) {
             const rw = recommendRimWidth(r.width);
-            const note = Math.abs(r.pct) <= 1 ? '<span class="badge ok">最接近</span>' :
-              Math.abs(r.aspect - base.aspect) === 0 ? '<span class="badge info">同扁平比</span>' :
-                (r.aspect < base.aspect ? '<span class="badge warn">更薄胎壁</span>' : '<span class="badge gray">更厚胎壁</span>');
+            const note = Math.abs(r.pct) <= 1 ? '<span class="badge ok">' + t('pg.calc.rec.badge.closest', '最接近') + '</span>' :
+              Math.abs(r.aspect - base.aspect) === 0 ? '<span class="badge info">' + t('pg.calc.rec.badge.sameAspect', '同扁平比') + '</span>' :
+                (r.aspect < base.aspect ? '<span class="badge warn">' + t('pg.calc.rec.badge.thinner', '更薄胎壁') + '</span>' : '<span class="badge gray">' + t('pg.calc.rec.badge.thicker', '更厚胎壁') + '</span>');
             return '<tr><td class="mono">' + r.size + '</td><td class="num">' + r.diameter + '</td><td class="num">' + (r.diff > 0 ? '+' : '') + r.diff + '</td><td class="num">' + (r.pct > 0 ? '+' : '') + r.pct + '</td><td class="num">' + rw.min + '–' + rw.max + 'J</td><td>' + note + '</td></tr>';
           }).join('') + '</tbody></table></div>';
       });
@@ -516,11 +544,11 @@
         const l = num('#bolt-oem-len'), a = num('#bolt-oem-pad'), b = num('#bolt-new-pad');
         const box = $('#bolt-result');
         if (!box) return;
-        if (isNaN(l)) { box.textContent = '请填写原厂螺栓螺纹长度'; return; }
+        if (isNaN(l)) { box.textContent = t('pg.calc.bolt.errLen', '请填写原厂螺栓螺纹长度'); return; }
         const r = boltLength(l, isNaN(a) ? 0 : a, isNaN(b) ? 0 : b);
-        box.innerHTML = '<div class="line"><span class="lbl">建议螺纹长度</span><span class="val ok">' + r.recommend + ' mm</span></div>' +
-          '<div class="line"><span class="lbl">可用范围</span><span class="val">' + r.tolerance + ' mm</span></div>' +
-          '<div class="line"><span class="lbl">最小啮合</span><span class="val">' + r.minEngagement + ' mm</span></div>' +
+        box.innerHTML = '<div class="line"><span class="lbl">' + t('pg.calc.bolt.out.recommend', '建议螺纹长度') + '</span><span class="val ok">' + r.recommend + ' mm</span></div>' +
+          '<div class="line"><span class="lbl">' + t('pg.calc.bolt.out.range', '可用范围') + '</span><span class="val">' + r.tolerance + ' mm</span></div>' +
+          '<div class="line"><span class="lbl">' + t('pg.calc.bolt.out.minEngage', '最小啮合') + '</span><span class="val">' + r.minEngagement + ' mm</span></div>' +
           '<div class="small muted" style="margin-top:8px">' + r.note + '</div>';
       });
     }

@@ -9,6 +9,25 @@
     else fn();
   }
 
+  /* ---------------------------------------------------------- i18n 取词 */
+  /* 字典缺失时回落到中文原文，保证页面在无 i18n 环境下仍然完整 */
+  function t(key, fallback) {
+    if (window.I18N && typeof window.I18N.t === 'function') return window.I18N.t(key, fallback);
+    return fallback !== undefined ? fallback : key;
+  }
+
+  /* 带 {变量} 插值的取词 */
+  function tf(key, fallback, vars) {
+    var s = t(key, fallback);
+    if (window.I18N && typeof window.I18N.interpolate === 'function') {
+      return window.I18N.interpolate(s, vars);
+    }
+    if (!vars) return s;
+    return String(s).replace(/\{(\w+)\}/g, function (whole, name) {
+      return vars[name] !== undefined ? vars[name] : whole;
+    });
+  }
+
   function esc(s) { return s === null || s === undefined ? '—' : String(s); }
   function money(v) {
     if (!v) return '<span class="faint">—</span>';
@@ -84,26 +103,38 @@
           '<span class="mono">' + p.front.size + '<br>' + p.front.tyre + '</span>',
           fr ? '<span class="mono">' + sgn(fr.cmp.tyreOuterMove) + ' mm</span>' : '—',
           fr ? '<span class="mono">' + sgn(fr.cmp.diameterPct) + '%</span>' : '—',
-          rr ? '<span class="mono">' + sgn(rr.cmp.tyreOuterMove) + ' mm</span><br><span class="faint small">' + sgn(rr.cmp.diameterPct) + '%</span>' : '<span class="faint">前后同规格</span>',
+          rr ? '<span class="mono">' + sgn(rr.cmp.tyreOuterMove) + ' mm</span><br><span class="faint small">' + sgn(rr.cmp.diameterPct) + '%</span>' : '<span class="faint">' + t('pg.fitment.plan.sameFb', '前后同规格') + '</span>',
           worst ? gradeBadge(worst) : '—',
           p.note || ''
         ]);
       });
 
       if (!rows.length) {
-        planHost.innerHTML = '<div class="note">暂无该代际的推荐方案数据。</div>';
+        planHost.innerHTML = '<div class="note">' + t('pg.fitment.plan.empty', '暂无该代际的推荐方案数据。') + '</div>';
         return;
       }
 
       planHost.innerHTML = '<div class="table-scroll"><table><thead><tr>' +
-        ['代际', '档位', '原厂基准', '推荐前轮', '前轮外移', '前轮外径差', '后轮外移 / 外径差', '评级', '说明']
+        [
+          t('pg.fitment.plan.th.gen', '代际'),
+          t('pg.fitment.plan.th.level', '档位'),
+          t('pg.fitment.plan.th.oem', '原厂基准'),
+          t('pg.fitment.plan.th.front', '推荐前轮'),
+          t('pg.fitment.plan.th.frontMove', '前轮外移'),
+          t('pg.fitment.plan.th.frontDia', '前轮外径差'),
+          t('pg.fitment.plan.th.rear', '后轮外移 / 外径差'),
+          t('pg.fitment.plan.th.grade', '评级'),
+          t('pg.fitment.plan.th.note', '说明')
+        ]
           .map(function (h) { return '<th>' + h + '</th>'; }).join('') +
         '</tr></thead><tbody>' +
         rows.map(function (r) {
           return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
         }).join('') + '</tbody></table></div>' +
-        '<div class="small faint mt16">外移量为正表示比原厂更靠车外。评级的判定规则见上方「适配度怎么判定」。' +
-        '实际间隙仍以<strong>实车橡皮泥测试</strong>为准，尤其是后轮满载状态。</div>';
+        '<div class="small faint mt16">' +
+        t('pg.fitment.plan.foot', '外移量为正表示比原厂更靠车外。评级的判定规则见上方「适配度怎么判定」。' +
+          '实际间隙仍以<strong>实车橡皮泥测试</strong>为准，尤其是后轮满载状态。') +
+        '</div>';
     }
 
     if (planHost) {
@@ -132,7 +163,7 @@
         return brandFilter === 'all' || b.brand === brandFilter;
       });
       if (!list.length) {
-        listHost.innerHTML = '<div class="note">暂无品牌数据。</div>';
+        listHost.innerHTML = '<div class="note">' + t('pg.fitment.brands.empty', '暂无品牌数据。') + '</div>';
         return;
       }
 
@@ -140,7 +171,8 @@
         var models = (b.models || []).map(function (m) {
           var sizeRows = (m.sizes || []).map(function (s) {
             var cbWarn = (typeof s.cb_mm === 'number' && s.cb_mm > 66.6)
-              ? '<span class="badge warn">需变径环</span>' : '<span class="badge ok">直装</span>';
+              ? '<span class="badge warn">' + t('pg.fitment.brands.cb.ring', '需变径环') + '</span>'
+              : '<span class="badge ok">' + t('pg.fitment.brands.cb.direct', '直装') + '</span>';
             var ets = Array.isArray(s.et) ? s.et.join(' / ') : s.et;
             return '<tr>' +
               '<td class="mono">' + s.size + '</td>' +
@@ -161,16 +193,24 @@
             '</h3>' +
             (m.fitment_note ? '<p class="small muted">' + m.fitment_note + '</p>' : '') +
             (sizeRows ? '<div class="table-scroll"><table><thead><tr>' +
-              ['规格', 'PCD', '偏距', '中心孔', '单只重量 (kg)', '中心孔适配', '备注']
+              [
+                t('pg.fitment.brands.th.size', '规格'),
+                t('pg.fitment.brands.th.pcd', 'PCD'),
+                t('pg.fitment.brands.th.et', '偏距'),
+                t('pg.fitment.brands.th.cb', '中心孔'),
+                t('pg.fitment.brands.th.weight', '单只重量 (kg)'),
+                t('pg.fitment.brands.th.cbFit', '中心孔适配'),
+                t('pg.fitment.brands.th.note', '备注')
+              ]
                 .map(function (h) { return '<th>' + h + '</th>'; }).join('') +
               '</tr></thead><tbody>' + sizeRows + '</tbody></table></div>'
-              : '<div class="note">未取得该型号的 5×112 规格数据，原因见上方说明。</div>') +
+              : '<div class="note">' + t('pg.fitment.brands.noData', '未取得该型号的 5×112 规格数据，原因见上方说明。') + '</div>') +
             '<div class="grid cols-2 mt16">' +
-            '<div class="stat"><div class="k">标称载荷</div><div class="v small">' + (m.load_rating || '—') + '</div></div>' +
-            '<div class="stat"><div class="k">参考价格（单只）</div><div class="v small">' +
+            '<div class="stat"><div class="k">' + t('pg.fitment.brands.load.k', '标称载荷') + '</div><div class="v small">' + (m.load_rating || '—') + '</div></div>' +
+            '<div class="stat"><div class="k">' + t('pg.fitment.brands.price.k', '参考价格（单只）') + '</div><div class="v small">' +
             (m.price_display ? m.price_display : money(m.price_cny)) + '</div></div>' +
             '</div>' +
-            (m.price_note ? '<div class="small faint mt16">价格来源：' + m.price_note + '</div>' : '') +
+            (m.price_note ? '<div class="small faint mt16">' + t('pg.fitment.brands.price.src', '价格来源：') + m.price_note + '</div>' : '') +
             '</div>';
         }).join('');
 
@@ -183,7 +223,7 @@
     }
 
     if (chipsHost && listHost) {
-      chipsHost.innerHTML = '<span class="chip active" data-brand="all">全部品牌</span>' +
+      chipsHost.innerHTML = '<span class="chip active" data-brand="all">' + t('pg.fitment.brands.chip.all', '全部品牌') + '</span>' +
         brands.map(function (b) {
           return '<span class="chip" data-brand="' + b.brand + '">' + b.brand + '</span>';
         }).join('');
@@ -205,7 +245,7 @@
     if (amgHost) {
       var amg = D.amgOem || [];
       if (!amg.length) {
-        amgHost.innerHTML = '<div class="note">暂无 AMG 原厂轮毂数据。</div>';
+        amgHost.innerHTML = '<div class="note">' + t('pg.fitment.amg.empty', '暂无 AMG 原厂轮毂数据。') + '</div>';
       } else {
         var rows = amg.map(function (a) {
           return [
@@ -219,7 +259,15 @@
           ];
         });
         amgHost.innerHTML = '<div class="table-scroll"><table><thead><tr>' +
-          ['原厂零件号', '名称', '规格', '偏距', '配套轮胎', '适用车型', '参考价（单只）']
+          [
+            t('pg.fitment.amg.th.part', '原厂零件号'),
+            t('pg.fitment.amg.th.name', '名称'),
+            t('pg.fitment.amg.th.size', '规格'),
+            t('pg.fitment.amg.th.et', '偏距'),
+            t('pg.fitment.amg.th.tyre', '配套轮胎'),
+            t('pg.fitment.amg.th.models', '适用车型'),
+            t('pg.fitment.amg.th.price', '参考价（单只）')
+          ]
             .map(function (h) { return '<th>' + h + '</th>'; }).join('') +
           '</tr></thead><tbody>' +
           rows.map(function (r) {
@@ -256,7 +304,7 @@
         var baseEt = (base.et !== null && base.et !== undefined) ? base.et : baseW.et;
         var baseGeo = calc.fitmentGeometry(baseW.width, baseEt, baseT.width);
 
-        var head = '<thead><tr><th>辋宽（配胎宽）</th>' +
+        var head = '<thead><tr><th>' + t('pg.fitment.matrix.th.rim', '辋宽（配胎宽）') + '</th>' +
           ETS.map(function (x) { return '<th class="num">ET ' + x + '</th>'; }).join('') + '</tr></thead>';
 
         var body = RIM_TYRE.map(function (rt) {
@@ -270,8 +318,13 @@
             else if (move > 6 || move < -8 || inner < -10) cls = 'warn';
             var bg = cls === 'ok' ? 'rgba(63,185,80,.16)' : (cls === 'warn' ? 'rgba(210,153,34,.18)' : 'rgba(248,81,73,.16)');
             var fg = cls === 'ok' ? 'var(--ok)' : (cls === 'warn' ? 'var(--warn)' : 'var(--bad)');
-            var tip = rt.rim + 'J 配 ' + rt.tyre + ' 胎 / ET' + et + '：外侧 ' +
-              (move > 0 ? '+' : '') + move + ' mm，内侧 ' + (inner > 0 ? '+' : '') + inner + ' mm';
+            var tip = tf('pg.fitment.matrix.tip',
+              '{rim}J 配 {tyre} 胎 / ET{et}：外侧 {move} mm，内侧 {inner} mm',
+              {
+                rim: rt.rim, tyre: rt.tyre, et: et,
+                move: (move > 0 ? '+' : '') + move,
+                inner: (inner > 0 ? '+' : '') + inner
+              });
             return '<td class="num" style="background:' + bg + ';color:' + fg + '" title="' + tip + '">' +
               (move > 0 ? '+' : '') + move + '</td>';
           }).join('');
@@ -281,10 +334,14 @@
 
         matrixHost.innerHTML = '<div class="table-scroll"><table style="min-width:900px">' + head +
           '<tbody>' + body + '</tbody></table></div>' +
-          '<div class="small faint mt16">基准：<span class="mono">' + gen.chassis + '</span> 原厂前轮 ' +
-          '<span class="mono">' + base.size + ' ET' + baseEt + ' + ' + base.tyre + '</span>。' +
-          '单元格数值为<strong>胎壁外缘相对原厂的外移量（mm）</strong>，正数代表更靠车外；' +
-          '鼠标悬停可看内外两侧的具体位移。</div>';
+          '<div class="small faint mt16">' +
+          tf('pg.fitment.matrix.foot',
+            '基准：<span class="mono">{chassis}</span> 原厂前轮 ' +
+            '<span class="mono">{size} ET{et} + {tyre}</span>。' +
+            '单元格数值为<strong>胎壁外缘相对原厂的外移量（mm）</strong>，正数代表更靠车外；' +
+            '鼠标悬停可看内外两侧的具体位移。',
+            { chassis: gen.chassis, size: base.size, et: baseEt, tyre: base.tyre }) +
+          '</div>';
       }
 
       if (matrixChips) {
@@ -314,14 +371,15 @@
       var sources = D.brandSources || [];
       var html = '';
       if (notes.length) {
-        html += '<h3>数据缺口：这份品牌数据缺什么、为什么缺</h3>' +
+        html += '<h3>' + t('pg.fitment.notes.title', '数据缺口：这份品牌数据缺什么、为什么缺') + '</h3>' +
           '<div class="note warn"><ul style="padding-left:20px;margin:0">' +
           notes.map(function (n) { return '<li class="small">' + esc2(n) + '</li>'; }).join('') +
           '</ul></div>';
       }
       if (sources.length) {
-        html += '<details class="mt16"><summary class="small muted" style="cursor:pointer">数据来源清单（' +
-          sources.length + ' 条，均为实际抓取页面）</summary>' +
+        html += '<details class="mt16"><summary class="small muted" style="cursor:pointer">' +
+          tf('pg.fitment.notes.src', '数据来源清单（{n} 条，均为实际抓取页面）', { n: sources.length }) +
+          '</summary>' +
           '<ul class="small faint" style="padding-left:20px;word-break:break-all">' +
           sources.map(function (s) {
             return '<li><a href="' + esc2(s) + '" target="_blank" rel="noopener">' + esc2(s) + '</a></li>';

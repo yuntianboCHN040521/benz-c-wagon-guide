@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN" data-i18n-title="pg.calc.docTitle">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>轮毂轮胎改装计算器 · 奔驰 C 级旅行车数据库</title>
-<meta name="description" content="奔驰 C 级旅行车（S203/S204/S205/S206）轮毂轮胎改装计算器：外径与码表误差、ET 偏距外移量、轮距与主销偏移变化、载重指数校验、轮胎规格推荐。">
+<meta name="description" content="奔驰 C 级旅行车（S203/S204/S205/S206）轮毂轮胎改装计算器：外径与码表误差、ET 偏距外移量、轮距与主销偏移变化、载重指数校验、轮胎规格推荐。" data-i18n-attr="content:pg.calc.description">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -15,98 +15,98 @@
 <main class="wrap">
 
   <div class="hero">
-    <span class="eyebrow">Calculator</span>
-    <h1>轮毂轮胎改装<span class="accent">计算器</span></h1>
-    <p>改装轮毂第一个要回答的问题不是“好不好看”，而是“装上去会动到哪里”。本页实时计算轮胎外径与码表误差、
+    <span class="eyebrow" data-i18n="pg.calc.hero.eyebrow">Calculator</span>
+    <h1 data-i18n-html="pg.calc.hero.title">轮毂轮胎改装<span class="accent">计算器</span></h1>
+    <p data-i18n="pg.calc.hero.desc">改装轮毂第一个要回答的问题不是“好不好看”，而是“装上去会动到哪里”。本页实时计算轮胎外径与码表误差、
        ET 偏距带来的内外侧位移、轮距与主销偏移量变化、载重与速度等级是否够用，并给出综合结论。</p>
   </div>
 
-  <div class="note">
+  <div class="note" data-i18n-html="pg.calc.note.coord">
     <strong>坐标约定：</strong>以轮毂安装面为基准，向车身外侧为正。ET 是轮辋中心线到安装面的距离（正值表示轮毂向车内缩）。
       “胎壁外移”指轮胎最外侧相对原厂的位移，是判断会不会刮翼子板的直接指标。
   </div>
 
   <section>
-    <h2 id="s1">配置对比<span class="tag">原厂 → 目标</span></h2>
-    <p class="lead">先选车型自动填入原厂轮毂轮胎，也可以完全手动输入。</p>
+    <h2 id="s1" data-i18n-html="pg.calc.s1.title">配置对比<span class="tag">原厂 → 目标</span></h2>
+    <p class="lead" data-i18n="pg.calc.s1.lead">先选车型自动填入原厂轮毂轮胎，也可以完全手动输入。</p>
 
     <div class="calc-grid">
       <!-- ============ 原厂配置 ============ -->
       <div class="calc-panel">
-        <h3>原厂配置（OEM）</h3>
+        <h3 data-i18n="pg.calc.oem.title">原厂配置（OEM）</h3>
         <div class="field">
-          <label>车型代际 <span class="hint">自动填入原厂规格</span></label>
+          <label data-i18n-html="pg.calc.oem.gen">车型代际 <span class="hint">自动填入原厂规格</span></label>
           <select id="calc-generation">
-            <option value="W203/S203">S203 · W203 第二代（2001–2007）</option>
-            <option value="W204/S204">S204 · W204 第三代（2007–2014）</option>
-            <option value="W205/S205" selected>S205 · W205 第四代（2014–2021）</option>
-            <option value="W206/S206">S206 · W206 第五代（2021–）</option>
+            <option value="W203/S203" data-i18n="pg.calc.oem.opt.s203">S203 · W203 第二代（2001–2007）</option>
+            <option value="W204/S204" data-i18n="pg.calc.oem.opt.s204">S204 · W204 第三代（2007–2014）</option>
+            <option value="W205/S205" selected data-i18n="pg.calc.oem.opt.s205">S205 · W205 第四代（2014–2021）</option>
+            <option value="W206/S206" data-i18n="pg.calc.oem.opt.s206">S206 · W206 第五代（2021–）</option>
           </select>
         </div>
         <div class="field">
-          <label>原厂配置项</label>
+          <label data-i18n="pg.calc.oem.trim">原厂配置项</label>
           <select id="calc-trim"></select>
         </div>
         <div id="calc-form">
           <div class="field">
-            <label>原厂轮胎规格</label>
-            <input type="text" id="oem-tyre" placeholder="225/50R17 98W" value="225/50R17">
+            <label data-i18n="pg.calc.oem.tyre">原厂轮胎规格</label>
+            <input type="text" id="oem-tyre" placeholder="225/50R17 98W" data-i18n-attr="placeholder:pg.calc.oem.tyrePh" value="225/50R17">
           </div>
           <div class="row3">
             <div class="field">
-              <label>轮辋宽 <span class="hint">J</span></label>
+              <label data-i18n-html="pg.calc.label.rimWidth">轮辋宽 <span class="hint">J</span></label>
               <input type="number" id="oem-rimwidth" step="0.5" value="7.5">
             </div>
             <div class="field">
-              <label>ET <span class="hint">mm</span></label>
+              <label data-i18n-html="pg.calc.label.et">ET <span class="hint">mm</span></label>
               <input type="number" id="oem-et" step="0.5" value="45.5">
             </div>
             <div class="field">
-              <label>载重指数</label>
+              <label data-i18n="pg.calc.label.load">载重指数</label>
               <input type="number" id="oem-load" value="98">
             </div>
           </div>
         </div>
-        <button class="ghost" type="button" id="btn-preset">重新载入原厂预设</button>
+        <button class="ghost" type="button" id="btn-preset" data-i18n="pg.calc.oem.preset">重新载入原厂预设</button>
       </div>
 
       <!-- ============ 目标配置 ============ -->
       <div class="calc-panel">
-        <h3>目标配置（改装）</h3>
+        <h3 data-i18n="pg.calc.tgt.title">目标配置（改装）</h3>
         <div class="field">
-          <label>目标轮胎规格</label>
-          <input type="text" id="target-tyre" placeholder="245/40R18 97Y" value="245/40R18">
+          <label data-i18n="pg.calc.tgt.tyre">目标轮胎规格</label>
+          <input type="text" id="target-tyre" placeholder="245/40R18 97Y" data-i18n-attr="placeholder:pg.calc.tgt.tyrePh" value="245/40R18">
         </div>
         <div class="row3">
           <div class="field">
-            <label>轮辋宽 <span class="hint">J</span></label>
+            <label data-i18n-html="pg.calc.label.rimWidth">轮辋宽 <span class="hint">J</span></label>
             <input type="number" id="target-rimwidth" step="0.5" value="8.5">
           </div>
           <div class="field">
-            <label>ET <span class="hint">mm</span></label>
+            <label data-i18n-html="pg.calc.label.et">ET <span class="hint">mm</span></label>
             <input type="number" id="target-et" step="0.5" value="45">
           </div>
           <div class="field">
-            <label>载重指数</label>
+            <label data-i18n="pg.calc.label.load">载重指数</label>
             <input type="number" id="target-load" value="97">
           </div>
         </div>
         <div class="field">
-          <label>该轴荷 <span class="hint">kg，可选，用于载重校验（行驶证整备质量或地磅实测单轴）</span></label>
-          <input type="number" id="calc-axleload" placeholder="例如 1000" value="1020">
+          <label data-i18n-html="pg.calc.tgt.axle">该轴荷 <span class="hint">kg，可选，用于载重校验（行驶证整备质量或地磅实测单轴）</span></label>
+          <input type="number" id="calc-axleload" placeholder="例如 1000" data-i18n-attr="placeholder:pg.calc.tgt.axlePh" value="1020">
         </div>
-        <div class="small muted">提示：前轴荷一般为整备质量的 52%～57%，后轴荷 43%～48%。取较大的一轴做校验最保险。</div>
+        <div class="small muted" data-i18n="pg.calc.tgt.axleTip">提示：前轴荷一般为整备质量的 52%～57%，后轴荷 43%～48%。取较大的一轴做校验最保险。</div>
       </div>
     </div>
 
     <div class="calc-grid mt16">
       <div class="calc-panel">
-        <h3>计算结果</h3>
+        <h3 data-i18n="pg.calc.result.title">计算结果</h3>
         <div class="result-box" id="calc-result"></div>
         <div id="calc-speedbar" class="mt16"></div>
       </div>
       <div class="calc-panel">
-        <h3>逐项检查</h3>
+        <h3 data-i18n="pg.calc.issues.title">逐项检查</h3>
         <div class="result-box" id="calc-issues"></div>
       </div>
     </div>
@@ -115,35 +115,35 @@
   <hr class="soft">
 
   <section>
-    <h2 id="s2">轮胎规格推荐器<span class="tag">保持外径</span></h2>
-    <p class="lead">换了更大直径的轮辋，需要换更薄的胎来维持外径。输入原厂轮胎与目标轮辋直径，
+    <h2 id="s2" data-i18n-html="pg.calc.s2.title">轮胎规格推荐器<span class="tag">保持外径</span></h2>
+    <p class="lead" data-i18n="pg.calc.s2.lead">换了更大直径的轮辋，需要换更薄的胎来维持外径。输入原厂轮胎与目标轮辋直径，
        列出所有外径偏差在容差内的候选规格，并按接近程度排序。</p>
 
     <div class="calc-grid">
       <div class="calc-panel">
         <div class="field">
-          <label>原厂轮胎规格 <span class="hint">作为外径基准</span></label>
+          <label data-i18n-html="pg.calc.rec.base">原厂轮胎规格 <span class="hint">作为外径基准</span></label>
           <input type="text" id="rec-base" value="225/50R17">
         </div>
         <div class="row2">
           <div class="field">
-            <label>目标轮辋直径 <span class="hint">英寸</span></label>
+            <label data-i18n-html="pg.calc.rec.rim">目标轮辋直径 <span class="hint">英寸</span></label>
             <input type="number" id="rec-rim" step="1" min="15" max="22" value="18">
           </div>
           <div class="field">
-            <label>允许偏差 <span class="hint">%</span></label>
+            <label data-i18n-html="pg.calc.rec.tol">允许偏差 <span class="hint">%</span></label>
             <input type="number" id="rec-tol" step="0.5" min="0.5" max="5" value="2">
           </div>
         </div>
-        <button type="button" id="btn-recommend">生成推荐规格</button>
-        <div class="small muted mt16">
+        <button type="button" id="btn-recommend" data-i18n="pg.calc.rec.btn">生成推荐规格</button>
+        <div class="small muted mt16" data-i18n-html="pg.calc.rec.tip">
           经验值：外径偏差控制在 <strong>±2%</strong> 内最理想；±2%～3% 需接受码表误差；
           超过 ±3% 不建议，超过 ±5% 属于危险改装。
         </div>
       </div>
       <div class="calc-panel">
-        <h3 class="mt0">候选规格</h3>
-        <div id="rec-result"><div class="small muted">点击左侧按钮生成。</div></div>
+        <h3 class="mt0" data-i18n="pg.calc.rec.candidates">候选规格</h3>
+        <div id="rec-result"><div class="small muted" data-i18n="pg.calc.rec.empty">点击左侧按钮生成。</div></div>
       </div>
     </div>
   </section>
@@ -151,37 +151,37 @@
   <hr class="soft">
 
   <section>
-    <h2 id="s3">载重指数对照表<span class="tag">Load Index</span></h2>
-    <p class="lead">载重指数是改装中最容易被忽略、后果最严重的一项。指数每差 1 级约差 2.5% 承载能力，
+    <h2 id="s3" data-i18n-html="pg.calc.s3.title">载重指数对照表<span class="tag">Load Index</span></h2>
+    <p class="lead" data-i18n="pg.calc.s3.lead">载重指数是改装中最容易被忽略、后果最严重的一项。指数每差 1 级约差 2.5% 承载能力，
        四条胎的总承载能力必须大于车辆最大允许总质量（GVWR）。</p>
     <div class="grid cols-2">
       <div>
         <div class="table-scroll" style="max-height:420px;overflow-y:auto">
           <table>
-            <thead><tr><th>载重指数</th><th class="num">单胎 kg</th><th class="num">四胎合计 kg</th></tr></thead>
+            <thead><tr><th data-i18n="pg.calc.li.th.index">载重指数</th><th class="num" data-i18n="pg.calc.li.th.single">单胎 kg</th><th class="num" data-i18n="pg.calc.li.th.four">四胎合计 kg</th></tr></thead>
             <tbody id="li-table-body"></tbody>
           </table>
         </div>
       </div>
       <div>
         <div class="card">
-          <h3 class="mt0">怎么用这张表</h3>
+          <h3 class="mt0" data-i18n="pg.calc.li.how.title">怎么用这张表</h3>
           <ol class="small muted" style="padding-left:20px;margin:0">
-            <li>查行驶证上的<strong>最大允许总质量</strong>（GVWR），例如 2150 kg。</li>
-            <li>四胎合计承载必须 ≥ GVWR。2150 / 4 ≈ 538 kg/条，查表得载重指数 <strong>86</strong>（530 kg）不够，需要 <strong>87</strong>（545 kg）。</li>
-            <li>但真实工况下前后轴荷不均，应按<strong>较重的一轴</strong>核算：前轴 1150 kg → 每条需 ≥575 kg → 指数 <strong>89</strong>。</li>
-            <li>再留 10% 余量，实际选 90（600 kg）以上更稳妥。</li>
+            <li data-i18n-html="pg.calc.li.how.li1">查行驶证上的<strong>最大允许总质量</strong>（GVWR），例如 2150 kg。</li>
+            <li data-i18n-html="pg.calc.li.how.li2">四胎合计承载必须 ≥ GVWR。2150 / 4 ≈ 538 kg/条，查表得载重指数 <strong>86</strong>（530 kg）不够，需要 <strong>87</strong>（545 kg）。</li>
+            <li data-i18n-html="pg.calc.li.how.li3">但真实工况下前后轴荷不均，应按<strong>较重的一轴</strong>核算：前轴 1150 kg → 每条需 ≥575 kg → 指数 <strong>89</strong>。</li>
+            <li data-i18n-html="pg.calc.li.how.li4">再留 10% 余量，实际选 90（600 kg）以上更稳妥。</li>
           </ol>
-          <div class="note warn mt16">
+          <div class="note warn mt16" data-i18n-html="pg.calc.li.wagonNote">
             <strong>旅行车的额外负担：</strong>旅行版比三厢版整备质量通常多 30～60 kg，且后备箱满载概率高得多。
             经常满员+满载长途的，建议比理论值再高 1～2 级。
           </div>
         </div>
         <div class="card mt16">
-          <h3 class="mt0">速度等级</h3>
+          <h3 class="mt0" data-i18n="pg.calc.speed.title">速度等级</h3>
           <div class="table-scroll">
             <table style="min-width:auto">
-              <thead><tr><th>等级</th><th class="num">最高 km/h</th><th>等级</th><th class="num">最高 km/h</th></tr></thead>
+              <thead><tr><th data-i18n="pg.calc.speed.th.grade">等级</th><th class="num" data-i18n="pg.calc.speed.th.max">最高 km/h</th><th data-i18n="pg.calc.speed.th.grade">等级</th><th class="num" data-i18n="pg.calc.speed.th.max">最高 km/h</th></tr></thead>
               <tbody>
                 <tr><td class="mono">Q</td><td class="num">160</td><td class="mono">V</td><td class="num">240</td></tr>
                 <tr><td class="mono">S</td><td class="num">180</td><td class="mono">W</td><td class="num">270</td></tr>
@@ -190,7 +190,7 @@
               </tbody>
             </table>
           </div>
-          <div class="small muted mt16">奔驰 C 级旅行车（含 AMG）原厂多为 <strong>W（270 km/h）</strong> 或 <strong>Y（300 km/h）</strong>。
+          <div class="small muted mt16" data-i18n-html="pg.calc.speed.note">奔驰 C 级旅行车（含 AMG）原厂多为 <strong>W（270 km/h）</strong> 或 <strong>Y（300 km/h）</strong>。
             降级到 H/V 在德国不限速高速上属于不合规，但日常代步可接受——前提是别超等级上限。</div>
         </div>
       </div>
@@ -200,38 +200,38 @@
   <hr class="soft">
 
   <section>
-    <h2 id="s4">螺栓长度计算<span class="tag">Bolt Length</span></h2>
-    <p class="lead">换装非原厂轮毂最常见的致命错误是沿用原厂螺栓。轮毂安装盘（pad）厚度不同，
+    <h2 id="s4" data-i18n-html="pg.calc.s4.title">螺栓长度计算<span class="tag">Bolt Length</span></h2>
+    <p class="lead" data-i18n="pg.calc.s4.lead">换装非原厂轮毂最常见的致命错误是沿用原厂螺栓。轮毂安装盘（pad）厚度不同，
        螺栓的有效啮合长度就会不足或过长顶到刹车盘。</p>
 
     <div class="calc-grid">
       <div class="calc-panel">
         <div class="field">
-          <label>原厂螺栓螺纹长度 <span class="hint">mm，C 级四代原厂球面螺栓通常 24～27 mm</span></label>
+          <label data-i18n-html="pg.calc.bolt.oemLen">原厂螺栓螺纹长度 <span class="hint">mm，C 级四代原厂球面螺栓通常 24～27 mm</span></label>
           <input type="number" id="bolt-oem-len" step="1" value="25">
         </div>
         <div class="row2">
           <div class="field">
-            <label>原厂轮毂安装盘厚 <span class="hint">mm</span></label>
+            <label data-i18n-html="pg.calc.bolt.oemPad">原厂轮毂安装盘厚 <span class="hint">mm</span></label>
             <input type="number" id="bolt-oem-pad" step="1" value="30">
           </div>
           <div class="field">
-            <label>新轮毂安装盘厚 <span class="hint">mm</span></label>
+            <label data-i18n-html="pg.calc.bolt.newPad">新轮毂安装盘厚 <span class="hint">mm</span></label>
             <input type="number" id="bolt-new-pad" step="1" value="22">
           </div>
         </div>
-        <button type="button" id="btn-bolt">计算螺栓长度</button>
-        <div class="small muted mt16">
+        <button type="button" id="btn-bolt" data-i18n="pg.calc.bolt.btn">计算螺栓长度</button>
+        <div class="small muted mt16" data-i18n="pg.calc.bolt.tip">
           轮毂安装盘厚度是指轮毂中心盘与轮毂轴承面贴合处的实际厚度（含垫片）。
           改装轮毂为追求凹面（concave）常把这里做薄，于是同一个螺栓就会“多出头”，可能顶到轮毂轴承或刹车盘背面。
         </div>
       </div>
       <div class="calc-panel">
-        <h3 class="mt0">建议规格</h3>
+        <h3 class="mt0" data-i18n="pg.calc.bolt.plan">建议规格</h3>
         <div class="result-box" id="bolt-result">
-          <div class="line"><span class="lbl">填写左侧参数后点击计算</span></div>
+          <div class="line"><span class="lbl" data-i18n="pg.calc.bolt.placeholder">填写左侧参数后点击计算</span></div>
         </div>
-        <div class="note mt16">
+        <div class="note mt16" data-i18n-html="pg.calc.bolt.seatNote">
           <strong>球面 vs 锥面：</strong>奔驰原厂使用 <strong>球面（R14，球半径 14 mm）</strong> 螺栓。
           绝大多数改装轮毂（BBS、OZ、RAYS、Work 等）也采用球面座，可以直接沿用；
           但部分日系/美系或赛道用轮毂是 <strong>60° 锥面座</strong>，必须换用对应螺栓，混用会导致螺栓自动松脱。
@@ -243,34 +243,34 @@
   <hr class="soft">
 
   <section>
-    <h2 id="s5">计算公式说明<span class="tag">Formula</span></h2>
+    <h2 id="s5" data-i18n-html="pg.calc.s5.title">计算公式说明<span class="tag">Formula</span></h2>
     <div class="grid cols-2">
       <div class="card">
-        <h3 class="mt0">轮胎外径</h3>
-        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim);margin:0">外径 = 轮辋直径 × 25.4 + 2 × (胎宽 × 扁平比 / 100)
+        <h3 class="mt0" data-i18n="pg.calc.f.od.title">轮胎外径</h3>
+        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim);margin:0" data-i18n="pg.calc.f.od.pre">外径 = 轮辋直径 × 25.4 + 2 × (胎宽 × 扁平比 / 100)
 
 例：225/50R17
 = 17 × 25.4 + 2 × (225 × 0.50)
 = 431.8 + 225 = 656.8 mm</pre>
       </div>
       <div class="card">
-        <h3 class="mt0">码表误差</h3>
-        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim);margin:0">真实车速 = 仪表车速 × (新外径 / 原外径)
+        <h3 class="mt0" data-i18n="pg.calc.f.speedo.title">码表误差</h3>
+        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim);margin:0" data-i18n="pg.calc.f.speedo.pre">真实车速 = 仪表车速 × (新外径 / 原外径)
 
 新胎更大 → 实际比码表快（更容易吃罚单）
 新胎更小 → 实际比码表慢</pre>
       </div>
       <div class="card">
-        <h3 class="mt0">ET 与外移量</h3>
-        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim);margin:0">轮辋外缘位移 = (新辋宽 − 原辋宽)/2 × 25.4 − (新ET − 原ET)
+        <h3 class="mt0" data-i18n="pg.calc.f.et.title">ET 与外移量</h3>
+        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim);margin:0" data-i18n="pg.calc.f.et.pre">轮辋外缘位移 = (新辋宽 − 原辋宽)/2 × 25.4 − (新ET − 原ET)
 轮辋内缘位移 = (新辋宽 − 原辋宽)/2 × 25.4 + (新ET − 原ET)
 
 背距(backspace) = 辋宽/2 × 25.4 + ET
 前距(frontspace) = 辋宽/2 × 25.4 − ET</pre>
       </div>
       <div class="card">
-        <h3 class="mt0">胎壁位置估算</h3>
-        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim);margin:0">胎壁外缘 ≈ 胎宽/2 − ET
+        <h3 class="mt0" data-i18n="pg.calc.f.bulge.title">胎壁位置估算</h3>
+        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim);margin:0" data-i18n="pg.calc.f.bulge.pre">胎壁外缘 ≈ 胎宽/2 − ET
 胎壁内缘 ≈ −(胎宽/2 + ET)
 
 轮胎近似对称于轮辋中心线，故用名义截面宽估算。
@@ -278,7 +278,7 @@
       </div>
     </div>
 
-    <div class="note warn mt16">
+    <div class="note warn mt16" data-i18n-html="pg.calc.hardline">
       <strong>三条硬性红线：</strong>
       ① 轮胎外径偏差不要超过 ±3%；② 胎壁外移量不要超过 12 mm；③ 载重指数不得低于按轴荷核算的需求值。
       触犯任何一条，就不是“风格问题”而是安全问题。
@@ -289,7 +289,16 @@
 
 <footer class="footer" id="site-footer"></footer>
 
+<script src="lang/zh.js"></script>
+<script src="lang/en.js"></script>
+<script src="lang/p-calc.zh.js"></script>
+<script src="lang/p-calc.en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="data/c-class-data.js"></script>
+<script src="data/i18n-en-c-class.js"></script>
+<script src="data/i18n-en-controls.js"></script>
+<script src="data/i18n-en-brands.js"></script>
+<script src="assets/js/data-i18n.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/wheel-calc.js"></script>
 </body>
