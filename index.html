@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>奔驰 C 级旅行车数据库 · S203/S204/S205/S206 用车指南与轮毂数据</title>
+<meta name="description" content="奔驰 C 级旅行车（Estate/T-Modell）2000 年以后全代际资料库：S203、S204、S205、S206 车身尺寸、轮毂数据、ET 偏距、改装适配计算、配件价格与机油规格。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar" id="site-header"></header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <span class="eyebrow">Mercedes-Benz C-Class Estate · 2000 → Now</span>
+    <h1>奔驰 C 级旅行车<span class="accent">全代际数据库</span></h1>
+    <p>从 2001 年的 S203 到今天的 S206，五代 C 级旅行车（T-Modell / Estate）的用车指南、车身尺寸、
+       轮毂规格、ET 偏距体系、改装适配计算、配件更换与机油价格，全部整理在一处。</p>
+    <div class="toolbar mt16">
+      <a class="btn" href="calculator.html">打开改装计算器</a>
+      <a class="btn ghost" href="assistant.html">问 AI 助手</a>
+      <a class="btn ghost" href="wheels.html">查轮毂数据</a>
+      <a class="btn ghost" href="guide.html">看用车指南</a>
+    </div>
+  </div>
+
+  <!-- ================= 关键数字 ================= -->
+  <section>
+    <h2 id="key">四代通用安装参数<span class="tag">先看这里</span></h2>
+    <p class="lead">不管你手上是哪一代 C 级旅行车，轮毂安装的这几个数字是共通的——这也是奔驰改装件生态丰富的原因。</p>
+    <div class="grid cols-4" id="key-stats"></div>
+    <div class="note mt16">
+      <strong>一句话总结：</strong>2001 年至今所有 C 级旅行车的轮毂安装面都是 <strong>5×112</strong>、
+      中心孔 <strong>66.6 mm</strong>、球面 R14 螺栓，只有螺栓螺纹规格在 W203 → W204 之间从
+      <strong>M12×1.5</strong> 升级到 <strong>M14×1.5</strong>。这意味着<strong>轮毂本体通常可以跨代互换，但螺栓不行</strong>。
+    </div>
+  </section>
+
+  <!-- ================= 代际时间线 ================= -->
+  <section>
+    <h2 id="gens">代际时间线<span class="tag">2000 →</span></h2>
+    <p class="lead">C 级旅行车的底盘代号规律：轿车是 W2xx，旅行版是 S2xx。点击任意一代进入详细数据。</p>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- ================= 快速对比 ================= -->
+  <section>
+    <h2 id="compare">尺寸快速对比<span class="tag">Side by Side</span></h2>
+    <p class="lead">四代车型的车身与轮距演变。轮距决定了轮毂 ET 的可用区间，也是判断能否跨代流用轮毂的关键。</p>
+    <div id="quick-compare"></div>
+    <div id="compare-note"></div>
+  </section>
+
+  <!-- ================= 功能入口 ================= -->
+  <section>
+    <h2 id="modules">站内模块<span class="tag">9 个部分</span></h2>
+    <div class="grid cols-3">
+      <a class="card hover" href="guide.html">
+        <div class="card-meta">01 / GUIDE</div>
+        <h3>用车指南</h3>
+        <p class="muted small">保养周期与项目清单、机油规格（MB 229.x 体系）、变速箱油、四代各自的通病与故障处理参考价。</p>
+      </a>
+      <a class="card hover" href="specs.html">
+        <div class="card-meta">02 / SPECS</div>
+        <h3>车身数据</h3>
+        <p class="muted small">车长宽高、轴距、前后轮距、整备质量、后备箱容积、油箱容量、离地间隙、转弯直径，按型号细分。</p>
+      </a>
+      <a class="card hover" href="wheels.html">
+        <div class="card-meta">03 / WHEELS</div>
+        <h3>轮毂数据</h3>
+        <p class="muted small">PCD、中心孔、螺栓规格、原厂轮毂清单与 ET 全表，以及改轮毂会影响到的每一项车身参数。</p>
+      </a>
+      <a class="card hover" href="fitment.html">
+        <div class="card-meta">04 / FITMENT</div>
+        <h3>轮毂适配</h3>
+        <p class="muted small">BBS、OZ、RAYS、Enkei、Work、AMG 原厂等主流轮毂在四代旅行车上的适配度评级与推荐数据。</p>
+      </a>
+      <a class="card hover" href="calculator.html">
+        <div class="card-meta">05 / CALC</div>
+        <h3>改装计算器</h3>
+        <p class="muted small">外径与码表误差、ET 外移量、轮距与主销偏移变化、载重校验、轮胎规格推荐、螺栓长度计算。</p>
+      </a>
+      <a class="card hover" href="parts.html">
+        <div class="card-meta">06 / PARTS</div>
+        <h3>配件与机油</h3>
+        <p class="muted small">易损件更换周期与参考价、机油品牌与规格价格对比、刹车与滤芯选购要点。</p>
+      </a>
+      <a class="card hover" href="guide.html#issues">
+        <div class="card-meta">07 / ISSUES</div>
+        <h3>通病速查</h3>
+        <p class="muted small">按代际汇总常见故障：正时链条、凸轮轴调节器、变速箱阀体、天窗排水、空气悬挂等。</p>
+      </a>
+      <a class="card hover" href="assistant.html">
+        <div class="card-meta">08 / ASK</div>
+        <h3>AI 助手</h3>
+        <p class="muted small">直接提问就能查到本站任何数据——尺寸、轮毂 ET、改装能不能装、通病、机油与配件价格，
+           涉及规格的问题会现场调用计算引擎算出结果。</p>
+      </a>
+      <a class="card hover" href="controls.html">
+        <div class="card-meta">09 / CONTROLS</div>
+        <h3>灯光、按键与故障灯</h3>
+        <p class="muted small">示宽灯与单侧驻车灯在哪、怎么开；方向盘与中控每个按键的功能；
+           仪表故障灯的图标含义、能否继续行驶与处理方法。</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= 使用说明 ================= -->
+  <section>
+    <h2 id="usage">怎么用这个站<span class="tag">How to</span></h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3 class="mt0">① 先确认你的底盘代号</h3>
+        <p class="muted small">看行驶证或车门 B 柱铭牌，也可以按年份粗判：</p>
+        <div class="table-scroll">
+          <table style="min-width:auto">
+            <thead><tr><th>生产年份</th><th>代际</th><th>底盘</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">2001–2007</td><td>第二代</td><td class="mono">W203 / S203</td></tr>
+              <tr><td class="mono">2007–2014</td><td>第三代</td><td class="mono">W204 / S204</td></tr>
+              <tr><td class="mono">2014–2021</td><td>第四代</td><td class="mono">W205 / S205</td></tr>
+              <tr><td class="mono">2021–</td><td>第五代</td><td class="mono">W206 / S206</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="mt0">② 再决定要不要动轮毂</h3>
+        <p class="muted small">改装轮毂的收益与代价都很直接：</p>
+        <ul class="small muted" style="padding-left:20px">
+          <li><span class="badge ok">得到</span> 视觉姿态、更宽的接地面积、更短的胎壁带来的转向响应、更轻的簧下质量。</li>
+          <li><span class="badge bad">付出</span> 舒适性下降、胎噪上升、轮胎与轮毂成本翻倍、容易刮蹭、二手残值受影响。</li>
+          <li><span class="badge warn">风险</span> 载重不足、码表失准、轮距超限、ESP 报警、轮胎偏磨、避震与轴承加速磨损。</li>
+        </ul>
+        <p class="small muted mb0">把这两个配置丢进<a href="calculator.html">计算器</a>，它会把上面每一项都算给你看。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 免责 ================= -->
+  <section>
+    <h2 id="disclaimer">数据来源与核实程度<span class="tag">Disclaimer</span></h2>
+
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>数据类别</th><th>来源性质</th><th>核实程度</th><th>需要注意的地方</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>车身尺寸 / 轴距 / 轮距</strong></td>
+            <td>媒体车型技术表、厂商资料、官方配件站</td>
+            <td><span class="badge ok">逐项核对来源</span></td>
+            <td class="small muted">不同市场口径存在差异（如 S206 轮距有两种记法），页面已标注所采用口径</td>
+          </tr>
+          <tr>
+            <td><strong>轮毂安装参数与 ET</strong></td>
+            <td>厂商轮毂配置表、轮毂数据库、官方 Gutachten</td>
+            <td><span class="badge ok">逐项核对来源</span></td>
+            <td class="small muted">AMG 高性能版部分 ET 未取得可靠来源，已留空</td>
+          </tr>
+          <tr>
+            <td><strong>品牌轮毂型号与价格</strong></td>
+            <td>BBS / OZ / RAYS 官网、JMS、Blackhawk Japan 等实际抓取页面</td>
+            <td><span class="badge ok">实际抓取</span></td>
+            <td class="small muted">Enkei 5×112、多数型号的螺栓座面与净重未取到，页内已集中说明</td>
+          </tr>
+          <tr>
+            <td><strong>机油与耗材价格</strong></td>
+            <td>京东 / 天猫 / 途虎 / 汽车之家 / 什么值得买的实拍与车主帖</td>
+            <td><span class="badge warn">实际抓取，时效不一</span></td>
+            <td class="small muted">部分为 2015–2019 年促销价；滤芯与刹车盘零售价未取到</td>
+          </tr>
+          <tr>
+            <td><strong>保养周期与通病</strong></td>
+            <td>厂商技术文档、官方召回公告、车主社区实测反馈</td>
+            <td><span class="badge warn">综合整理</span></td>
+            <td class="small muted">维修价格为综合修理厂参考区间，随地区差异较大</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note warn mt16">
+      <p><strong>数据来源性质。</strong>本站数据整理自公开技术资料、厂商技术文档（含奔驰原厂 Technical Accessories 目录与
+         originalteile.mercedes-benz.de 官方配件站）、轮毂厂商标称参数与车主社区实测反馈。整理过程力求准确，
+         但车型年款差异、不同市场（欧版 / 中规 / 美规）配置差异、选装包差异都会导致实际数据不同。</p>
+      <p><strong>价格性质。</strong>所有价格均为<strong>参考区间</strong>，随地区、渠道（4S / 修理厂 / 电商）、品牌与时间波动很大，
+         仅用于判断量级，不作为报价依据。抓不到可靠来源的字段一律留空——完整清单见
+         <a href="parts.html#gaps">配件与机油 · 数据缺口</a>与<a href="fitment.html#brands">轮毂适配 · 品牌数据缺口</a>。</p>
+      <p><strong>改装风险自负。</strong>轮毂轮胎属于行车安全件。安装前请务必：
+         以实车测量轮拱与避震间隙、核对轮毂厂商标称载荷（不得低于单轮需求）、确认螺栓球面/锥面与长度、
+         检查胎压监测传感器兼容性，并遵守当地关于轮距变更与轮胎规格的法规要求。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="site-footer"></footer>
+
+<script src="data/c-class-data.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/home.js"></script>
+</body>
+</html>

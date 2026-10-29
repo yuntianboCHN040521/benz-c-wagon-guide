@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>轮毂适配度与品牌数据库 · 奔驰 C 级旅行车数据库</title>
+<meta name="description" content="BBS、OZ、RAYS、Enkei、Work、AMG 原厂轮毂在奔驰 C 级旅行车 S203/S204/S205/S206 上的适配度评级、可选尺寸与 ET、参考价格，以及按代际推荐的改装方案。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar" id="site-header"></header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <span class="eyebrow">Wheel Fitment &amp; Brands</span>
+    <h1>轮毂适配度与<span class="accent">品牌数据库</span></h1>
+    <p>哪些轮毂能装、装了会怎样、值不值这个价。本页收录 BBS、OZ、RAYS、Enkei、Work 等主流品牌的奔驰适配型号，
+       以及 AMG 原厂轮毂与按代际划分的三档改装方案。</p>
+  </div>
+
+  <!-- ================= 适配度判定 ================= -->
+  <section>
+    <h2 id="method">一、适配度怎么判定<span class="tag">Method</span></h2>
+    <p class="lead">本站的适配度评级不是主观印象，而是由下面五个硬指标算出来的。</p>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="card-meta">指标 01</div>
+        <h3>安装参数匹配</h3>
+        <p class="small muted">PCD 必须为 5×112；中心孔 ≥66.6（大于则需变径环）；螺栓座面必须为球面 R14；
+           螺栓螺纹与车型一致（W203 为 M12×1.5，W204 起为 M14×1.5）。</p>
+        <p class="small"><span class="badge bad">任一不符 = 不可装</span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">指标 02</div>
+        <h3>外移量</h3>
+        <p class="small muted">胎壁相对原厂的外移量。这是刮蹭风险的第一指标，也是判断「齐边」还是「爆龟」的依据。</p>
+        <p class="small">
+          <span class="badge ok">≤6 mm 齐边</span>
+          <span class="badge warn">6–12 mm 饱满</span>
+          <span class="badge bad">&gt;12 mm 风险</span>
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-meta">指标 03</div>
+        <h3>内侧间隙</h3>
+        <p class="small muted">内侧侵入量决定会不会蹭避震筒与内衬。AMG 大刹车车型的卡钳占位更大，余量更小。</p>
+        <p class="small">
+          <span class="badge ok">≥−8 mm 安全</span>
+          <span class="badge warn">−8 ~ −15 mm 需实测</span>
+          <span class="badge bad">&lt;−15 mm 高危</span>
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-meta">指标 04</div>
+        <h3>外径与码表</h3>
+        <p class="small muted">轮胎外径相对原厂的变化。超过 ±3% 会影响 ESP 判定与换挡逻辑，超过 ±5% 属于危险改装。</p>
+        <p class="small">
+          <span class="badge ok">±2% 内理想</span>
+          <span class="badge warn">±2–3% 可接受</span>
+          <span class="badge bad">&gt;3% 不建议</span>
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-meta">指标 05</div>
+        <h3>载荷与重量</h3>
+        <p class="small muted">轮毂的标称载荷必须 ≥ 单轮需求的 1.2 倍；重量影响簧下质量，同尺寸下越轻越好（但不能牺牲载荷）。</p>
+        <p class="small">
+          <span class="badge ok">锻造 7–9.5 kg</span>
+          <span class="badge warn">旋压 8.5–11.5 kg</span>
+          <span class="badge bad">廉价铸造 &gt;13 kg</span>
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-meta">指标 06</div>
+        <h3>法规适配</h3>
+        <p class="small muted">德国 TÜV 需要轮毂带 Gutachten（含奔驰车型的 ABE）或做 Einzelabnahme 单件认证；
+           中国年检关注轮胎规格与外廓尺寸。正规品牌都会提供适配清单，购买前索取。</p>
+        <p class="small"><span class="badge info">认准 Gutachten / ABE</span></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 按代际推荐方案 ================= -->
+  <section>
+    <h2 id="plans">二、按代际的推荐改装方案<span class="tag">预设方案</span></h2>
+    <p class="lead">每一档方案都由计算器实时核算出外移量与码表误差——表格里的数字是算出来的，不是估的。</p>
+    <div class="toolbar">
+      <span class="chip active" data-plan="all">全部代际</span>
+      <span class="chip" data-plan="W203/S203">S203</span>
+      <span class="chip" data-plan="W204/S204">S204</span>
+      <span class="chip" data-plan="W205/S205">S205</span>
+      <span class="chip" data-plan="W206/S206">S206</span>
+    </div>
+    <div id="plan-table"></div>
+    <div class="note mt16">
+      <strong>三档位说明：</strong>
+      <span class="badge ok">原厂风格</span>直接沿用同代原厂尺寸，零风险、零折腾，只是换个造型。
+      <span class="badge warn">进阶合装</span>在轮拱余量内适度加大加宽，兼顾姿态与可用性，是最主流的选择。
+      <span class="badge bad">激进姿态</span>追求最大视觉冲击，通常需要配合负倾角、卷边或改悬挂，且必然牺牲舒适性与通过性。
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 可用性矩阵 ================= -->
+  <section>
+    <h2 id="matrix">三、轮毂尺寸可用性矩阵<span class="tag">Matrix</span></h2>
+    <p class="lead">把「辋宽 × ET」的所有常见组合一次性算完。单元格里的数字是<strong>胎壁相对原厂的外移量（mm）</strong>，
+       正数表示比原厂更靠车外。这张表回答的是选型时第一个问题：<em>这个宽度的轮毂，ET 该选多少？</em></p>
+    <div class="toolbar" id="matrix-chips"></div>
+    <div id="fit-matrix"></div>
+    <div class="grid cols-3 mt16">
+      <div class="stat" style="border-left-color:var(--ok)">
+        <div class="k">安全区间</div>
+        <div class="v small" style="color:var(--ok)">外移 −8 ~ +6 mm</div>
+        <div class="small faint">从原厂位置到「齐边」，无需额外处理</div>
+      </div>
+      <div class="stat" style="border-left-color:var(--warn)">
+        <div class="k">需要实测</div>
+        <div class="v small" style="color:var(--warn)">外移 +6 ~ +12 mm 或 −8 ~ −15 mm<br>内侵 −10 ~ −18 mm</div>
+        <div class="small faint">需做橡皮泥动态测试；外移为较大负值时轮胎会明显「陷进」轮拱</div>
+      </div>
+      <div class="stat" style="border-left-color:var(--bad)">
+        <div class="k">不建议</div>
+        <div class="v small" style="color:var(--bad)">外移 &gt; +12 mm 或 &lt; −15 mm<br>内侵 &lt; −18 mm</div>
+        <div class="small faint">需要改宽体/卷边，或必然与避震、内衬干涉</div>
+      </div>
+    </div>
+    <div class="note warn mt16">
+      <strong>怎么用这张表：</strong>先定你想要的外观宽度（例如 8.5J），然后横着找他行里的绿色格子，
+      就能读出 ET 的大致可选范围。<strong>注意这张表只算横向位置，不含刹车卡钳间隙与轮胎外径</strong>——
+      最终决定前请回到<a href="calculator.html">计算器</a>做完整的配置对比。
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 品牌数据库 ================= -->
+  <section>
+    <h2 id="brands">四、品牌轮毂数据库<span class="tag">Brands</span></h2>
+    <p class="lead">只收录确实提供 5×112 孔距、可用于奔驰 C 级的型号。点击品牌筛选。</p>
+    <div class="toolbar" id="brand-chips"></div>
+    <div id="brand-list"></div>
+    <div id="brand-notes" class="mt24"></div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= AMG 原厂 ================= -->
+  <section>
+    <h2 id="amg">四、AMG 原厂轮毂<span class="tag">OEM+</span></h2>
+    <p class="lead">原厂 AMG 轮毂是最省心的「升级」路线：载荷、ET、中心孔、螺栓全部原厂匹配，
+       唯一的问题是价格与新货稀缺（多为拆车件）。</p>
+    <div id="amg-table"></div>
+    <div class="note mt16">
+      <strong>为什么推荐原厂 AMG 轮毂？</strong>因为它们是为这个底盘设计的：ET 与轮距精确匹配、载荷按车辆最大总质量校核过、
+      动平衡与真圆度有原厂保证，而且大多带 TÜV 认可的 Gutachten。缺点是新件贵（单只常 5000 元以上）、
+      二手市场假货多（尤其是所谓「AMG 风格」的仿制品）。购买二手件务必核对<strong>原厂零件号（A2xx401xxxx）</strong>与内侧铸造标记。
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 常见误区 ================= -->
+  <section>
+    <h2 id="myths">五、六个常见误区<span class="tag">Myths</span></h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3 class="mt0">误区 1：ET 越小越帅，越小越好</h3>
+        <p class="small muted">ET 过小会让轮胎外凸刮轮眉，同时主销偏移量剧变使转向变沉、胎肩异常磨损，
+           轮毂轴承的附加弯矩也会显著缩短寿命。视觉上的「齐边」通常对应外移 5～8 mm，而不是 20 mm。</p>
+      </div>
+      <div class="card">
+        <h3 class="mt0">误区 2：轮毂大了车就快了</h3>
+        <p class="small muted">大直径轮毂的转动惯量按半径平方增长，即使总重不变也会让起步与制动变差。
+           除非同时大幅减重（锻造毂），否则「加大即变慢」是常态。</p>
+      </div>
+      <div class="card">
+        <h3 class="mt0">误区 3：螺栓随便用，能拧上就行</h3>
+        <p class="small muted">球面配锥面会在行驶中自行松脱；螺纹长度不足会滑牙；过长会顶到轮毂轴承。
+           这是所有改装错误里后果最严重、也最容易避免的一项。</p>
+      </div>
+      <div class="card">
+        <h3 class="mt0">误区 4：不用变径环，靠螺栓定位就行</h3>
+        <p class="small muted">螺栓只负责压紧，径向定位靠中心孔与轴承凸台的配合。缺变径环会导致高速抖动、
+           螺栓承受剪切力、轮毂偏心，长期会疲劳断裂。</p>
+      </div>
+      <div class="card">
+        <h3 class="mt0">误区 5：宽胎抓地力一定更强</h3>
+        <p class="small muted">接地面积受轮毂宽度与胎压共同约束。窄轮辋上装超宽胎，胎面会呈「甜甜圈」形，
+           实际接地印痕反而变小，湿地性能与耐磨性都会下降。</p>
+      </div>
+      <div class="card">
+        <h3 class="mt0">误区 6：改完做不做四轮定位无所谓</h3>
+        <p class="small muted">轮毂位置改变会连带改变倾角与前束在轮胎上的落点，
+           不做定位的结果通常是几千公里后轮胎报废。改装后做定位应该是标配动作。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="site-footer"></footer>
+
+<script src="data/c-class-data.js"></script>
+<script src="data/wheel-brands.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/wheel-calc.js"></script>
+<script src="assets/js/fitment.js"></script>
+</body>
+</html>

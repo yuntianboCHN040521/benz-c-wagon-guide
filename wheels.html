@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>轮毂数据与改装影响 · 奔驰 C 级旅行车数据库</title>
+<meta name="description" content="奔驰 C 级旅行车轮毂数据：5x112 PCD、66.6mm 中心孔、M12/M14 螺栓、四代原厂轮毂 ET 全表，以及改装轮毂对轮距、主销偏移、离地间隙、码表、悬挂与轴承的影响详解。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar" id="site-header"></header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <span class="eyebrow">Wheels &amp; Fitment Data</span>
+    <h1>轮毂数据与<span class="accent">改装影响</span></h1>
+    <p>安装参数（PCD / 中心孔 / 螺栓 / 座面）决定了「能不能装」，ET 与宽度决定了「装上去会动到哪里」。
+       本页把四代 C 级旅行车的原厂轮毂数据全部列出，并逐项说明改装轮毂会连带改变哪些车身参数。</p>
+  </div>
+
+  <!-- ================= 一、安装参数 ================= -->
+  <section>
+    <h2 id="install">一、安装参数<span class="tag">能不能装</span></h2>
+    <p class="lead">这四个参数是硬性条件，任何一项不匹配都装不上或装不安全。</p>
+    <div class="grid cols-4" id="install-stats"></div>
+
+    <h3>参数详解</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>参数</th><th>数值</th><th>说明</th><th>不匹配的后果</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="nowrap"><strong>PCD 孔距</strong></td>
+            <td class="mono">5×112</td>
+            <td>5 个螺栓孔，分布圆直径 112 mm。2001 年至今所有 C 级（含 AMG）一致。</td>
+            <td>孔位对不上，物理上无法安装。5×114.3（日系）或 5×120（宝马）都不行。</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>中心孔 CB</strong></td>
+            <td class="mono">66.6 mm</td>
+            <td>轮毂中心孔套在轮毂轴承凸台上的定位直径，承担轮毂的径向定位（不是靠螺栓定位）。</td>
+            <td>CB 小于 66.6 装不进；CB 大于 66.6 而不用变径环，会出现高速抖动、螺栓受剪切力、轮毂偏心。</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>螺栓螺纹</strong></td>
+            <td class="mono">M12×1.5<br>M14×1.5</td>
+            <td>W203/S203（2001–2007）为 M12×1.5；W204 起（2007 年至今）升级为 M14×1.5。</td>
+            <td>M12 螺栓插进 M14 孔会晃、扭矩上不去；M14 螺栓插不进 M12 孔。跨代流用轮毂时必须换螺栓。</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>螺栓座面</strong></td>
+            <td class="mono">球面 R14</td>
+            <td>奔驰原厂为球面座（球形半径 14 mm）。BBS、OZ、RAYS、AMG 等绝大多数适配奔驰的轮毂也是球面座。</td>
+            <td>球面螺栓配锥面孔（或反之）接触面积只剩一条线，会在行驶中自行松脱，是最危险的错误之一。</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>螺栓数量</strong></td>
+            <td class="mono">5 颗</td>
+            <td>四代均为 5 孔螺栓固定，非中心锁紧。</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>扭矩</strong></td>
+            <td class="mono">130 N·m</td>
+            <td>M14 螺栓标准扭矩约 130 N·m（M12 约 110 N·m），需交叉分次拧紧，装后 50～100 km 复检。</td>
+            <td>扭矩不足会松脱；过量会拉伸螺栓或损伤螺纹。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>中心孔变径环（Hub Centric Ring）</h3>
+    <div class="grid cols-2">
+      <div class="card">
+        <p class="small muted">改装轮毂为了通用来做「大中心孔」，常见规格与奔驰 66.6 mm 的对应关系：</p>
+        <div class="table-scroll">
+          <table style="min-width:auto">
+            <thead><tr><th>轮毂中心孔</th><th>需要的变径环</th><th>常见品牌</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">72.6 mm</td><td class="mono">72.6 → 66.6</td><td>部分 BBS、OZ</td></tr>
+              <tr><td class="mono">82.0 mm</td><td class="mono">82.0 → 66.6</td><td>BBS 部分型号</td></tr>
+              <tr><td class="mono">76.0 mm</td><td class="mono">76.0 → 66.6</td><td>部分日系品牌（Work / RAYS）</td></tr>
+              <tr><td class="mono">70.1 mm</td><td class="mono">70.1 → 66.6</td><td>部分欧洲副厂</td></tr>
+              <tr><td class="mono">66.6 mm</td><td>不需要</td><td>AMG 原厂、BBS 奔驰专用款</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="mt0">变径环要点</h3>
+        <ul class="small muted" style="padding-left:20px">
+          <li>材质选<strong>铝合金 CNC</strong>，不要买塑料环——受热变形后失去定位作用。</li>
+          <li>变径环承担的是<strong>定心</strong>，不是承重；承重靠螺栓端面摩擦。所以仍然必须按扭矩拧紧。</li>
+          <li>环与轮毂、与轴承凸台都要<strong>清洁无漆</strong>，有漆层会导致偏心。</li>
+          <li>很多改装轮毂会配<strong>金属定位环</strong>，安装时别漏装，也别装反。</li>
+          <li>轮毂本身 CB 小于 66.6 时无法通过变径环解决，只能机加工扩孔——不建议，会破坏强度与动平衡。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 二、原厂轮毂全表 ================= -->
+  <section>
+    <h2 id="oem">二、四代原厂轮毂与轮胎全表<span class="tag">OEM</span></h2>
+    <p class="lead">原厂配置是所有改装的参照基准。改装前请先在表里找到自己车的那一行，记下轮辋宽度与 ET。</p>
+    <div class="toolbar">
+      <span class="chip active" data-gen="all">全部代际</span>
+      <span class="chip" data-gen="W203/S203">S203</span>
+      <span class="chip" data-gen="W204/S204">S204</span>
+      <span class="chip" data-gen="W205/S205">S205</span>
+      <span class="chip" data-gen="W206/S206">S206</span>
+    </div>
+    <div id="oem-table"></div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 三、ET 体系 ================= -->
+  <section>
+    <h2 id="et">三、ET 偏距体系<span class="tag">装上去在哪</span></h2>
+    <p class="lead">ET（Einpresstiefe，偏距）是轮辋中心线到安装面的距离，单位 mm。它决定了轮毂相对车身的横向位置。</p>
+
+    <div class="grid cols-2">
+      <div class="card">
+        <h3 class="mt0">直观理解</h3>
+        <pre class="mono small" style="overflow-x:auto;color:var(--text-dim)">        车外侧
+          │
+    ┌─────┴─────┐  ← 轮辋外缘
+    │           │
+    │     ●     │  ← 轮辋中心线
+    │     │     │
+    │     │←ET→ │
+    │     │     │
+    └─────┼─────┘  ← 轮辋内缘
+          │
+       安装面（贴刹车盘）
+
+ET 越大 → 安装面越靠外 → 轮毂整体往车内缩（内凹）
+ET 越小 → 安装面越靠内 → 轮毂整体往车外凸</pre>
+      </div>
+      <div class="card">
+        <h3 class="mt0">改动 ET 的连带效应</h3>
+        <div class="table-scroll">
+          <table style="min-width:auto">
+            <thead><tr><th>ET 变化</th><th>轮距</th><th>主销偏移</th><th>转向手感</th><th>轴承负荷</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">减小（外凸）</td><td>变宽</td><td>变大（正）</td><td>变沉、回正变弱</td><td>增大</td></tr>
+              <tr><td class="mono">增大（内缩）</td><td>变窄</td><td>变小</td><td>变轻、路感变模糊</td><td>减小</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="small muted mt16">
+          经验值：C 级旅行车单侧外移量控制在 <strong>10 mm 以内</strong> 基本无感；
+          <strong>10～15 mm</strong> 会明显感觉到转向变沉与胎肩磨损加快；超过 <strong>20 mm</strong> 属于激进改装，
+          需要配合负倾角、卷边甚至改宽体，且轮胎会频繁刮内衬。
+        </div>
+      </div>
+    </div>
+
+    <h3>四代原厂 ET 区间对照</h3>
+    <div id="et-table"></div>
+    <div class="note mt16">
+      <strong>为什么后轮 ET 通常比前轮大？</strong>后轮拱空间比前轮更紧（尤其旅行版后轮拱内侧就是油箱加注管与内衬）。
+      所以原厂后轮通常用更大 ET（更内缩）配更宽轮辋，例如 S205 的前 7.5J×18 ET44 / 后 8.5J×18 ET49 组合。
+      改装时后轮外移量要放得比前轮更保守。
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 四、改装影响 ================= -->
+  <section>
+    <h2 id="impact">四、改轮毂会影响到的车身数据<span class="tag">核心</span></h2>
+    <p class="lead">这是改装最容易被低估的部分。换一套轮毂，实际上同时改动了下面十几项参数。</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>受影响参数</th><th>变化原因</th><th>变化量怎么算</th><th>实际影响</th><th>可接受范围</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="nowrap"><strong>轮距（Track）</strong></td>
+            <td>ET 减小或轮辋加宽，轮毂向外凸出</td>
+            <td class="mono">Δ轮距 = (Δ辋宽 − ΔET) × 2<br><span class="faint">单位 mm，Δ辋宽需 ×25.4</span></td>
+            <td>轮距加宽可提升横向稳定性，但改变悬挂几何与转向特性；轮距缩小则相反</td>
+            <td>单轴变化 <span class="badge warn">≤24 mm</span> 可接受，<span class="badge bad">&gt;40 mm</span> 不建议</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>主销偏移量<br>(Scrub Radius)</strong></td>
+            <td>轮毂外移使轮胎接地中心相对主销轴线平移</td>
+            <td class="mono">Δ ≈ 轮胎外移量</td>
+            <td>回正力矩变化：变正→转向变沉、路感增强、单侧刹车跑偏加剧；变负→路感模糊</td>
+            <td><span class="badge ok">±10 mm</span> 内基本无感</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>离地间隙 / 车高</strong></td>
+            <td>轮胎外径变化</td>
+            <td class="mono">Δ = (新外径 − 原外径) / 2</td>
+            <td>外径变大整车抬高，通过性略好但重心变高；外径变小则相反</td>
+            <td>配合外径 ±3% 限制，变化通常 ±10 mm</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>轮拱填充 / 视觉姿态</strong></td>
+            <td>外径 + 外移量共同作用</td>
+            <td class="mono">视觉填充 = Δ(外径/2) + 外移量分量</td>
+            <td>轮拱被填满后视觉更饱满，但也是刮蹭风险的来源</td>
+            <td>胎壁外移 <span class="badge warn">≤12 mm</span></td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>码表与里程表</strong></td>
+            <td>外径变化改变轮胎每公里转数</td>
+            <td class="mono">真实车速 = 码表 × (新外径/原外径)</td>
+            <td>外径变大时实际车速高于码表，容易超速；里程与保养提醒同步失准</td>
+            <td><span class="badge ok">±2%</span> 理想，<span class="badge bad">&gt;3%</span> 不建议</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>ABS / ESP 判定</strong></td>
+            <td>四轮转速信号与预设外径不符</td>
+            <td class="mono">偏差 = 外径变化率</td>
+            <td>偏差过大时 ESP/ABS 可能误判轮速差、提前介入或点亮故障灯；定速巡航与自动变速箱换挡点也会偏移</td>
+            <td><span class="badge warn">±3%</span> 以内通常无报警</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>簧下质量</strong></td>
+            <td>轮毂+轮胎总重变化</td>
+            <td class="mono">等效车身质量 ≈ Δ簧下 × 1.5～2.0</td>
+            <td>簧下 1 kg 约等于车身 1.5～2 kg 的惯性感受。锻造毂通常比同尺寸铸造毂轻 2～4 kg/只，加速、制动、滤震都会变好</td>
+            <td>越轻越好（但载荷不能降）</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>转动惯量</strong></td>
+            <td>质量分布外移（大直径 + 低扁平比）</td>
+            <td class="mono">I ≈ m·r²，半径变大则以平方级增加</td>
+            <td>19 寸比 17 寸的轮组转动惯量可高出 20%～35%，起步与制动响应变差，即使总重相同</td>
+            <td>直径加大时尽量选轻量化工艺</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>轮毂轴承负荷</strong></td>
+            <td>外移量形成附加弯矩</td>
+            <td class="mono">弯矩增量 ∝ 外移量 × 垂向载荷</td>
+            <td>轴承与轮毂法兰寿命缩短；这也是加宽轮距最常见的长期代价</td>
+            <td>外移 <span class="badge warn">≤15 mm</span></td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>悬挂几何<br>（倾角/前束）</strong></td>
+            <td>轮毂位置改变使原有的倾角与前束在轮胎上的落点变化</td>
+            <td>需实测四轮定位</td>
+            <td>外侧胎肩或内侧胎肩异常磨损、直线跑偏、方向盘不正</td>
+            <td>改装后<strong>必须重做四轮定位</strong></td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>制动散热与卡钳间隙</strong></td>
+            <td>轮辋辐条形状与内侧空间变化</td>
+            <td>需实测（X 值：轮辋内侧面到辐条背面的距离）</td>
+            <td>AMG 大四活塞卡钳车型间隙尤其紧张，可能装不上或需加垫片；散热变差会引起刹车热衰减</td>
+            <td>卡钳与辐条间隙 <span class="badge warn">≥3 mm</span></td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>胎压监测 TPMS</strong></td>
+            <td>传感器随原厂轮毂一起被换掉</td>
+            <td>—</td>
+            <td>W205/W206 多为直接式（433 MHz）需移装传感器并做学习；W203/W204 部分为间接式（靠轮速计算），换胎后需按仪表提示重新标定</td>
+            <td>见下方专节</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>轮胎磨损模式</strong></td>
+            <td>接地印痕随宽度与倾角改变</td>
+            <td>—</td>
+            <td>过宽轮胎 + 原厂倾角 → 外侧胎肩吃胎；负倾角过大 → 内侧吃胎</td>
+            <td>定期检查，必要时调倾角</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>舒适性与胎噪</strong></td>
+            <td>扁平比降低、胎壁变薄、胎面变宽</td>
+            <td>—</td>
+            <td>路感变清晰但滤震变差，过减速带更颠；宽胎的滚动噪音明显上升</td>
+            <td>个人取舍</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>转弯半径</strong></td>
+            <td>轮胎外移 + 加宽使转向时外前轮扫掠半径变大</td>
+            <td>—</td>
+            <td>掉头与停车入位更困难，轮胎可能提前触及轮拱内衬</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>油耗 / 电耗</strong></td>
+            <td>滚阻、迎风面积、转动惯量、簧下质量共同作用</td>
+            <td>—</td>
+            <td>宽胎 + 重轮毂通常使油耗上升 0.3～1.0 L/100km</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><strong>法规状态</strong></td>
+            <td>轮距、轮胎规格、外廓尺寸发生变化</td>
+            <td>—</td>
+            <td>中国年检对轮胎规格与轮距变更敏感；德国 TÜV 需 Gutachten 或 Einzelabnahme。不合规会被拒检</td>
+            <td>以当地法规为准</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note mt16">
+      <strong>把这张表变成数字：</strong>打开<a href="calculator.html">改装计算器</a>，输入原厂与目标配置，
+      上面这些量（外径、外移量、轮距变化、主销偏移、码表误差、载重余量）会一次算完并给出结论。
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 五、间隙检查 ================= -->
+  <section>
+    <h2 id="clearance">五、装车前必须实测的 6 个间隙<span class="tag">Checklist</span></h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3 class="mt0">前轮</h3>
+        <ol class="small muted" style="padding-left:20px">
+          <li><strong>翼子板 / 轮眉内缘</strong>：方向盘打死时的最小间隙，建议 ≥8 mm。</li>
+          <li><strong>内衬（挡泥板）后侧</strong>：打死方向时轮胎后缘最容易蹭到这里。</li>
+          <li><strong>避震筒弹簧托盘</strong>：轮胎内侧上方，最容易被忽略的干涉点，建议 ≥6 mm。</li>
+          <li><strong>刹车卡钳与轮辋辐条</strong>：间隙 ≥3 mm，AMG 车型要重点看。</li>
+          <li><strong>上摆臂 / 转向拉杆球头</strong>：宽胎内侧常见干涉点。</li>
+          <li><strong>刹车软管</strong>：确认没有被外移的轮毂拉扯或摩擦。</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3 class="mt0">后轮</h3>
+        <ol class="small muted" style="padding-left:20px">
+          <li><strong>轮眉外缘</strong>：满载 + 压缩悬挂时的极限位置，需要坐人或压载测试。</li>
+          <li><strong>内衬前部（靠车门侧）</strong>：后轮最常见的刮蹭位置。</li>
+          <li><strong>燃油加注管 / 蒸发管</strong>：位于右后轮拱内，宽胎容易蹭到。</li>
+          <li><strong>后避震筒与弹簧</strong>：内侧间隙。</li>
+          <li><strong>排气尾段与隔热板</strong>：大 ET 内缩轮毂可能靠近。</li>
+          <li><strong>电子手刹执行器线束</strong>：W205/W206 需要检查。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="note warn mt16">
+      <strong>实测方法：</strong>把车停平地，用<strong>橡皮泥或肥皂块</strong>贴在疑似干涉点，低速（5 km/h）打死方向前后各走一段，
+      拆下看有无压痕。比用尺子量更可靠，因为悬挂在行驶中是动态压缩的。
+      <strong>满载测试不可省略</strong>——旅行车后备箱装满时的后悬挂压缩量远超空载。
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 六、TPMS ================= -->
+  <section>
+    <h2 id="tpms">六、胎压监测（TPMS）兼容<span class="tag">常见坑</span></h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>代际</th><th>类型</th><th>换轮毂要怎么处理</th><th>成本参考</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="mono">W203 / S203</td>
+            <td>多为间接式（借 ABS 轮速算）或早期直接式</td>
+            <td>间接式无需处理，换胎后按仪表提示做一次重新标定即可</td>
+            <td class="mono">0 元</td>
+          </tr>
+          <tr>
+            <td class="mono">W204 / S204</td>
+            <td>间接式为主（部分高配直接式）</td>
+            <td>间接式在仪表菜单里「胎压重新学习」；直接式需把传感器移到新轮毂或另购一套</td>
+            <td class="mono">另购传感器约 100～200 元/只</td>
+          </tr>
+          <tr>
+            <td class="mono">W205 / S205</td>
+            <td>直接式，433 MHz 传感器装在气门嘴根部</td>
+            <td>需拆下原传感器移装到新轮毂（注意气门嘴孔规格），或另购兼容传感器并做 OBD 学习/写入 ID</td>
+            <td class="mono">移装工时 50～100 元/只<br>新传感器 150～350 元/只</td>
+          </tr>
+          <tr>
+            <td class="mono">W206 / S206</td>
+            <td>直接式，多为自动定位（Auto-location）</td>
+            <td>换轮毂后行驶一段距离自动识别位置；若不复位需用诊断仪写入</td>
+            <td class="mono">新传感器 200～400 元/只</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note mt16">
+      <strong>省钱做法：</strong>买第二套轮毂时，直接配一套副厂兼容传感器（约 150～250 元/只）专用于冬季胎/夏季胎两套轮组，
+      免去每次换季都要拆装传感器的工时与风险。装前务必确认频率（欧系 433 MHz）与协议兼容你那一代车型。
+    </div>
+  </section>
+
+  <hr class="soft">
+
+  <!-- ================= 七、轮毂重量 ================= -->
+  <section>
+    <h2 id="weight">七、轮毂重量与工艺<span class="tag">簧下质量</span></h2>
+    <p class="lead">同一尺寸下，工艺决定了重量，重量决定了你能感受到的差别。</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>工艺</th><th>17 寸单只重量参考</th><th>18 寸单只重量参考</th><th>强度</th><th>价格水平</th><th>代表</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>锻造（Forged）</strong></td>
+            <td class="mono">7.0 – 8.5 kg</td>
+            <td class="mono">8.0 – 9.5 kg</td>
+            <td><span class="badge ok">最高</span></td>
+            <td class="mono">4500 – 12000 元/只</td>
+            <td>BBS RE-V / RAYS TE37 / OZ Leggera HLT</td>
+          </tr>
+          <tr>
+            <td><strong>旋压铸造<br>(Flow Formed)</strong></td>
+            <td class="mono">8.5 – 10.0 kg</td>
+            <td class="mono">9.5 – 11.5 kg</td>
+            <td><span class="badge ok">高</span></td>
+            <td class="mono">2200 – 4500 元/只</td>
+            <td>BBS CH-R / Enkei RS05RR / OZ Ultraleggera</td>
+          </tr>
+          <tr>
+            <td><strong>低压铸造</strong></td>
+            <td class="mono">9.5 – 11.5 kg</td>
+            <td class="mono">11.0 – 13.5 kg</td>
+            <td><span class="badge warn">中</span></td>
+            <td class="mono">1000 – 2500 元/只</td>
+            <td>多数欧洲副厂、部分日系</td>
+          </tr>
+          <tr>
+            <td><strong>重力铸造</strong></td>
+            <td class="mono">11.0 – 13.0 kg</td>
+            <td class="mono">13.0 – 15.0 kg</td>
+            <td><span class="badge warn">中低</span></td>
+            <td class="mono">600 – 1500 元/只</td>
+            <td>廉价仿制轮毂（风险最高）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note bad mt16">
+      <strong>关于廉价轮毂：</strong>低于 800 元/只的 18 寸「大牌外观」轮毂基本是重力铸造的仿制品，
+      常见问题是标称载荷虚标、动平衡差、冲击后直接开裂（而非变形）。
+      旅行车后轴荷不低，加上经常满载，这类轮毂的失效风险不值得省那几千块。
+      购买时务必索取<strong>厂商标称载荷（Load Rating）</strong>——正规品牌会标注，且应 ≥ 单轮需求的 1.2 倍。
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="site-footer"></footer>
+
+<script src="data/c-class-data.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/wheel-calc.js"></script>
+<script src="assets/js/wheels.js"></script>
+</body>
+</html>
