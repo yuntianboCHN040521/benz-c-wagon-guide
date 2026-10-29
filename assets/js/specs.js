@@ -9,6 +9,19 @@
     else fn();
   }
 
+  /** 取翻译 */
+  function t(key, fallback) {
+    if (window.I18N) return window.I18N.t(key, fallback);
+    return fallback !== undefined ? fallback : key;
+  }
+
+  /** 带变量插值 */
+  function ti(key, vars, fallback) {
+    var raw = t(key, fallback);
+    if (window.I18N && window.I18N.interpolate) return window.I18N.interpolate(raw, vars);
+    return raw;
+  }
+
   function val(x, unit) {
     if (x === null || x === undefined || x === '') return '<span class="faint">—</span>';
     if (Array.isArray(x)) return '<span class="mono">' + x.join(' / ') + '</span>' + (unit ? ' <span class="faint small">' + unit + '</span>' : '');
@@ -24,25 +37,25 @@
     var dimHost = document.getElementById('dim-table');
     if (dimHost) {
       var rows = [
-        ['生产年份', function (g) { return g.years; }, ''],
-        ['底盘代号', function (g) { return g.chassis; }, ''],
-        ['车长', function (g) { return g.body.length_mm; }, 'mm'],
-        ['车宽（不含后视镜）', function (g) { return g.body.width_mm; }, 'mm'],
-        ['车高', function (g) { return g.body.height_mm; }, 'mm'],
-        ['轴距', function (g) { return g.body.wheelbase_mm; }, 'mm'],
-        ['前轮距', function (g) { return g.body.track_front_mm; }, 'mm'],
-        ['后轮距', function (g) { return g.body.track_rear_mm; }, 'mm'],
-        ['前/后轮距差', function (g) {
+        [t('specs.row.years', '生产年份'), function (g) { return g.years; }, ''],
+        [t('specs.row.chassis', '底盘代号'), function (g) { return g.chassis; }, ''],
+        [t('specs.row.length', '车长'), function (g) { return g.body.length_mm; }, 'mm'],
+        [t('specs.row.width', '车宽（不含后视镜）'), function (g) { return g.body.width_mm; }, 'mm'],
+        [t('specs.row.height', '车高'), function (g) { return g.body.height_mm; }, 'mm'],
+        [t('specs.row.wheelbase', '轴距'), function (g) { return g.body.wheelbase_mm; }, 'mm'],
+        [t('specs.row.trackF', '前轮距'), function (g) { return g.body.track_front_mm; }, 'mm'],
+        [t('specs.row.trackR', '后轮距'), function (g) { return g.body.track_rear_mm; }, 'mm'],
+        [t('specs.row.trackDelta', '前/后轮距差'), function (g) {
           if (g.body.track_front_mm === null || g.body.track_rear_mm === null) return null;
           var d = g.body.track_front_mm - g.body.track_rear_mm;
           return (d > 0 ? '+' : '') + d;
         }, 'mm'],
-        ['最小离地间隙', function (g) { return g.body.ground_clearance_mm; }, 'mm'],
-        ['转弯直径', function (g) { return g.body.turning_circle_m; }, 'm'],
-        ['风阻系数 Cd', function (g) { return g.body.cd; }, '']
+        [t('specs.row.clearance', '最小离地间隙'), function (g) { return g.body.ground_clearance_mm; }, 'mm'],
+        [t('specs.row.turning', '转弯直径'), function (g) { return g.body.turning_circle_m; }, 'm'],
+        [t('specs.row.cd', '风阻系数 Cd'), function (g) { return g.body.cd; }, '']
       ];
 
-      var head = '<thead><tr><th>项目</th>' + gens.map(function (g) {
+      var head = '<thead><tr><th>' + t('specs.item', '项目') + '</th>' + gens.map(function (g) {
         return '<th>' + g.chassis + '<br><span class="faint small">' + g.generation + '</span></th>';
       }).join('') + '</tr></thead>';
 
@@ -58,12 +71,12 @@
       var first = gens[0].body, last = gens[gens.length - 1].body;
       var noteHost = document.getElementById('dim-note');
       if (noteHost && first.length_mm && last.length_mm) {
-        noteHost.innerHTML = '<div class="note mt16"><strong>二十年演变：</strong>' +
-          '车长 +' + (last.length_mm - first.length_mm) + ' mm、车宽 +' + (last.width_mm - first.width_mm) +
-          ' mm、轴距 +' + (last.wheelbase_mm - first.wheelbase_mm) + ' mm、前轮距 +' +
-          (last.track_front_mm - first.track_front_mm) + ' mm。' +
-          '轮距的持续加宽是轮毂改装中最关键的一项——它意味着<strong>新款的原厂轮毂装到老款上会显得外凸</strong>（因为新款 ET 是按更宽的轮拱设计的），' +
-          '反过来老款轮毂装到新款上则会内缩。</div>';
+        noteHost.innerHTML = '<div class="note mt16">' + ti('specs.dim.note', {
+          len: last.length_mm - first.length_mm,
+          width: last.width_mm - first.width_mm,
+          wb: last.wheelbase_mm - first.wheelbase_mm,
+          track: last.track_front_mm - first.track_front_mm
+        }) + '</div>';
       }
     }
 
@@ -71,23 +84,23 @@
     var massHost = document.getElementById('mass-table');
     if (massHost) {
       var rows2 = [
-        ['整备质量区间', function (g) { return g.body.kerb_weight_kg; }, 'kg'],
-        ['最大允许总质量', function (g) { return g.body.gross_weight_kg; }, 'kg'],
-        ['有效载荷（推算）', function (g) {
+        [t('specs.row.kerb', '整备质量区间'), function (g) { return g.body.kerb_weight_kg; }, 'kg'],
+        [t('specs.row.gross', '最大允许总质量'), function (g) { return g.body.gross_weight_kg; }, 'kg'],
+        [t('specs.row.payload', '有效载荷（推算）'), function (g) {
           if (!g.body.gross_weight_kg || !g.body.kerb_weight_kg) return null;
           var lo = g.body.gross_weight_kg - g.body.kerb_weight_kg[1];
           var hi = g.body.gross_weight_kg - g.body.kerb_weight_kg[0];
           return lo + ' – ' + hi;
         }, 'kg'],
-        ['后备箱容积（后排立起/放倒）', function (g) { return g.body.boot_litres; }, 'L'],
-        ['油箱容积', function (g) { return g.body.fuel_tank_l; }, 'L'],
-        ['理论续航（按 8L/100km）', function (g) {
+        [t('specs.row.boot', '后备箱容积（后排立起/放倒）'), function (g) { return g.body.boot_litres; }, 'L'],
+        [t('specs.row.tank', '油箱容积'), function (g) { return g.body.fuel_tank_l; }, 'L'],
+        [t('specs.row.range', '理论续航（按 8L/100km）'), function (g) {
           if (!g.body.fuel_tank_l) return null;
           return Math.round(g.body.fuel_tank_l / 8 * 100) + ' km';
         }, '']
       ];
 
-      var head2 = '<thead><tr><th>项目</th>' + gens.map(function (g) {
+      var head2 = '<thead><tr><th>' + t('specs.item', '项目') + '</th>' + gens.map(function (g) {
         return '<th>' + g.chassis + '</th>';
       }).join('') + '</tr></thead>';
       var body2 = '<tbody>' + rows2.map(function (r) {
@@ -97,8 +110,7 @@
       }).join('') + '</tbody>';
 
       massHost.innerHTML = '<div class="table-scroll"><table>' + head2 + body2 + '</table></div>' +
-        '<div class="small faint mt16">整备质量为该代各发动机版本的范围值（低配汽油机 → 高配四驱/AMG）。' +
-        '改轮毂时请按<strong>自己车的实际整备质量</strong>核算载重，而不是用范围下限。</div>';
+        '<div class="small faint mt16">' + t('specs.mass.footnote', '') + '</div>';
     }
 
     /* ---------------- 发动机阵容 ---------------- */
@@ -124,12 +136,21 @@
       });
 
       if (!rows.length) {
-        engHost.innerHTML = '<div class="note">该代际暂无发动机数据。</div>';
+        engHost.innerHTML = '<div class="note">' + t('specs.eng.empty', '该代际暂无发动机数据。') + '</div>';
         return;
       }
 
       engHost.innerHTML = '<div class="table-scroll"><table><thead><tr>' +
-        ['代际', '发动机代号', '市场名称', '排量', '最大功率', '最大扭矩', '年份', '备注'].map(function (h) {
+        [
+          t('specs.eng.th.gen', '代际'),
+          t('specs.eng.th.code', '发动机代号'),
+          t('specs.eng.th.name', '市场名称'),
+          t('specs.eng.th.disp', '排量'),
+          t('specs.eng.th.power', '最大功率'),
+          t('specs.eng.th.torque', '最大扭矩'),
+          t('specs.eng.th.years', '年份'),
+          t('specs.eng.th.note', '备注')
+        ].map(function (h) {
           return '<th>' + h + '</th>';
         }).join('') + '</tr></thead><tbody>' +
         rows.map(function (r) {
@@ -161,14 +182,14 @@
           '<h3>' + g.generation + '</h3>' +
           '<p class="small muted">' + (g.intro || '') + '</p>' +
           '<div class="table-scroll"><table style="min-width:auto"><tbody>' +
-          '<tr><td class="muted">轴距</td><td class="mono">' + val(b.wheelbase_mm) + ' mm</td>' +
-          '<td class="muted">前轮距</td><td class="mono">' + val(b.track_front_mm) + ' mm</td></tr>' +
-          '<tr><td class="muted">整备质量</td><td class="mono">' + val(b.kerb_weight_kg) + ' kg</td>' +
-          '<td class="muted">原厂 ET</td><td class="mono">' + (w.et_range ? w.et_range[0] + '～' + w.et_range[1] : '—') + '</td></tr>' +
-          '<tr><td class="muted">螺栓</td><td class="mono">' + (w.bolt_thread || '—') + '</td>' +
-          '<td class="muted">典型轮胎</td><td class="mono">' + ((g.tyres && g.tyres[0]) ? g.tyres[0].size : '—') + '</td></tr>' +
+          '<tr><td class="muted">' + t('specs.diff.wheelbase', '轴距') + '</td><td class="mono">' + val(b.wheelbase_mm) + ' mm</td>' +
+          '<td class="muted">' + t('specs.diff.trackF', '前轮距') + '</td><td class="mono">' + val(b.track_front_mm) + ' mm</td></tr>' +
+          '<tr><td class="muted">' + t('specs.diff.kerb', '整备质量') + '</td><td class="mono">' + val(b.kerb_weight_kg) + ' kg</td>' +
+          '<td class="muted">' + t('specs.diff.et', '原厂 ET') + '</td><td class="mono">' + (w.et_range ? w.et_range[0] + '～' + w.et_range[1] : '—') + '</td></tr>' +
+          '<tr><td class="muted">' + t('specs.diff.bolt', '螺栓') + '</td><td class="mono">' + (w.bolt_thread || '—') + '</td>' +
+          '<td class="muted">' + t('specs.diff.tyre', '典型轮胎') + '</td><td class="mono">' + ((g.tyres && g.tyres[0]) ? g.tyres[0].size : '—') + '</td></tr>' +
           '</tbody></table></div>' +
-          (g.highlight ? '<div class="note mt16"><strong>改装提示：</strong>' + g.highlight + '</div>' : '') +
+          (g.highlight ? '<div class="note mt16">' + t('specs.diff.tip', '') + g.highlight + '</div>' : '') +
           '</div>';
       }).join('');
     }
@@ -180,9 +201,9 @@
           c.classList.remove('active');
         });
         chip.classList.add('active');
-        var t = chip.getAttribute('data-jump');
-        if (t === 'all') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
-        var el = document.getElementById(t);
+        var target = chip.getAttribute('data-jump');
+        if (target === 'all') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        var el = document.getElementById(target);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });

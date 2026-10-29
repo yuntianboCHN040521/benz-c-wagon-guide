@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN" data-i18n-title="specs.docTitle">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>车身数据 · 奔驰 C 级旅行车数据库</title>
-<meta name="description" content="奔驰 C 级旅行车 S203/S204/S205/S206 车身尺寸数据：车长宽高、轴距、前后轮距、整备质量、后备箱容积、油箱、离地间隙、转弯直径，以及发动机与动力参数。">
+<meta name="description" content="奔驰 C 级旅行车 S203/S204/S205/S206 车身尺寸数据：车长宽高、轴距、前后轮距、整备质量、后备箱容积、油箱、离地间隙、转弯直径，以及发动机与动力参数。" data-i18n-attr="content:specs.description">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -15,24 +15,24 @@
 <main class="wrap">
 
   <div class="hero">
-    <span class="eyebrow">Body &amp; Dimensions</span>
-    <h1>车身数据<span class="accent">四代全解</span></h1>
-    <p>车长宽高、轴距、前后轮距、整备质量、后备箱与油箱、离地间隙、转弯直径，以及各代发动机阵容。
+    <span class="eyebrow" data-i18n="specs.hero.eyebrow">Body &amp; Dimensions</span>
+    <h1><span data-i18n="specs.hero.title">车身数据</span><span class="accent" data-i18n="specs.hero.accent">四代全解</span></h1>
+    <p data-i18n="specs.hero.desc">车长宽高、轴距、前后轮距、整备质量、后备箱与油箱、离地间隙、转弯直径，以及各代发动机阵容。
        轮距是判断轮毂 ET 可用区间的直接依据，尺寸数据则决定了轮拱内的可用空间。</p>
   </div>
 
   <div class="toolbar">
-    <span class="chip active" data-jump="all">全部</span>
-    <span class="chip" data-jump="dim">尺寸对比</span>
-    <span class="chip" data-jump="mass">重量与装载</span>
-    <span class="chip" data-jump="engine">发动机阵容</span>
-    <span class="chip" data-jump="diff">代际差异</span>
+    <span class="chip active" data-jump="all" data-i18n="specs.chip.all">全部</span>
+    <span class="chip" data-jump="dim" data-i18n="specs.chip.dim">尺寸对比</span>
+    <span class="chip" data-jump="mass" data-i18n="specs.chip.mass">重量与装载</span>
+    <span class="chip" data-jump="engine" data-i18n="specs.chip.engine">发动机阵容</span>
+    <span class="chip" data-jump="diff" data-i18n="specs.chip.diff">代际差异</span>
   </div>
 
   <!-- ================= 尺寸总览 ================= -->
   <section>
-    <h2 id="dim">一、尺寸横向对比<span class="tag">mm</span></h2>
-    <p class="lead">四代旅行车的尺寸演进。可以看到每一代都在变长变宽，轴距从 2715 mm 一路增长到 2865 mm。</p>
+    <h2 id="dim"><span data-i18n="specs.dim.title">一、尺寸横向对比</span><span class="tag">mm</span></h2>
+    <p class="lead" data-i18n="specs.dim.lead">四代旅行车的尺寸演进。可以看到每一代都在变长变宽，轴距从 2715 mm 一路增长到 2865 mm。</p>
     <div id="dim-table"></div>
     <div id="dim-note"></div>
   </section>
@@ -41,10 +41,10 @@
 
   <!-- ================= 重量与装载 ================= -->
   <section>
-    <h2 id="mass">二、重量与装载能力<span class="tag">kg / L</span></h2>
-    <p class="lead">整备质量直接决定轮毂轮胎的载重指数需求，旅行版通常比同期三厢版重 30～60 kg。</p>
+    <h2 id="mass"><span data-i18n="specs.mass.title">二、重量与装载能力</span><span class="tag">kg / L</span></h2>
+    <p class="lead" data-i18n="specs.mass.lead">整备质量直接决定轮毂轮胎的载重指数需求，旅行版通常比同期三厢版重 30～60 kg。</p>
     <div id="mass-table"></div>
-    <div class="note mt16">
+    <div class="note mt16" data-i18n-html="specs.mass.note">
       <strong>载重指数的算法：</strong>取较重一轴的轴荷 ÷ 2 × 1.1（安全系数），再对照
       <a href="calculator.html#s3">载重指数表</a>选指数。旅行车经常满载，建议比理论上限再高 1 级。
     </div>
@@ -54,10 +54,10 @@
 
   <!-- ================= 发动机阵容 ================= -->
   <section>
-    <h2 id="engine">三、发动机阵容<span class="tag">kW / N·m</span></h2>
-    <p class="lead">按代际排列的发动机与动力输出。不同发动机的原厂轮毂与刹车配置不同，AMG 车型的卡钳间隙尤其需要注意。</p>
+    <h2 id="engine"><span data-i18n="specs.engine.title">三、发动机阵容</span><span class="tag">kW / N·m</span></h2>
+    <p class="lead" data-i18n="specs.engine.lead">按代际排列的发动机与动力输出。不同发动机的原厂轮毂与刹车配置不同，AMG 车型的卡钳间隙尤其需要注意。</p>
     <div class="toolbar">
-      <span class="chip active" data-eng="all">全部</span>
+      <span class="chip active" data-eng="all" data-i18n="specs.chip.all">全部</span>
       <span class="chip" data-eng="W203/S203">S203</span>
       <span class="chip" data-eng="W204/S204">S204</span>
       <span class="chip" data-eng="W205/S205">S205</span>
@@ -70,31 +70,36 @@
 
   <!-- ================= 代际差异 ================= -->
   <section>
-    <h2 id="diff">四、代际差异与改装相关性<span class="tag">Why it matters</span></h2>
+    <h2 id="diff"><span data-i18n="specs.diff.title">四、代际差异与改装相关性</span><span class="tag">Why it matters</span></h2>
     <div class="grid cols-2" id="diff-cards"></div>
 
-    <h3>与轮毂改装直接相关的三个演变</h3>
+    <h3 data-i18n="specs.diff.h3">与轮毂改装直接相关的三个演变</h3>
     <div class="table-scroll">
       <table>
-        <thead><tr><th>演变</th><th>从</th><th>到</th><th>对改装的意义</th></tr></thead>
+        <thead><tr>
+          <th data-i18n="specs.diff.th.what">演变</th>
+          <th data-i18n="specs.diff.th.from">从</th>
+          <th data-i18n="specs.diff.th.to">到</th>
+          <th data-i18n="specs.diff.th.why">对改装的意义</th>
+        </tr></thead>
         <tbody>
           <tr>
-            <td><strong>螺栓加粗</strong></td>
-            <td class="mono">W203：M12×1.5</td>
-            <td class="mono">W204 起：M14×1.5</td>
-            <td>螺栓不能跨代流用；轮毂本体的螺栓孔通常有余量，但必须换对应螺栓。买二手轮毂时一定要问清是给哪一代用的。</td>
+            <td data-i18n-html="specs.diff.r1.what"><strong>螺栓加粗</strong></td>
+            <td class="mono" data-i18n="specs.diff.r1.from">W203：M12×1.5</td>
+            <td class="mono" data-i18n="specs.diff.r1.to">W204 起：M14×1.5</td>
+            <td data-i18n="specs.diff.r1.why">螺栓不能跨代流用；轮毂本体的螺栓孔通常有余量，但必须换对应螺栓。买二手轮毂时一定要问清是给哪一代用的。</td>
           </tr>
           <tr>
-            <td><strong>轮距持续加宽</strong></td>
-            <td class="mono">W203 前/后：约 1493 / 1464</td>
-            <td class="mono">W206 前/后：约 1590 / 1580</td>
-            <td>新款轮距更宽，轮拱相应外扩。老款车想用新款的大 ET 轮毂往往需要加垫片；新款车用老款小 ET 轮毂容易外凸刮轮眉。</td>
+            <td data-i18n-html="specs.diff.r2.what"><strong>轮距持续加宽</strong></td>
+            <td class="mono" data-i18n="specs.diff.r2.from">W203 前/后：约 1493 / 1464</td>
+            <td class="mono" data-i18n="specs.diff.r2.to">W206 前/后：约 1590 / 1580</td>
+            <td data-i18n="specs.diff.r2.why">新款轮距更宽，轮拱相应外扩。老款车想用新款的大 ET 轮毂往往需要加垫片；新款车用老款小 ET 轮毂容易外凸刮轮眉。</td>
           </tr>
           <tr>
-            <td><strong>轮胎尺寸持续放大</strong></td>
-            <td class="mono">205/55R16（16 寸为主）</td>
-            <td class="mono">前 225/40R19、后 255/35R19</td>
-            <td>原厂扁平比从 55 降到 35，说明原厂已在用低扁平比与大直径。改装空间因此变小，19 寸往上需要非常谨慎。</td>
+            <td data-i18n-html="specs.diff.r3.what"><strong>轮胎尺寸持续放大</strong></td>
+            <td class="mono" data-i18n="specs.diff.r3.from">205/55R16（16 寸为主）</td>
+            <td class="mono" data-i18n="specs.diff.r3.to">前 225/40R19、后 255/35R19</td>
+            <td data-i18n="specs.diff.r3.why">原厂扁平比从 55 降到 35，说明原厂已在用低扁平比与大直径。改装空间因此变小，19 寸往上需要非常谨慎。</td>
           </tr>
         </tbody>
       </table>
@@ -105,6 +110,9 @@
 
 <footer class="footer" id="site-footer"></footer>
 
+<script src="lang/zh.js"></script>
+<script src="lang/en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="data/c-class-data.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/specs.js"></script>

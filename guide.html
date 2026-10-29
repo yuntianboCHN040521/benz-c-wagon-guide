@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN" data-i18n-title="guide.docTitle">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>用车指南与通病 · 奔驰 C 级旅行车数据库</title>
-<meta name="description" content="奔驰 C 级旅行车 S203/S204/S205/S206 用车指南：保养周期与项目、机油规格 MB 229.x 认证、变速箱油、各代通病与故障处理参考价。">
+<meta name="description" content="奔驰 C 级旅行车 S203/S204/S205/S206 用车指南：保养周期与项目、机油规格 MB 229.x 认证、变速箱油、各代通病与故障处理参考价。" data-i18n-attr="content:guide.description">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -15,46 +15,62 @@
 <main class="wrap">
 
   <div class="hero">
-    <span class="eyebrow">Ownership Guide</span>
-    <h1>用车指南与<span class="accent">通病速查</span></h1>
-    <p>奔驰的保养体系是「按需保养」而非固定里程，但机油认证、变速箱油、刹车油这些关键项目有明确硬性要求。
+    <span class="eyebrow" data-i18n="guide.hero.eyebrow">Ownership Guide</span>
+    <h1><span data-i18n="guide.hero.title">用车指南与</span><span class="accent" data-i18n="guide.hero.accent">通病速查</span></h1>
+    <p data-i18n="guide.hero.desc">奔驰的保养体系是「按需保养」而非固定里程，但机油认证、变速箱油、刹车油这些关键项目有明确硬性要求。
        本页把保养节奏、油液规格与四代各自的常见故障整理成可直接对照的清单。</p>
   </div>
 
   <!-- ================= 保养体系 ================= -->
   <section>
-    <h2 id="system">一、先搞懂奔驰的保养体系<span class="tag">Assyst</span></h2>
+    <h2 id="system"><span data-i18n="guide.s1.title">一、先搞懂奔驰的保养体系</span><span class="tag">Assyst</span></h2>
     <div class="grid cols-2">
       <div class="card">
-        <h3 class="mt0">按需保养（Assyst / Assyst Plus）</h3>
-        <p class="small muted">奔驰不用固定里程表，而是由车载系统根据<strong>行驶里程、时间、冷启动次数、平均车速、
+        <h3 class="mt0" data-i18n="guide.s1.assyst.title">按需保养（Assyst / Assyst Plus）</h3>
+        <p class="small muted" data-i18n-html="guide.s1.assyst.desc">奔驰不用固定里程表，而是由车载系统根据<strong>行驶里程、时间、冷启动次数、平均车速、
            机油品质传感器读数</strong>综合计算剩余保养里程。仪表会在到期前提示，通常落在
            <strong>1 年或 1.5 万～2.5 万公里</strong>之间（先到者为准）。</p>
-        <div class="note">
+        <div class="note" data-i18n-html="guide.s1.assyst.note">
           <strong>实操结论：</strong>国内拥堵路况下，系统提示往往在 1 年 / 1 万公里左右就出现，
           这比欧洲的理想工况保守得多。建议<strong>以 1 年或 1 万公里为上限</strong>，
           用全合成机油（MB 229.5 / 229.52），不要为了省一次保养拖到 2 万公里。
         </div>
       </div>
       <div class="card">
-        <h3 class="mt0">保养分 A / B 两类</h3>
+        <h3 class="mt0" data-i18n="guide.s1.ab.title">保养分 A / B 两类</h3>
         <div class="table-scroll">
           <table style="min-width:auto">
-            <thead><tr><th>类型</th><th>内容</th><th>周期</th></tr></thead>
+            <thead><tr>
+              <th data-i18n="guide.s1.ab.th.type">类型</th>
+              <th data-i18n="guide.s1.ab.th.content">内容</th>
+              <th data-i18n="guide.s1.ab.th.interval">周期</th>
+            </tr></thead>
             <tbody>
-              <tr><td><strong>A 保</strong>（小保养）</td><td>机油 + 机油滤芯 + 全车检查（制动、轮胎、灯光、液位）</td><td>约 1 年 / 1–1.5 万 km</td></tr>
-              <tr><td><strong>B 保</strong>（大保养）</td><td>A 保全部 + 空调滤芯 + 空气滤芯 + 刹车油检查 + 天窗/排水检查</td><td>约 2 年 / 2–3 万 km</td></tr>
-              <tr><td>额外项目</td><td>火花塞、变速箱油、燃油滤、冷却液、刹车片/盘</td><td>按里程或状态（见下表）</td></tr>
+              <tr>
+                <td data-i18n-html="guide.s1.ab.a"><strong>A 保</strong>（小保养）</td>
+                <td data-i18n="guide.s1.ab.aContent">机油 + 机油滤芯 + 全车检查（制动、轮胎、灯光、液位）</td>
+                <td data-i18n="guide.s1.ab.aInterval">约 1 年 / 1–1.5 万 km</td>
+              </tr>
+              <tr>
+                <td data-i18n-html="guide.s1.ab.b"><strong>B 保</strong>（大保养）</td>
+                <td data-i18n="guide.s1.ab.bContent">A 保全部 + 空调滤芯 + 空气滤芯 + 刹车油检查 + 天窗/排水检查</td>
+                <td data-i18n="guide.s1.ab.bInterval">约 2 年 / 2–3 万 km</td>
+              </tr>
+              <tr>
+                <td data-i18n="guide.s1.ab.extra">额外项目</td>
+                <td data-i18n="guide.s1.ab.extraContent">火花塞、变速箱油、燃油滤、冷却液、刹车片/盘</td>
+                <td data-i18n="guide.s1.ab.extraInterval">按里程或状态（见下表）</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <p class="small muted mt16 mb0">A/B 交替进行，所以实际上每两年会经历一次「大保养」。</p>
+        <p class="small muted mt16 mb0" data-i18n="guide.s1.ab.note">A/B 交替进行，所以实际上每两年会经历一次「大保养」。</p>
       </div>
     </div>
 
-    <h3>关键保养项目周期总表</h3>
+    <h3 data-i18n="guide.s1.intervalTitle">关键保养项目周期总表</h3>
     <div id="interval-table"></div>
-    <div class="note warn mt16">
+    <div class="note warn mt16" data-i18n-html="guide.s1.warn">
       <strong>最容易拖出问题的两项：</strong>
       ① <strong>变速箱油</strong>——奔驰官方标称「终身免维护」，但实际经验是 6～8 万公里换油能显著延长
       722.6 / 722.9 / 725.0 的寿命，尤其是拥堵路况多的车。
@@ -70,14 +86,14 @@
 
   <!-- ================= 机油规格 ================= -->
   <section>
-    <h2 id="oil">二、机油认证体系<span class="tag">MB 229.x</span></h2>
-    <p class="lead">奔驰的机油认证编号（MB 229.x）比 API / ACEA 严格得多，选油第一件事是看瓶身上有没有对应认证，
+    <h2 id="oil"><span data-i18n="guide.s2.title">二、机油认证体系</span><span class="tag">MB 229.x</span></h2>
+    <p class="lead" data-i18n="guide.s2.lead">奔驰的机油认证编号（MB 229.x）比 API / ACEA 严格得多，选油第一件事是看瓶身上有没有对应认证，
        而不是看「全合成」三个字。</p>
     <div id="mb-spec-table"></div>
 
-    <h3>各发动机的用油要求</h3>
+    <h3 data-i18n="guide.s2.engineOilTitle">各发动机的用油要求</h3>
     <div id="engine-oil-table"></div>
-    <div class="note mt16">
+    <div class="note mt16" data-i18n-html="guide.s2.note">
       <strong>选油三步走：</strong>
       ① 查你的发动机代号（见<a href="specs.html#engine">车身数据</a>页）；
       ② 对照上表确认认证编号与粘度；
@@ -90,11 +106,11 @@
 
   <!-- ================= 通病 ================= -->
   <section>
-    <h2 id="issues">三、各代通病速查<span class="tag">Known Issues</span></h2>
-    <p class="lead">按代际汇总车主反馈中最常见的故障。<strong>维修价格为经验参考区间，不是报价</strong>——
+    <h2 id="issues"><span data-i18n="guide.s3.title">三、各代通病速查</span><span class="tag">Known Issues</span></h2>
+    <p class="lead" data-i18n-html="guide.s3.lead">按代际汇总车主反馈中最常见的故障。<strong>维修价格为经验参考区间，不是报价</strong>——
        随地区、车型与修理厂差异很大；显示为「—」的条目是我们没有找到可靠价格来源的，宁可留空也不编。</p>
     <div class="toolbar">
-      <span class="chip active" data-issue="all">全部代际</span>
+      <span class="chip active" data-issue="all" data-i18n="guide.s3.chip.all">全部代际</span>
       <span class="chip" data-issue="W203/S203">S203</span>
       <span class="chip" data-issue="W204/S204">S204</span>
       <span class="chip" data-issue="W205/S205">S205</span>
@@ -107,40 +123,40 @@
 
   <!-- ================= 日常建议 ================= -->
   <section>
-    <h2 id="daily">四、旅行车特有的用车建议<span class="tag">Estate Tips</span></h2>
+    <h2 id="daily"><span data-i18n="guide.s4.title">四、旅行车特有的用车建议</span><span class="tag">Estate Tips</span></h2>
     <div class="grid cols-2">
       <div class="card">
-        <h3 class="mt0">后悬挂与后备箱</h3>
+        <h3 class="mt0" data-i18n="guide.s4.rear.title">后悬挂与后备箱</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>旅行版后悬挂长期承受更大载荷，<strong>后减震器与后弹簧的寿命通常短于三厢版</strong>，8～10 万公里后注意检查渗油与塌陷。</li>
-          <li>常满载的车，后轮胎压按油箱盖标签的「满载值」打，不要用空载值。</li>
-          <li>空气悬挂车型（C350e、C43 部分配置）常满载会加速气包老化。</li>
+          <li data-i18n-html="guide.s4.rear.li1">旅行版后悬挂长期承受更大载荷，<strong>后减震器与后弹簧的寿命通常短于三厢版</strong>，8～10 万公里后注意检查渗油与塌陷。</li>
+          <li data-i18n="guide.s4.rear.li2">常满载的车，后轮胎压按油箱盖标签的「满载值」打，不要用空载值。</li>
+          <li data-i18n="guide.s4.rear.li3">空气悬挂车型（C350e、C43 部分配置）常满载会加速气包老化。</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="mt0">尾门与排水</h3>
+        <h3 class="mt0" data-i18n="guide.s4.tail.title">尾门与排水</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li><strong>尾门线束</strong>是旅行版的经典弱点：反复开合会导致线束在橡胶波纹管处折断，
+          <li data-i18n-html="guide.s4.tail.li1"><strong>尾门线束</strong>是旅行版的经典弱点：反复开合会导致线束在橡胶波纹管处折断，
               表现是尾门锁失灵、牌照灯/雨刮不工作。W203/S203 与 W204/S204 高发。</li>
-          <li>旅行版车顶更长，<strong>天窗排水管</strong>更容易积垢堵塞，雨季前清理一次可避免内饰泡水。</li>
-          <li>尾门撑杆（气弹簧）老化会让尾门自己往下掉，属于易损件，更换成本低。</li>
+          <li data-i18n-html="guide.s4.tail.li2">旅行版车顶更长，<strong>天窗排水管</strong>更容易积垢堵塞，雨季前清理一次可避免内饰泡水。</li>
+          <li data-i18n="guide.s4.tail.li3">尾门撑杆（气弹簧）老化会让尾门自己往下掉，属于易损件，更换成本低。</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="mt0">轮毂轮胎的额外注意</h3>
+        <h3 class="mt0" data-i18n="guide.s4.wheel.title">轮毂轮胎的额外注意</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>旅行车整备质量比三厢版高 30～60 kg，<strong>选胎时载重指数不要按三厢版的标准降级</strong>。</li>
-          <li>后轮拱内侧有燃油加注管，宽胎的可用空间比前轮更小。</li>
-          <li>常跑烂路的车建议保留一套 17 寸轮组做备胎/冬季胎——低扁平比在坑洼路面上鼓包风险很高。</li>
+          <li data-i18n-html="guide.s4.wheel.li1">旅行车整备质量比三厢版高 30～60 kg，<strong>选胎时载重指数不要按三厢版的标准降级</strong>。</li>
+          <li data-i18n="guide.s4.wheel.li2">后轮拱内侧有燃油加注管，宽胎的可用空间比前轮更小。</li>
+          <li data-i18n="guide.s4.wheel.li3">常跑烂路的车建议保留一套 17 寸轮组做备胎/冬季胎——低扁平比在坑洼路面上鼓包风险很高。</li>
         </ul>
       </div>
       <div class="card">
-        <h3 class="mt0">二手选购检查点</h3>
+        <h3 class="mt0" data-i18n="guide.s4.used.title">二手选购检查点</h3>
         <ul class="small muted" style="padding-left:20px">
-          <li>查保养记录是否连续，重点看<strong>变速箱油与刹车油有没有换过</strong>。</li>
-          <li>举升检查后轮拱内衬、尾门下方的锈蚀（尤其 W203 后期与 W204 早期）。</li>
-          <li>试车重点感受低速换挡顿挫（722.9 / 725.0 阀体）与冷启动时的正时链条异响。</li>
-          <li>核对轮毂是否为原厂件——很多二手车被换过山寨轮毂，这也是压价的理由。</li>
+          <li data-i18n-html="guide.s4.used.li1">查保养记录是否连续，重点看<strong>变速箱油与刹车油有没有换过</strong>。</li>
+          <li data-i18n="guide.s4.used.li2">举升检查后轮拱内衬、尾门下方的锈蚀（尤其 W203 后期与 W204 早期）。</li>
+          <li data-i18n="guide.s4.used.li3">试车重点感受低速换挡顿挫（722.9 / 725.0 阀体）与冷启动时的正时链条异响。</li>
+          <li data-i18n="guide.s4.used.li4">核对轮毂是否为原厂件——很多二手车被换过山寨轮毂，这也是压价的理由。</li>
         </ul>
       </div>
     </div>
@@ -150,6 +166,9 @@
 
 <footer class="footer" id="site-footer"></footer>
 
+<script src="lang/zh.js"></script>
+<script src="lang/en.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="data/c-class-data.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/guide.js"></script>
