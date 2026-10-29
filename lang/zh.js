@@ -1,0 +1,163 @@
+/* ==========================================================================
+   zh.js —— 中文文案字典（基准）
+   键命名：页面.区块.元素
+   ========================================================================== */
+window.I18N_DATA = window.I18N_DATA || {};
+window.I18N_DATA.zh = {
+
+  /* ---------------- 站点公共 ---------------- */
+  'site.title': '奔驰 C 级旅行车数据库',
+  'site.subtitle': 'S203 / S204 / S205 / S206',
+  'site.docTitle': '奔驰 C 级旅行车数据库 · S203/S204/S205/S206 用车指南与轮毂数据',
+  'site.description': '奔驰 C 级旅行车（Estate/T-Modell）2000 年以后全代际资料库：S203、S204、S205、S206 车身尺寸、轮毂数据、ET 偏距、改装适配计算、配件价格与机油规格。',
+
+  'nav.home': '总览',
+  'nav.guide': '用车指南',
+  'nav.specs': '车身数据',
+  'nav.wheels': '轮毂数据',
+  'nav.fitment': '轮毂适配',
+  'nav.calculator': '计算器',
+  'nav.controls': '操作与仪表',
+  'nav.assistant': 'AI 助手',
+  'nav.parts': '配件机油',
+
+  'footer.line1': '<strong>奔驰 C 级旅行车数据库</strong> · S203 / S204 / S205 / S206 四代奔驰 C 级旅行车（Estate / T-Modell）用车与改装数据站',
+  'footer.line2': '本站数据整理自公开技术资料、厂商技术文档与车主社区实测，<strong>仅供选型参考</strong>。轮毂轮胎改装涉及行车安全，实际安装前请以实车测量、车辆铭牌、轮毂厂商标称载荷与当地法规为准。',
+  'footer.line3': '数据版本：{v} · 页面均为纯静态，可离线使用。',
+
+  'lang.switch': '语言',
+  'lang.zh': '中文',
+  'lang.en': 'English',
+
+  /* ---------------- 首页：Hero ---------------- */
+  'home.hero.eyebrow': 'Mercedes-Benz C-Class Estate · 2000 → Now',
+  'home.hero.title.before': '奔驰 C 级旅行车',
+  'home.hero.title.accent': '全代际数据库',
+  'home.hero.desc': '从 2001 年的 S203 到今天的 S206，五代 C 级旅行车（T-Modell / Estate）的用车指南、车身尺寸、轮毂规格、ET 偏距体系、改装适配计算、配件更换与机油价格，全部整理在一处。',
+  'home.hero.btn1': '打开改装计算器',
+  'home.hero.btn2': '问 AI 助手',
+  'home.hero.btn3': '查轮毂数据',
+  'home.hero.btn4': '看用车指南',
+
+  /* ---------------- 首页：通用安装参数 ---------------- */
+  'home.key.title': '四代通用安装参数',
+  'home.key.tag': '先看这里',
+  'home.key.lead': '不管你手上是哪一代 C 级旅行车，轮毂安装的这几个数字是共通的——这也是奔驰改装件生态丰富的原因。',
+  'home.key.summary': '<strong>一句话总结：</strong>2001 年至今所有 C 级旅行车的轮毂安装面都是 <strong>5×112</strong>、中心孔 <strong>66.6 mm</strong>、球面 R14 螺栓，只有螺栓螺纹规格在 W203 → W204 之间从 <strong>M12×1.5</strong> 升级到 <strong>M14×1.5</strong>。这意味着<strong>轮毂本体通常可以跨代互换，但螺栓不行</strong>。',
+
+  /* ---------------- 首页：代际时间线 ---------------- */
+  'home.gens.title': '代际时间线',
+  'home.gens.tag': '2000 →',
+  'home.gens.lead': 'C 级旅行车的底盘代号规律：轿车是 W2xx，旅行版是 S2xx。点击任意一代进入详细数据。',
+
+  /* ---------------- 首页：尺寸对比 ---------------- */
+  'home.compare.title': '尺寸快速对比',
+  'home.compare.tag': 'Side by Side',
+  'home.compare.lead': '四代车型的车身与轮距演变。轮距决定了轮毂 ET 的可用区间，也是判断能否跨代流用轮毂的关键。',
+  'home.compare.note': '数值为各代代表性配置，不同发动机、不同市场版本会略有差异；详情见<a href="specs.html">车身数据</a>页。',
+
+  /* ---------------- 首页：站内模块 ---------------- */
+  'home.modules.title': '站内模块',
+  'home.modules.tag': '9 个部分',
+  'home.modules.guide.title': '用车指南',
+  'home.modules.guide.desc': '保养周期与项目清单、机油规格（MB 229.x 体系）、变速箱油、四代各自的通病与故障处理参考价。',
+  'home.modules.specs.title': '车身数据',
+  'home.modules.specs.desc': '车长宽高、轴距、前后轮距、整备质量、后备箱容积、油箱容量、离地间隙、转弯直径，按型号细分。',
+  'home.modules.wheels.title': '轮毂数据',
+  'home.modules.wheels.desc': 'PCD、中心孔、螺栓规格、原厂轮毂清单与 ET 全表，以及改轮毂会影响到的每一项车身参数。',
+  'home.modules.fitment.title': '轮毂适配',
+  'home.modules.fitment.desc': 'BBS、OZ、RAYS、Enkei、Work、AMG 原厂等主流轮毂在四代旅行车上的适配度评级与推荐数据。',
+  'home.modules.calc.title': '改装计算器',
+  'home.modules.calc.desc': '外径与码表误差、ET 外移量、轮距与主销偏移变化、载重校验、轮胎规格推荐、螺栓长度计算。',
+  'home.modules.parts.title': '配件与机油',
+  'home.modules.parts.desc': '易损件更换周期与参考价、机油品牌与规格价格对比、刹车与滤芯选购要点。',
+  'home.modules.issues.title': '通病速查',
+  'home.modules.issues.desc': '按代际汇总常见故障：正时链条、凸轮轴调节器、变速箱阀体、天窗排水、空气悬挂等。',
+  'home.modules.assistant.title': 'AI 助手',
+  'home.modules.assistant.desc': '直接提问就能查到本站任何数据——尺寸、轮毂 ET、改装能不能装、通病、机油与配件价格，涉及规格的问题会现场调用计算引擎算出结果。',
+  'home.modules.controls.title': '灯光、按键与故障灯',
+  'home.modules.controls.desc': '示宽灯与单侧驻车灯在哪、怎么开；方向盘与中控每个按键的功能；仪表故障灯的图标含义、能否继续行驶与处理方法。',
+
+  /* ---------------- 首页：使用说明 ---------------- */
+  'home.usage.title': '怎么用这个站',
+  'home.usage.tag': 'How to',
+  'home.usage.step1.title': '① 先确认你的底盘代号',
+  'home.usage.step1.desc': '看行驶证或车门 B 柱铭牌，也可以按年份粗判：',
+  'home.usage.table.year': '生产年份',
+  'home.usage.table.gen': '代际',
+  'home.usage.table.chassis': '底盘',
+  'home.usage.table.g2': '第二代',
+  'home.usage.table.g3': '第三代',
+  'home.usage.table.g4': '第四代',
+  'home.usage.table.g5': '第五代',
+  'home.usage.step2.title': '② 再决定要不要动轮毂',
+  'home.usage.step2.desc': '改装轮毂的收益与代价都很直接：',
+  'home.usage.step2.gain': '<span class="badge ok">得到</span> 视觉姿态、更宽的接地面积、更短的胎壁带来的转向响应、更轻的簧下质量。',
+  'home.usage.step2.cost': '<span class="badge bad">付出</span> 舒适性下降、胎噪上升、轮胎与轮毂成本翻倍、容易刮蹭、二手残值受影响。',
+  'home.usage.step2.risk': '<span class="badge warn">风险</span> 载重不足、码表失准、轮距超限、ESP 报警、轮胎偏磨、避震与轴承加速磨损。',
+  'home.usage.step2.note': '把这两个配置丢进<a href="calculator.html">计算器</a>，它会把上面每一项都算给你看。',
+
+  /* ---------------- 首页：免责 ---------------- */
+  'home.disclaimer.title': '数据来源与核实程度',
+  'home.disclaimer.tag': 'Disclaimer',
+  'home.disclaimer.th.category': '数据类别',
+  'home.disclaimer.th.source': '来源性质',
+  'home.disclaimer.th.verified': '核实程度',
+  'home.disclaimer.th.caveat': '需要注意的地方',
+  'home.disclaimer.r1.cat': '<strong>车身尺寸 / 轴距 / 轮距</strong>',
+  'home.disclaimer.r1.src': '媒体车型技术表、厂商资料、官方配件站',
+  'home.disclaimer.r1.ver': '<span class="badge ok">逐项核对来源</span>',
+  'home.disclaimer.r1.cav': '不同市场口径存在差异（如 S206 轮距有两种记法），页面已标注所采用口径',
+  'home.disclaimer.r2.cat': '<strong>轮毂安装参数与 ET</strong>',
+  'home.disclaimer.r2.src': '厂商轮毂配置表、轮毂数据库、官方 Gutachten',
+  'home.disclaimer.r2.ver': '<span class="badge ok">逐项核对来源</span>',
+  'home.disclaimer.r2.cav': 'AMG 高性能版部分 ET 未取得可靠来源，已留空',
+  'home.disclaimer.r3.cat': '<strong>品牌轮毂型号与价格</strong>',
+  'home.disclaimer.r3.src': 'BBS / OZ / RAYS 官网、JMS、Blackhawk Japan 等实际抓取页面',
+  'home.disclaimer.r3.ver': '<span class="badge ok">实际抓取</span>',
+  'home.disclaimer.r3.cav': 'Enkei 5×112、多数型号的螺栓座面与净重未取到，页内已集中说明',
+  'home.disclaimer.r4.cat': '<strong>机油与耗材价格</strong>',
+  'home.disclaimer.r4.src': '京东 / 天猫 / 途虎 / 汽车之家 / 什么值得买的实拍与车主帖',
+  'home.disclaimer.r4.ver': '<span class="badge warn">实际抓取，时效不一</span>',
+  'home.disclaimer.r4.cav': '部分为 2015–2019 年促销价；滤芯与刹车盘零售价未取到',
+  'home.disclaimer.r5.cat': '<strong>保养周期与通病</strong>',
+  'home.disclaimer.r5.src': '厂商技术文档、官方召回公告、车主社区实测反馈',
+  'home.disclaimer.r5.ver': '<span class="badge warn">综合整理</span>',
+  'home.disclaimer.r5.cav': '维修价格为综合修理厂参考区间，随地区差异较大',
+  'home.disclaimer.note1': '<strong>数据来源性质。</strong>本站数据整理自公开技术资料、厂商技术文档（含奔驰原厂 Technical Accessories 目录与 originalteile.mercedes-benz.de 官方配件站）、轮毂厂商标称参数与车主社区实测反馈。整理过程力求准确，但车型年款差异、不同市场（欧版 / 中规 / 美规）配置差异、选装包差异都会导致实际数据不同。',
+  'home.disclaimer.note2': '<strong>价格性质。</strong>所有价格均为<strong>参考区间</strong>，随地区、渠道（4S / 修理厂 / 电商）、品牌与时间波动很大，仅用于判断量级，不作为报价依据。抓不到可靠来源的字段一律留空——完整清单见 <a href="parts.html#gaps">配件与机油 · 数据缺口</a>与<a href="fitment.html#brands">轮毂适配 · 品牌数据缺口</a>。',
+  'home.disclaimer.note3': '<strong>改装风险自负。</strong>轮毂轮胎属于行车安全件。安装前请务必：以实车测量轮拱与避震间隙、核对轮毂厂商标称载荷（不得低于单轮需求）、确认螺栓球面/锥面与长度、检查胎压监测传感器兼容性，并遵守当地关于轮距变更与轮胎规格的法规要求。',
+
+  /* ---------------- 首页：动态渲染文案 ---------------- */
+  'home.stats.pcd.k': 'PCD 孔距',
+  'home.stats.pcd.s': '2001 年至今未变',
+  'home.stats.cb.k': '中心孔 CB',
+  'home.stats.cb.s': '改装轮毂大于此值需变径环',
+  'home.stats.bolt.k': '螺栓螺纹',
+  'home.stats.bolt.s': 'W203 为 M12×1.5，W204 起 M14×1.5',
+  'home.stats.seat.k': '螺栓座面',
+  'home.stats.seat.v': '球面 R14',
+  'home.stats.seat.s': '奔驰原厂与主流改装毂通用',
+
+  'home.tl.len': '长',
+  'home.tl.wb': '轴距',
+  'home.tl.tf': '前轮距',
+  'home.tl.unit.mm': 'mm',
+
+  'home.qc.year': '生产年份',
+  'home.qc.gen': '代际',
+  'home.qc.length': '车长 (mm)',
+  'home.qc.width': '车宽 (mm)',
+  'home.qc.height': '车高 (mm)',
+  'home.qc.wheelbase': '轴距 (mm)',
+  'home.qc.trackF': '前轮距 (mm)',
+  'home.qc.trackR': '后轮距 (mm)',
+  'home.qc.weight': '整备质量 (kg)',
+  'home.qc.boot': '后备箱 (L)',
+  'home.qc.tank': '油箱 (L)',
+  'home.qc.clearance': '最小离地间隙 (mm)',
+  'home.qc.bolt': '轮毂螺栓',
+  'home.qc.et': '原厂 ET 范围',
+  'home.qc.tyre': '原厂轮胎',
+  'home.qc.item': '项目'
+};
